@@ -1,0 +1,2745 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "DevSecOps Dependency Risk Analyzer",
+          "version": "1.0.0",
+          "rules": [
+            {
+              "id": "CVE-2020-14343",
+              "shortDescription": {
+                "text": "Vulnerability in pyyaml: CVE-2020-14343"
+              },
+              "fullDescription": {
+                "text": "Improper Input Validation in PyYAML"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2024-43796",
+              "shortDescription": {
+                "text": "Vulnerability in express: CVE-2024-43796"
+              },
+              "fullDescription": {
+                "text": "express vulnerable to XSS via response.redirect()"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2024-29041",
+              "shortDescription": {
+                "text": "Vulnerability in express: CVE-2024-29041"
+              },
+              "fullDescription": {
+                "text": "Express.js Open Redirect in malformed URLs"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2020-28500",
+              "shortDescription": {
+                "text": "Vulnerability in lodash: CVE-2020-28500"
+              },
+              "fullDescription": {
+                "text": "Regular Expression Denial of Service (ReDoS) in lodash"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2021-23337",
+              "shortDescription": {
+                "text": "Vulnerability in lodash: CVE-2021-23337"
+              },
+              "fullDescription": {
+                "text": "Command Injection in lodash"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2025-13465",
+              "shortDescription": {
+                "text": "Vulnerability in lodash: CVE-2025-13465"
+              },
+              "fullDescription": {
+                "text": "lodash vulnerable to Prototype Pollution via array path bypass in `_.unset` and `_.omit`"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2020-8203",
+              "shortDescription": {
+                "text": "Vulnerability in lodash: CVE-2020-8203"
+              },
+              "fullDescription": {
+                "text": "Prototype Pollution in lodash"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2024-47081",
+              "shortDescription": {
+                "text": "Vulnerability in requests: CVE-2024-47081"
+              },
+              "fullDescription": {
+                "text": "Requests vulnerable to .netrc credentials leak via malicious URLs"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2024-35195",
+              "shortDescription": {
+                "text": "Vulnerability in requests: CVE-2024-35195"
+              },
+              "fullDescription": {
+                "text": "Requests `Session` object does not verify requests after making first request with verify=False"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2026-25645",
+              "shortDescription": {
+                "text": "Vulnerability in requests: CVE-2026-25645"
+              },
+              "fullDescription": {
+                "text": "Requests has Insecure Temp File Reuse in its extract_zipped_paths() utility function"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2023-32681",
+              "shortDescription": {
+                "text": "Vulnerability in requests: CVE-2023-32681"
+              },
+              "fullDescription": {
+                "text": "Unintended leak of Proxy-Authorization header in requests"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2018-1000656",
+              "shortDescription": {
+                "text": "Vulnerability in flask: CVE-2018-1000656"
+              },
+              "fullDescription": {
+                "text": "Flask is vulnerable to Denial of Service via incorrect encoding of JSON data"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2019-1010083",
+              "shortDescription": {
+                "text": "Vulnerability in flask: CVE-2019-1010083"
+              },
+              "fullDescription": {
+                "text": "Pallets Project Flask is vulnerable to Denial of Service via Unexpected memory usage"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2026-27205",
+              "shortDescription": {
+                "text": "Vulnerability in flask: CVE-2026-27205"
+              },
+              "fullDescription": {
+                "text": "Flask session does not add `Vary: Cookie` header when accessed in some ways"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2023-30861",
+              "shortDescription": {
+                "text": "Vulnerability in flask: CVE-2023-30861"
+              },
+              "fullDescription": {
+                "text": "Flask vulnerable to possible disclosure of permanent session cookie due to missing Vary: Cookie header"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2025-27516",
+              "shortDescription": {
+                "text": "Vulnerability in jinja2: CVE-2025-27516"
+              },
+              "fullDescription": {
+                "text": "Jinja2 vulnerable to sandbox breakout through attr filter selecting format method"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2020-28493",
+              "shortDescription": {
+                "text": "Vulnerability in jinja2: CVE-2020-28493"
+              },
+              "fullDescription": {
+                "text": "Regular Expression Denial of Service (ReDoS) in Jinja2"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2024-22195",
+              "shortDescription": {
+                "text": "Vulnerability in jinja2: CVE-2024-22195"
+              },
+              "fullDescription": {
+                "text": "Jinja vulnerable to HTML attribute injection when passing user input as keys to xmlattr filter"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2024-34064",
+              "shortDescription": {
+                "text": "Vulnerability in jinja2: CVE-2024-34064"
+              },
+              "fullDescription": {
+                "text": "Jinja vulnerable to HTML attribute injection when passing user input as keys to xmlattr filter"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2024-56326",
+              "shortDescription": {
+                "text": "Vulnerability in jinja2: CVE-2024-56326"
+              },
+              "fullDescription": {
+                "text": "Jinja has a sandbox breakout through indirect reference to format method"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2025-66471",
+              "shortDescription": {
+                "text": "Vulnerability in urllib3: CVE-2025-66471"
+              },
+              "fullDescription": {
+                "text": "urllib3 streaming API improperly handles highly compressed data"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2024-37891",
+              "shortDescription": {
+                "text": "Vulnerability in urllib3: CVE-2024-37891"
+              },
+              "fullDescription": {
+                "text": "urllib3's Proxy-Authorization request header isn't stripped during cross-origin redirects"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2026-21441",
+              "shortDescription": {
+                "text": "Vulnerability in urllib3: CVE-2026-21441"
+              },
+              "fullDescription": {
+                "text": "Decompression-bomb safeguards bypassed when following HTTP redirects (streaming API)"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2023-45803",
+              "shortDescription": {
+                "text": "Vulnerability in urllib3: CVE-2023-45803"
+              },
+              "fullDescription": {
+                "text": "urllib3's request body not stripped after redirect from 303 status changes request method to GET"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2025-66418",
+              "shortDescription": {
+                "text": "Vulnerability in urllib3: CVE-2025-66418"
+              },
+              "fullDescription": {
+                "text": "urllib3 allows an unbounded number of links in the decompression chain"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2025-50181",
+              "shortDescription": {
+                "text": "Vulnerability in urllib3: CVE-2025-50181"
+              },
+              "fullDescription": {
+                "text": "urllib3 redirects are not disabled when retries are disabled on PoolManager instantiation"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2021-33503",
+              "shortDescription": {
+                "text": "Vulnerability in urllib3: CVE-2021-33503"
+              },
+              "fullDescription": {
+                "text": "Catastrophic backtracking in URL authority parser when passed URL containing many @ characters"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2026-44431",
+              "shortDescription": {
+                "text": "Vulnerability in urllib3: CVE-2026-44431"
+              },
+              "fullDescription": {
+                "text": "urllib3: Sensitive headers forwarded across origins in proxied low-level redirects"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2023-43804",
+              "shortDescription": {
+                "text": "Vulnerability in urllib3: CVE-2023-43804"
+              },
+              "fullDescription": {
+                "text": "`Cookie` HTTP header isn't stripped on cross-origin redirects"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2026-44495",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2026-44495"
+              },
+              "fullDescription": {
+                "text": "axios Vulnerable to Credential Theft and Response Hijacking via Prototype Pollution Gadget in Config Merge"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2025-62718",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2025-62718"
+              },
+              "fullDescription": {
+                "text": "Axios has a NO_PROXY Hostname Normalization Bypass that Leads to SSRF"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2026-25639",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2026-25639"
+              },
+              "fullDescription": {
+                "text": "Axios is Vulnerable to Denial of Service via __proto__ Key in mergeConfig"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2020-28168",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2020-28168"
+              },
+              "fullDescription": {
+                "text": "Axios vulnerable to Server-Side Request Forgery"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2026-42034",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2026-42034"
+              },
+              "fullDescription": {
+                "text": "Axios' HTTP adapter-streamed uploads bypass maxBodyLength when maxRedirects: 0"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2026-42039",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2026-42039"
+              },
+              "fullDescription": {
+                "text": "Axios: unbounded recursion in toFormData causes DoS via deeply nested request data"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2026-42035",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2026-42035"
+              },
+              "fullDescription": {
+                "text": "Axios: Header Injection via Prototype Pollution"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2026-67319",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2026-67319"
+              },
+              "fullDescription": {
+                "text": "Axios: Nested axios option objects can consume polluted prototype values"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2026-44490",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2026-44490"
+              },
+              "fullDescription": {
+                "text": "axios has DoS & Header Injection via Prototype Pollution Read-Side Gadgets in axios merge functions"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2021-3749",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2021-3749"
+              },
+              "fullDescription": {
+                "text": "axios Inefficient Regular Expression Complexity vulnerability"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2026-40175",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2026-40175"
+              },
+              "fullDescription": {
+                "text": "Axios has Unrestricted Cloud Metadata Exfiltration via Header Injection Chain"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2026-44496",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2026-44496"
+              },
+              "fullDescription": {
+                "text": "Axios: Regular Expression Denial of Service (ReDoS) via Cookie Name Injection"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2026-44486",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2026-44486"
+              },
+              "fullDescription": {
+                "text": "Axios: Proxy-Authorization header leaks to redirect target when proxy is re-evaluated to direct connection"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2025-27152",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2025-27152"
+              },
+              "fullDescription": {
+                "text": "axios Requests Vulnerable To Possible SSRF and Credential Leakage via Absolute URL"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2026-42038",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2026-42038"
+              },
+              "fullDescription": {
+                "text": "Axios: no_proxy bypass via IP alias allows SSRF"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2026-67316",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2026-67316"
+              },
+              "fullDescription": {
+                "text": "Axios: Prototype pollution gadgets can alter axios request construction"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2026-44487",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2026-44487"
+              },
+              "fullDescription": {
+                "text": "Axios: Proxy-Authorization Credential Leak to Origin Server Across HTTP-to-HTTPS Redirect in Axios Node.js HTTP Adapter"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2026-42033",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2026-42033"
+              },
+              "fullDescription": {
+                "text": "Axios: Prototype Pollution Gadgets - Response Tampering, Data Exfiltration, and Request Hijacking"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2026-44492",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2026-44492"
+              },
+              "fullDescription": {
+                "text": "axios's shouldBypassProxy does not recognize IPv4-mapped IPv6 addresses, allowing NO_PROXY bypass (incomplete fix for CVE-2025-62718)"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2026-42043",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2026-42043"
+              },
+              "fullDescription": {
+                "text": "Axios: Incomplete Fix for CVE-2025-62718 \u2014 NO_PROXY Protection Bypassed via RFC 1122 Loopback Subnet (127.0.0.0/8) in Axios 1.15.0"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2026-42036",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2026-42036"
+              },
+              "fullDescription": {
+                "text": "Axios: HTTP adapter streamed responses bypass maxContentLength"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2026-42041",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2026-42041"
+              },
+              "fullDescription": {
+                "text": "Axios: Authentication Bypass via Prototype Pollution Gadget in `validateStatus` Merge Strategy"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2023-45857",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2023-45857"
+              },
+              "fullDescription": {
+                "text": "Axios Cross-Site Request Forgery Vulnerability"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2026-42040",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2026-42040"
+              },
+              "fullDescription": {
+                "text": "Axios: Null Byte Injection via Reverse-Encoding in AxiosURLSearchParams"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2026-42042",
+              "shortDescription": {
+                "text": "Vulnerability in axios: CVE-2026-42042"
+              },
+              "fullDescription": {
+                "text": "Axios: XSRF Token Cross-Origin Leakage via Prototype Pollution Gadget in `withXSRFToken` Boolean Coercion"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2020-13596",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2020-13596"
+              },
+              "fullDescription": {
+                "text": "XSS in Django"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2020-9402",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2020-9402"
+              },
+              "fullDescription": {
+                "text": "SQL injection in Django"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2026-48588",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2026-48588"
+              },
+              "fullDescription": {
+                "text": "Django: cache middleware may expose private responses when unrelated request cookies are present"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2021-33203",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2021-33203"
+              },
+              "fullDescription": {
+                "text": "Path Traversal in Django"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2025-57833",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2025-57833"
+              },
+              "fullDescription": {
+                "text": "Django is subject to SQL injection through its column aliases"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2025-48432",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2025-48432"
+              },
+              "fullDescription": {
+                "text": "Django Improper Output Neutralization for Logs vulnerability"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2026-8404",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2026-8404"
+              },
+              "fullDescription": {
+                "text": "Django: UpdateCacheMiddleware may disclose cached responses due to case-sensitive Cache-Control handling"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2026-53878",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2026-53878"
+              },
+              "fullDescription": {
+                "text": "Django: DomainNameValidator permits newline characters that may enable HTTP header injection"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2022-36359",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2022-36359"
+              },
+              "fullDescription": {
+                "text": "Django vulnerable to Reflected File Download attack"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2026-48587",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2026-48587"
+              },
+              "fullDescription": {
+                "text": "Django: has_vary_header may expose cached responses when Vary values contain whitespace"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2026-53877",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2026-53877"
+              },
+              "fullDescription": {
+                "text": " Django: GDALRaster may over-read heap memory when constructed from bytes"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2020-24584",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2020-24584"
+              },
+              "fullDescription": {
+                "text": "Django Incorrect Default Permissions"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2025-64459",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2025-64459"
+              },
+              "fullDescription": {
+                "text": "Django vulnerable to SQL injection via _connector keyword argument in QuerySet and Q objects."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2021-3281",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2021-3281"
+              },
+              "fullDescription": {
+                "text": "Django Directory Traversal via archive.extract"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2026-6873",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2026-6873"
+              },
+              "fullDescription": {
+                "text": "Django: signed cookies are vulnerable to salt namespace collisions"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2020-7471",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2020-7471"
+              },
+              "fullDescription": {
+                "text": "SQL injection in Django"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2020-24583",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2020-24583"
+              },
+              "fullDescription": {
+                "text": "Django Incorrect Default Permissions"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2021-33571",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2021-33571"
+              },
+              "fullDescription": {
+                "text": "Django Access Control Bypass possibly leading to SSRF, RFI, and LFI attacks "
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2025-64458",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2025-64458"
+              },
+              "fullDescription": {
+                "text": "Django has a denial-of-service vulnerability in HttpResponseRedirect and HttpResponsePermanentRedirect on Windows"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2024-45231",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2024-45231"
+              },
+              "fullDescription": {
+                "text": "Django allows enumeration of user e-mail addresses"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2021-31542",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2021-31542"
+              },
+              "fullDescription": {
+                "text": "Path Traversal in Django"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2021-44420",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2021-44420"
+              },
+              "fullDescription": {
+                "text": "Potential bypass of an upstream access control based on URL paths in Django"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2019-19844",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2019-19844"
+              },
+              "fullDescription": {
+                "text": "Django Potential account hijack via password reset form"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2020-13254",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2020-13254"
+              },
+              "fullDescription": {
+                "text": "Data leakage via cache key collision in Django"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2021-28658",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2021-28658"
+              },
+              "fullDescription": {
+                "text": "Directory Traversal in Django"
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            },
+            {
+              "id": "CVE-2021-35042",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2021-35042"
+              },
+              "fullDescription": {
+                "text": "SQL Injection in Django"
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              }
+            },
+            {
+              "id": "CVE-2026-15830",
+              "shortDescription": {
+                "text": "Vulnerability in django: CVE-2026-15830"
+              },
+              "fullDescription": {
+                "text": "An issue was discovered in Django 5.2 before 5.2.17 and 6.0 before 6.0.8.\nGeoDjango's `django.contrib.gis.geos.GEOSGeometry` is subject to a potent..."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CVE-2020-14343",
+          "message": {
+            "text": "Package pyyaml@5.3.1 is vulnerable to CVE-2020-14343. Improper Input Validation in PyYAML"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-14343",
+          "message": {
+            "text": "Package pyyaml@5.3.1 is vulnerable to CVE-2020-14343. A vulnerability was discovered in the PyYAML library in versions before 5.4, where it is susceptible to arbitrary code execution when it processes ..."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-43796",
+          "message": {
+            "text": "Package express@4.16.0 is vulnerable to CVE-2024-43796. express vulnerable to XSS via response.redirect()"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-29041",
+          "message": {
+            "text": "Package express@4.16.0 is vulnerable to CVE-2024-29041. Express.js Open Redirect in malformed URLs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-28500",
+          "message": {
+            "text": "Package lodash@4.17.15 is vulnerable to CVE-2020-28500. Regular Expression Denial of Service (ReDoS) in lodash"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-23337",
+          "message": {
+            "text": "Package lodash@4.17.15 is vulnerable to CVE-2021-23337. Command Injection in lodash"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-13465",
+          "message": {
+            "text": "Package lodash@4.17.15 is vulnerable to CVE-2025-13465. lodash vulnerable to Prototype Pollution via array path bypass in `_.unset` and `_.omit`"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-8203",
+          "message": {
+            "text": "Package lodash@4.17.15 is vulnerable to CVE-2020-8203. Prototype Pollution in lodash"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-23337",
+          "message": {
+            "text": "Package lodash@4.17.15 is vulnerable to CVE-2021-23337. lodash vulnerable to Code Injection via `_.template` imports key names"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-13465",
+          "message": {
+            "text": "Package lodash@4.17.15 is vulnerable to CVE-2025-13465. Lodash has Prototype Pollution Vulnerability in `_.unset` and `_.omit` functions"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-47081",
+          "message": {
+            "text": "Package requests@2.25.0 is vulnerable to CVE-2024-47081. Requests vulnerable to .netrc credentials leak via malicious URLs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-35195",
+          "message": {
+            "text": "Package requests@2.25.0 is vulnerable to CVE-2024-35195. Requests `Session` object does not verify requests after making first request with verify=False"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-25645",
+          "message": {
+            "text": "Package requests@2.25.0 is vulnerable to CVE-2026-25645. Requests has Insecure Temp File Reuse in its extract_zipped_paths() utility function"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-32681",
+          "message": {
+            "text": "Package requests@2.25.0 is vulnerable to CVE-2023-32681. Unintended leak of Proxy-Authorization header in requests"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-32681",
+          "message": {
+            "text": "Package requests@2.25.0 is vulnerable to CVE-2023-32681. Requests is a HTTP library. Since Requests 2.3.0, Requests has been leaking Proxy-Authorization headers to destination servers when redirected to a..."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-47081",
+          "message": {
+            "text": "Package requests@2.25.0 is vulnerable to CVE-2024-47081. Requests vulnerable to .netrc credentials leak via malicious URLs"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-35195",
+          "message": {
+            "text": "Package requests@2.25.0 is vulnerable to CVE-2024-35195. Requests `Session` object does not verify requests after making first request with verify=False"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-25645",
+          "message": {
+            "text": "Package requests@2.25.0 is vulnerable to CVE-2026-25645. Requests is a HTTP library. Prior to version 2.33.0, the `requests.utils.extract_zipped_paths()` utility function uses a predictable filename when ..."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-1000656",
+          "message": {
+            "text": "Package flask@0.12.0 is vulnerable to CVE-2018-1000656. Flask is vulnerable to Denial of Service via incorrect encoding of JSON data"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-1010083",
+          "message": {
+            "text": "Package flask@0.12.0 is vulnerable to CVE-2019-1010083. Pallets Project Flask is vulnerable to Denial of Service via Unexpected memory usage"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-27205",
+          "message": {
+            "text": "Package flask@0.12.0 is vulnerable to CVE-2026-27205. Flask session does not add `Vary: Cookie` header when accessed in some ways"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-30861",
+          "message": {
+            "text": "Package flask@0.12.0 is vulnerable to CVE-2023-30861. Flask vulnerable to possible disclosure of permanent session cookie due to missing Vary: Cookie header"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2018-1000656",
+          "message": {
+            "text": "Package flask@0.12.0 is vulnerable to CVE-2018-1000656. The Pallets Project flask version Before 0.12.3 contains a CWE-20: Improper Input Validation vulnerability in flask that can result in Large amount..."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-1010083",
+          "message": {
+            "text": "Package flask@0.12.0 is vulnerable to CVE-2019-1010083. The Pallets Project Flask before 1.0 is affected by: unexpected memory usage. The impact is: denial of service. The attack vector is: crafted encod..."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-30861",
+          "message": {
+            "text": "Package flask@0.12.0 is vulnerable to CVE-2023-30861. Flask is a lightweight WSGI web application framework. When all of the following conditions are met, a response containing data intended for one cl..."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-27205",
+          "message": {
+            "text": "Package flask@0.12.0 is vulnerable to CVE-2026-27205. Flask is a web server gateway interface (WSGI) web application framework. In versions 3.1.2 and below, when the session object is accessed, Flask s..."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-27516",
+          "message": {
+            "text": "Package jinja2@2.11.2 is vulnerable to CVE-2025-27516. Jinja2 vulnerable to sandbox breakout through attr filter selecting format method"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-28493",
+          "message": {
+            "text": "Package jinja2@2.11.2 is vulnerable to CVE-2020-28493. Regular Expression Denial of Service (ReDoS) in Jinja2"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-22195",
+          "message": {
+            "text": "Package jinja2@2.11.2 is vulnerable to CVE-2024-22195. Jinja vulnerable to HTML attribute injection when passing user input as keys to xmlattr filter"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-34064",
+          "message": {
+            "text": "Package jinja2@2.11.2 is vulnerable to CVE-2024-34064. Jinja vulnerable to HTML attribute injection when passing user input as keys to xmlattr filter"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-56326",
+          "message": {
+            "text": "Package jinja2@2.11.2 is vulnerable to CVE-2024-56326. Jinja has a sandbox breakout through indirect reference to format method"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-28493",
+          "message": {
+            "text": "Package jinja2@2.11.2 is vulnerable to CVE-2020-28493. This affects the package jinja2 from 0.0.0 and before 2.11.3. The ReDoS vulnerability is mainly due to the `_punctuation_re regex` operator and its..."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-27516",
+          "message": {
+            "text": "Package jinja2@2.11.2 is vulnerable to CVE-2025-27516. Jinja2 vulnerable to sandbox breakout through attr filter selecting format method"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-22195",
+          "message": {
+            "text": "Package jinja2@2.11.2 is vulnerable to CVE-2024-22195. Jinja vulnerable to HTML attribute injection when passing user input as keys to xmlattr filter"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-34064",
+          "message": {
+            "text": "Package jinja2@2.11.2 is vulnerable to CVE-2024-34064. Jinja vulnerable to HTML attribute injection when passing user input as keys to xmlattr filter"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-56326",
+          "message": {
+            "text": "Package jinja2@2.11.2 is vulnerable to CVE-2024-56326. Jinja has a sandbox breakout through indirect reference to format method"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-66471",
+          "message": {
+            "text": "Package urllib3@1.26.4 is vulnerable to CVE-2025-66471. urllib3 streaming API improperly handles highly compressed data"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-37891",
+          "message": {
+            "text": "Package urllib3@1.26.4 is vulnerable to CVE-2024-37891. urllib3's Proxy-Authorization request header isn't stripped during cross-origin redirects"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-21441",
+          "message": {
+            "text": "Package urllib3@1.26.4 is vulnerable to CVE-2026-21441. Decompression-bomb safeguards bypassed when following HTTP redirects (streaming API)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-45803",
+          "message": {
+            "text": "Package urllib3@1.26.4 is vulnerable to CVE-2023-45803. urllib3's request body not stripped after redirect from 303 status changes request method to GET"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-66418",
+          "message": {
+            "text": "Package urllib3@1.26.4 is vulnerable to CVE-2025-66418. urllib3 allows an unbounded number of links in the decompression chain"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-50181",
+          "message": {
+            "text": "Package urllib3@1.26.4 is vulnerable to CVE-2025-50181. urllib3 redirects are not disabled when retries are disabled on PoolManager instantiation"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-33503",
+          "message": {
+            "text": "Package urllib3@1.26.4 is vulnerable to CVE-2021-33503. Catastrophic backtracking in URL authority parser when passed URL containing many @ characters"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-44431",
+          "message": {
+            "text": "Package urllib3@1.26.4 is vulnerable to CVE-2026-44431. urllib3: Sensitive headers forwarded across origins in proxied low-level redirects"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-43804",
+          "message": {
+            "text": "Package urllib3@1.26.4 is vulnerable to CVE-2023-43804. `Cookie` HTTP header isn't stripped on cross-origin redirects"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-33503",
+          "message": {
+            "text": "Package urllib3@1.26.4 is vulnerable to CVE-2021-33503. An issue was discovered in urllib3 before 1.26.5. When provided with a URL containing many @ characters in the authority component, the authority r..."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-43804",
+          "message": {
+            "text": "Package urllib3@1.26.4 is vulnerable to CVE-2023-43804. urllib3 is a user-friendly HTTP client library for Python. urllib3 doesn't treat the `Cookie` HTTP header special or provide any helpers for managi..."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-45803",
+          "message": {
+            "text": "Package urllib3@1.26.4 is vulnerable to CVE-2023-45803. urllib3 is a user-friendly HTTP client library for Python. urllib3 previously wouldn't remove the HTTP request body when an HTTP redirect response ..."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-44431",
+          "message": {
+            "text": "Package urllib3@1.26.4 is vulnerable to CVE-2026-44431. urllib3 is an HTTP client library for Python. From 1.23 to before 2.7.0, cross-origin redirects followed from the low-level API via ProxyManager.co..."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-66471",
+          "message": {
+            "text": "Package urllib3@1.26.4 is vulnerable to CVE-2025-66471. urllib3 streaming API improperly handles highly compressed data"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-37891",
+          "message": {
+            "text": "Package urllib3@1.26.4 is vulnerable to CVE-2024-37891. urllib3's Proxy-Authorization request header isn't stripped during cross-origin redirects"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-21441",
+          "message": {
+            "text": "Package urllib3@1.26.4 is vulnerable to CVE-2026-21441. Decompression-bomb safeguards bypassed when following HTTP redirects (streaming API)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-66418",
+          "message": {
+            "text": "Package urllib3@1.26.4 is vulnerable to CVE-2025-66418. urllib3 allows an unbounded number of links in the decompression chain"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-50181",
+          "message": {
+            "text": "Package urllib3@1.26.4 is vulnerable to CVE-2025-50181. urllib3 redirects are not disabled when retries are disabled on PoolManager instantiation"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-44495",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2026-44495. axios Vulnerable to Credential Theft and Response Hijacking via Prototype Pollution Gadget in Config Merge"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-62718",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2025-62718. Axios has a NO_PROXY Hostname Normalization Bypass that Leads to SSRF"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-25639",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2026-25639. Axios is Vulnerable to Denial of Service via __proto__ Key in mergeConfig"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-28168",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2020-28168. Axios vulnerable to Server-Side Request Forgery"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-42034",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2026-42034. Axios' HTTP adapter-streamed uploads bypass maxBodyLength when maxRedirects: 0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-42039",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2026-42039. Axios: unbounded recursion in toFormData causes DoS via deeply nested request data"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-42035",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2026-42035. Axios: Header Injection via Prototype Pollution"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-67319",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2026-67319. Axios: Nested axios option objects can consume polluted prototype values"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-44490",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2026-44490. axios has DoS & Header Injection via Prototype Pollution Read-Side Gadgets in axios merge functions"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-3749",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2021-3749. axios Inefficient Regular Expression Complexity vulnerability"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-40175",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2026-40175. Axios has Unrestricted Cloud Metadata Exfiltration via Header Injection Chain"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-44496",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2026-44496. Axios: Regular Expression Denial of Service (ReDoS) via Cookie Name Injection"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-44486",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2026-44486. Axios: Proxy-Authorization header leaks to redirect target when proxy is re-evaluated to direct connection"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-27152",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2025-27152. axios Requests Vulnerable To Possible SSRF and Credential Leakage via Absolute URL"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-42038",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2026-42038. Axios: no_proxy bypass via IP alias allows SSRF"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-67316",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2026-67316. Axios: Prototype pollution gadgets can alter axios request construction"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-44487",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2026-44487. Axios: Proxy-Authorization Credential Leak to Origin Server Across HTTP-to-HTTPS Redirect in Axios Node.js HTTP Adapter"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-42033",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2026-42033. Axios: Prototype Pollution Gadgets - Response Tampering, Data Exfiltration, and Request Hijacking"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-44492",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2026-44492. axios's shouldBypassProxy does not recognize IPv4-mapped IPv6 addresses, allowing NO_PROXY bypass (incomplete fix for CVE-2025-62718)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-42043",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2026-42043. Axios: Incomplete Fix for CVE-2025-62718 \u2014 NO_PROXY Protection Bypassed via RFC 1122 Loopback Subnet (127.0.0.0/8) in Axios 1.15.0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-42036",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2026-42036. Axios: HTTP adapter streamed responses bypass maxContentLength"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-42041",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2026-42041. Axios: Authentication Bypass via Prototype Pollution Gadget in `validateStatus` Merge Strategy"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-45857",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2023-45857. Axios Cross-Site Request Forgery Vulnerability"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-42040",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2026-42040. Axios: Null Byte Injection via Reverse-Encoding in AxiosURLSearchParams"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-42042",
+          "message": {
+            "text": "Package axios@0.21.0 is vulnerable to CVE-2026-42042. Axios: XSRF Token Cross-Origin Leakage via Prototype Pollution Gadget in `withXSRFToken` Boolean Coercion"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-13596",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2020-13596. XSS in Django"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-9402",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2020-9402. SQL injection in Django"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-48588",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2026-48588. Django: cache middleware may expose private responses when unrelated request cookies are present"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-33203",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2021-33203. Path Traversal in Django"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-57833",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2025-57833. Django is subject to SQL injection through its column aliases"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-48432",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2025-48432. Django Improper Output Neutralization for Logs vulnerability"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-8404",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2026-8404. Django: UpdateCacheMiddleware may disclose cached responses due to case-sensitive Cache-Control handling"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-53878",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2026-53878. Django: DomainNameValidator permits newline characters that may enable HTTP header injection"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-36359",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2022-36359. Django vulnerable to Reflected File Download attack"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-48587",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2026-48587. Django: has_vary_header may expose cached responses when Vary values contain whitespace"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-53877",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2026-53877.  Django: GDALRaster may over-read heap memory when constructed from bytes"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-24584",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2020-24584. Django Incorrect Default Permissions"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-64459",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2025-64459. Django vulnerable to SQL injection via _connector keyword argument in QuerySet and Q objects."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-3281",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2021-3281. Django Directory Traversal via archive.extract"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-6873",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2026-6873. Django: signed cookies are vulnerable to salt namespace collisions"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-7471",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2020-7471. SQL injection in Django"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-24583",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2020-24583. Django Incorrect Default Permissions"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-33571",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2021-33571. Django Access Control Bypass possibly leading to SSRF, RFI, and LFI attacks "
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2025-64458",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2025-64458. Django has a denial-of-service vulnerability in HttpResponseRedirect and HttpResponsePermanentRedirect on Windows"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-45231",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2024-45231. Django allows enumeration of user e-mail addresses"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-31542",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2021-31542. Path Traversal in Django"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-44420",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2021-44420. Potential bypass of an upstream access control based on URL paths in Django"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-19844",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2019-19844. Django Potential account hijack via password reset form"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-13254",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2020-13254. Data leakage via cache key collision in Django"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-28658",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2021-28658. Directory Traversal in Django"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-35042",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2021-35042. SQL Injection in Django"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-13254",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2020-13254. An issue was discovered in Django 2.2 before 2.2.13 and 3.0 before 3.0.7. In cases where a memcached backend does not perform key validation, passi..."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-13596",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2020-13596. An issue was discovered in Django 2.2 before 2.2.13 and 3.0 before 3.0.7. Query parameters generated by the Django admin ForeignKeyRawIdWidget were..."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-24583",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2020-24583. An issue was discovered in Django 2.2 before 2.2.16, 3.0 before 3.0.10, and 3.1 before 3.1.1 (when Python 3.7+ is used). FILE_UPLOAD_DIRECTORY_PERM..."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-24584",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2020-24584. An issue was discovered in Django 2.2 before 2.2.16, 3.0 before 3.0.10, and 3.1 before 3.1.1 (when Python 3.7+ is used). The intermediate-level dir..."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-7471",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2020-7471. Django 1.11 before 1.11.28, 2.2 before 2.2.10, and 3.0 before 3.0.3 allows SQL Injection if untrusted data is used as a StringAgg delimiter (e.g., ..."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-9402",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2020-9402. Django 1.11 before 1.11.29, 2.2 before 2.2.11, and 3.0 before 3.0.4 allows SQL Injection if untrusted data is used as a tolerance parameter in GIS ..."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-28658",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2021-28658. In Django 2.2 before 2.2.20, 3.0 before 3.0.14, and 3.1 before 3.1.8, MultiPartParser allowed directory traversal via uploaded files with suitably ..."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-3281",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2021-3281. In Django 2.2 before 2.2.18, 3.0 before 3.0.12, and 3.1 before 3.1.6, the django.utils.archive.extract method (used by \"startapp --template\" and \"s..."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-33203",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2021-33203. Django before 2.2.24, 3.x before 3.1.12, and 3.2.x before 3.2.4 has a potential directory traversal via django.contrib.admindocs. Staff members cou..."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-33571",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2021-33571. In Django 2.2 before 2.2.24, 3.x before 3.1.12, and 3.2 before 3.2.4, URLValidator, validate_ipv4_address, and validate_ipv46_address do not prohib..."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2024-45231",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2024-45231. Django allows enumeration of user e-mail addresses"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-15830",
+          "message": {
+            "text": "Package django@3.0.0 is vulnerable to CVE-2026-15830. An issue was discovered in Django 5.2 before 5.2.17 and 6.0 before 6.0.8.\nGeoDjango's `django.contrib.gis.geos.GEOSGeometry` is subject to a potent..."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevSecOps Dependency Risk Report</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --border-color: #334155;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-blue: #38bdf8;
+            --critical-red: #ef4444;
+            --high-orange: #f97316;
+            --medium-yellow: #eab308;
+            --low-green: #22c55e;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 { margin: 0; color: var(--accent-blue); font-size: 1.8rem; }
+        .meta { color: var(--text-muted); font-size: 0.9rem; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-title { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .stat-value { font-size: 2.2rem; font-weight: bold; margin-top: 0.5rem; }
+
+        .gate-passed { color: var(--low-green); }
+        .gate-failed { color: var(--critical-red); }
+
+        .chart-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: #0f172a;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        tr:hover { background-color: #26334d; }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .badge-CRITICAL { background: rgba(239, 68, 68, 0.2); color: var(--critical-red); border: 1px solid var(--critical-red); }
+        .badge-HIGH { background: rgba(249, 115, 22, 0.2); color: var(--high-orange); border: 1px solid var(--high-orange); }
+        .badge-MEDIUM { background: rgba(234, 179, 8, 0.2); color: var(--medium-yellow); border: 1px solid var(--medium-yellow); }
+        .badge-LOW { background: rgba(34, 197, 94, 0.2); color: var(--low-green); border: 1px solid var(--low-green); }
+
+        .rem-box {
+            background: #112233;
+            border-left: 4px solid var(--low-green);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div>
+                <h1>🛡️ DevSecOps Dependency Risk Analyzer</h1>
+                <div class="meta">Target: C:\RV\Internship\New folder (2)\samples</div>
+            </div>
+            <div class="meta">Generated at: 2026-09-25T12:20:06.194128</div>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-title">Composite Risk Score</div>
+                <div class="stat-value" style="color: var(--critical-red)">
+                    100.0 / 100
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Quality Gate</div>
+                <div class="stat-value gate-failed">
+                    FAILED
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Dependencies Scanned</div>
+                <div class="stat-value">10</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Vulnerable Dependencies</div>
+                <div class="stat-value" style="color: var(--high-orange)">9</div>
+            </div>
+        </div>
+
+        
+        <div style="margin-bottom: 2.5rem;">
+            <h2>🔧 Recommended Fixes & Upgrade Paths</h2>
+            
+            <div class="rem-box">
+                <strong>pyyaml</strong> (5.3.1) &rarr; <span style="color:var(--low-green)">5.4</span>
+                <span class="badge badge-CRITICAL">CRITICAL</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2020-14343</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>express</strong> (4.16.0) &rarr; <span style="color:var(--low-green)">4.20.0</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2024-43796</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>express</strong> (4.16.0) &rarr; <span style="color:var(--low-green)">4.19.2</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2024-29041</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>lodash</strong> (4.17.15) &rarr; <span style="color:var(--low-green)">4.17.21</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2020-28500</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>lodash</strong> (4.17.15) &rarr; <span style="color:var(--low-green)">4.18.0</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2025-13465</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>lodash</strong> (4.17.15) &rarr; <span style="color:var(--low-green)">4.17.19</span>
+                <span class="badge badge-CRITICAL">CRITICAL</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2020-8203</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>lodash</strong> (4.17.15) &rarr; <span style="color:var(--low-green)">4.17.23</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2025-13465</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>requests</strong> (2.25.0) &rarr; <span style="color:var(--low-green)">2.32.4</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2024-47081</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>requests</strong> (2.25.0) &rarr; <span style="color:var(--low-green)">2.32.0</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2024-35195</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>requests</strong> (2.25.0) &rarr; <span style="color:var(--low-green)">2.33.0</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2026-25645</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>requests</strong> (2.25.0) &rarr; <span style="color:var(--low-green)">2.31.0</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2023-32681</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>requests</strong> (2.25.0) &rarr; <span style="color:var(--low-green)">74ea7cf7a6a27a4eeb2ae24e162bcc942a6706d5</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2023-32681</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>flask</strong> (0.12.0) &rarr; <span style="color:var(--low-green)">0.12.3</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2018-1000656</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>flask</strong> (0.12.0) &rarr; <span style="color:var(--low-green)">1.0</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2019-1010083</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>flask</strong> (0.12.0) &rarr; <span style="color:var(--low-green)">3.1.3</span>
+                <span class="badge badge-LOW">LOW</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2026-27205</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>flask</strong> (0.12.0) &rarr; <span style="color:var(--low-green)">2.3.2</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2023-30861</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>flask</strong> (0.12.0) &rarr; <span style="color:var(--low-green)">70f906c51ce49c485f1d355703e9cc3386b1cc2b</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2023-30861</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>jinja2</strong> (2.11.2) &rarr; <span style="color:var(--low-green)">3.1.6</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2025-27516</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>jinja2</strong> (2.11.2) &rarr; <span style="color:var(--low-green)">2.11.3</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2020-28493</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>jinja2</strong> (2.11.2) &rarr; <span style="color:var(--low-green)">3.1.3</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2024-22195</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>jinja2</strong> (2.11.2) &rarr; <span style="color:var(--low-green)">3.1.4</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2024-34064</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>jinja2</strong> (2.11.2) &rarr; <span style="color:var(--low-green)">3.1.5</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2024-56326</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>urllib3</strong> (1.26.4) &rarr; <span style="color:var(--low-green)">2.6.0</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2025-66471</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>urllib3</strong> (1.26.4) &rarr; <span style="color:var(--low-green)">1.26.19</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2024-37891</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>urllib3</strong> (1.26.4) &rarr; <span style="color:var(--low-green)">2.6.3</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2026-21441</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>urllib3</strong> (1.26.4) &rarr; <span style="color:var(--low-green)">2.0.7</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2023-45803</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>urllib3</strong> (1.26.4) &rarr; <span style="color:var(--low-green)">2.5.0</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2025-50181</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>urllib3</strong> (1.26.4) &rarr; <span style="color:var(--low-green)">1.26.5</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2021-33503</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>urllib3</strong> (1.26.4) &rarr; <span style="color:var(--low-green)">2.7.0</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2026-44431</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>urllib3</strong> (1.26.4) &rarr; <span style="color:var(--low-green)">2.0.6</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2023-43804</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>urllib3</strong> (1.26.4) &rarr; <span style="color:var(--low-green)">2d4a3fee6de2fa45eb82169361918f759269b4ec</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2021-33503</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>urllib3</strong> (1.26.4) &rarr; <span style="color:var(--low-green)">644124ecd0b6e417c527191f866daa05a5a2056d</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2023-43804</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>urllib3</strong> (1.26.4) &rarr; <span style="color:var(--low-green)">4e98d57809dacab1cbe625fddeec1a290c478ea9</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2023-45803</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>axios</strong> (0.21.0) &rarr; <span style="color:var(--low-green)">1.15.2</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2026-44495</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>axios</strong> (0.21.0) &rarr; <span style="color:var(--low-green)">1.15.0</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2025-62718</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>axios</strong> (0.21.0) &rarr; <span style="color:var(--low-green)">1.13.5</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2026-25639</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>axios</strong> (0.21.0) &rarr; <span style="color:var(--low-green)">0.21.1</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2020-28168</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>axios</strong> (0.21.0) &rarr; <span style="color:var(--low-green)">1.15.1</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2026-42034</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>axios</strong> (0.21.0) &rarr; <span style="color:var(--low-green)">0.33.0</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2026-67319</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>axios</strong> (0.21.0) &rarr; <span style="color:var(--low-green)">1.16.0</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2026-44490</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>axios</strong> (0.21.0) &rarr; <span style="color:var(--low-green)">0.21.2</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2021-3749</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>axios</strong> (0.21.0) &rarr; <span style="color:var(--low-green)">1.8.2</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2025-27152</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>axios</strong> (0.21.0) &rarr; <span style="color:var(--low-green)">1.18.0</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2026-67316</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>axios</strong> (0.21.0) &rarr; <span style="color:var(--low-green)">1.6.0</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2023-45857</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>django</strong> (3.0.0) &rarr; <span style="color:var(--low-green)">2.2.13</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2020-13596</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>django</strong> (3.0.0) &rarr; <span style="color:var(--low-green)">1.11.29</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2020-9402</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>django</strong> (3.0.0) &rarr; <span style="color:var(--low-green)">5.2.16</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2026-48588</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>django</strong> (3.0.0) &rarr; <span style="color:var(--low-green)">2.2.24</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2021-33203</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>django</strong> (3.0.0) &rarr; <span style="color:var(--low-green)">4.2.24</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2025-57833</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>django</strong> (3.0.0) &rarr; <span style="color:var(--low-green)">5.2.2</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2025-48432</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>django</strong> (3.0.0) &rarr; <span style="color:var(--low-green)">5.2.15</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2026-8404</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>django</strong> (3.0.0) &rarr; <span style="color:var(--low-green)">3.2.15</span>
+                <span class="badge badge-CRITICAL">CRITICAL</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2022-36359</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>django</strong> (3.0.0) &rarr; <span style="color:var(--low-green)">2.2.16</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2020-24584</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>django</strong> (3.0.0) &rarr; <span style="color:var(--low-green)">5.2.8</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2025-64459</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>django</strong> (3.0.0) &rarr; <span style="color:var(--low-green)">2.2.18</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2021-3281</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>django</strong> (3.0.0) &rarr; <span style="color:var(--low-green)">1.11.28</span>
+                <span class="badge badge-CRITICAL">CRITICAL</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2020-7471</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>django</strong> (3.0.0) &rarr; <span style="color:var(--low-green)">5.1.1</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2024-45231</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>django</strong> (3.0.0) &rarr; <span style="color:var(--low-green)">2.2.21</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2021-31542</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>django</strong> (3.0.0) &rarr; <span style="color:var(--low-green)">2.2.25</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2021-44420</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>django</strong> (3.0.0) &rarr; <span style="color:var(--low-green)">1.11.27</span>
+                <span class="badge badge-CRITICAL">CRITICAL</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2019-19844</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>django</strong> (3.0.0) &rarr; <span style="color:var(--low-green)">2.2.20</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2021-28658</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>django</strong> (3.0.0) &rarr; <span style="color:var(--low-green)">3.2.5</span>
+                <span class="badge badge-CRITICAL">CRITICAL</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2021-35042</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>django</strong> (3.0.0) &rarr; <span style="color:var(--low-green)">eb31d845323618d688ad429479c6dda973056136</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2020-7471</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>django</strong> (3.0.0) &rarr; <span style="color:var(--low-green)">4.2.16</span>
+                <span class="badge badge-HIGH">HIGH</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2024-45231</div>
+            </div>
+            
+            <div class="rem-box">
+                <strong>django</strong> (3.0.0) &rarr; <span style="color:var(--low-green)">5.2.17</span>
+                <span class="badge badge-MEDIUM">MEDIUM</span>
+                <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">Fixes CVE-2026-15830</div>
+            </div>
+            
+        </div>
+        
+
+        <h2>🚨 Detected Vulnerabilities</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Package</th>
+                    <th>Version</th>
+                    <th>Ecosystem</th>
+                    <th>Vulnerability ID</th>
+                    <th>Severity</th>
+                    <th>CVSS</th>
+                    <th>Fixed Version</th>
+                    <th>Summary</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                    
+                
+                    
+                    <tr>
+                        <td><strong>pyyaml</strong></td>
+                        <td>5.3.1</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2020-14343</code></td>
+                        <td><span class="badge badge-CRITICAL">CRITICAL</span></td>
+                        <td>9.8</td>
+                        <td><span style="color:var(--low-green)">5.4</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Improper Input Validation in PyYAML</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>pyyaml</strong></td>
+                        <td>5.3.1</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2020-14343</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.0</td>
+                        <td><span style="color:var(--low-green)">5.4</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">A vulnerability was discovered in the PyYAML library in versions before 5.4, where it is susceptible to arbitrary code execution when it processes ...</td>
+                    </tr>
+                    
+                
+                    
+                    <tr>
+                        <td><strong>express</strong></td>
+                        <td>4.16.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2024-43796</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">4.20.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">express vulnerable to XSS via response.redirect()</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>express</strong></td>
+                        <td>4.16.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2024-29041</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">4.19.2</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Express.js Open Redirect in malformed URLs</td>
+                    </tr>
+                    
+                
+                    
+                    <tr>
+                        <td><strong>lodash</strong></td>
+                        <td>4.17.15</td>
+                        <td>npm</td>
+                        <td><code>CVE-2020-28500</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">4.17.21</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Regular Expression Denial of Service (ReDoS) in lodash</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>lodash</strong></td>
+                        <td>4.17.15</td>
+                        <td>npm</td>
+                        <td><code>CVE-2021-23337</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>8.8</td>
+                        <td><span style="color:var(--low-green)">4.17.21</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Command Injection in lodash</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>lodash</strong></td>
+                        <td>4.17.15</td>
+                        <td>npm</td>
+                        <td><code>CVE-2025-13465</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">4.18.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">lodash vulnerable to Prototype Pollution via array path bypass in `_.unset` and `_.omit`</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>lodash</strong></td>
+                        <td>4.17.15</td>
+                        <td>npm</td>
+                        <td><code>CVE-2020-8203</code></td>
+                        <td><span class="badge badge-CRITICAL">CRITICAL</span></td>
+                        <td>9.8</td>
+                        <td><span style="color:var(--low-green)">4.17.19</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Prototype Pollution in lodash</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>lodash</strong></td>
+                        <td>4.17.15</td>
+                        <td>npm</td>
+                        <td><code>CVE-2021-23337</code></td>
+                        <td><span class="badge badge-CRITICAL">CRITICAL</span></td>
+                        <td>9.8</td>
+                        <td><span style="color:var(--low-green)">4.18.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">lodash vulnerable to Code Injection via `_.template` imports key names</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>lodash</strong></td>
+                        <td>4.17.15</td>
+                        <td>npm</td>
+                        <td><code>CVE-2025-13465</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">4.17.23</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Lodash has Prototype Pollution Vulnerability in `_.unset` and `_.omit` functions</td>
+                    </tr>
+                    
+                
+                    
+                    <tr>
+                        <td><strong>requests</strong></td>
+                        <td>2.25.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2024-47081</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">2.32.4</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Requests vulnerable to .netrc credentials leak via malicious URLs</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>requests</strong></td>
+                        <td>2.25.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2024-35195</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">2.32.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Requests `Session` object does not verify requests after making first request with verify=False</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>requests</strong></td>
+                        <td>2.25.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2026-25645</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">2.33.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Requests has Insecure Temp File Reuse in its extract_zipped_paths() utility function</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>requests</strong></td>
+                        <td>2.25.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2023-32681</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">2.31.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Unintended leak of Proxy-Authorization header in requests</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>requests</strong></td>
+                        <td>2.25.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2023-32681</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.0</td>
+                        <td><span style="color:var(--low-green)">74ea7cf7a6a27a4eeb2ae24e162bcc942a6706d5</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Requests is a HTTP library. Since Requests 2.3.0, Requests has been leaking Proxy-Authorization headers to destination servers when redirected to a...</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>requests</strong></td>
+                        <td>2.25.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2024-47081</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">2.32.4</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Requests vulnerable to .netrc credentials leak via malicious URLs</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>requests</strong></td>
+                        <td>2.25.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2024-35195</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">2.32.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Requests `Session` object does not verify requests after making first request with verify=False</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>requests</strong></td>
+                        <td>2.25.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2026-25645</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">2.33.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Requests is a HTTP library. Prior to version 2.33.0, the `requests.utils.extract_zipped_paths()` utility function uses a predictable filename when ...</td>
+                    </tr>
+                    
+                
+                    
+                    <tr>
+                        <td><strong>flask</strong></td>
+                        <td>0.12.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2018-1000656</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">0.12.3</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Flask is vulnerable to Denial of Service via incorrect encoding of JSON data</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>flask</strong></td>
+                        <td>0.12.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2019-1010083</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">1.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Pallets Project Flask is vulnerable to Denial of Service via Unexpected memory usage</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>flask</strong></td>
+                        <td>0.12.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2026-27205</code></td>
+                        <td><span class="badge badge-LOW">LOW</span></td>
+                        <td>3.0</td>
+                        <td><span style="color:var(--low-green)">3.1.3</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Flask session does not add `Vary: Cookie` header when accessed in some ways</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>flask</strong></td>
+                        <td>0.12.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2023-30861</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">2.3.2</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Flask vulnerable to possible disclosure of permanent session cookie due to missing Vary: Cookie header</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>flask</strong></td>
+                        <td>0.12.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2018-1000656</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.0</td>
+                        <td><span style="color:var(--low-green)">0.12.3</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">The Pallets Project flask version Before 0.12.3 contains a CWE-20: Improper Input Validation vulnerability in flask that can result in Large amount...</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>flask</strong></td>
+                        <td>0.12.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2019-1010083</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.0</td>
+                        <td><span style="color:var(--low-green)">1.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">The Pallets Project Flask before 1.0 is affected by: unexpected memory usage. The impact is: denial of service. The attack vector is: crafted encod...</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>flask</strong></td>
+                        <td>0.12.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2023-30861</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.0</td>
+                        <td><span style="color:var(--low-green)">70f906c51ce49c485f1d355703e9cc3386b1cc2b</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Flask is a lightweight WSGI web application framework. When all of the following conditions are met, a response containing data intended for one cl...</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>flask</strong></td>
+                        <td>0.12.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2026-27205</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">3.1.3</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Flask is a web server gateway interface (WSGI) web application framework. In versions 3.1.2 and below, when the session object is accessed, Flask s...</td>
+                    </tr>
+                    
+                
+                    
+                    <tr>
+                        <td><strong>jinja2</strong></td>
+                        <td>2.11.2</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2025-27516</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.5</td>
+                        <td><span style="color:var(--low-green)">3.1.6</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Jinja2 vulnerable to sandbox breakout through attr filter selecting format method</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>jinja2</strong></td>
+                        <td>2.11.2</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2020-28493</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">2.11.3</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Regular Expression Denial of Service (ReDoS) in Jinja2</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>jinja2</strong></td>
+                        <td>2.11.2</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2024-22195</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">3.1.3</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Jinja vulnerable to HTML attribute injection when passing user input as keys to xmlattr filter</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>jinja2</strong></td>
+                        <td>2.11.2</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2024-34064</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">3.1.4</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Jinja vulnerable to HTML attribute injection when passing user input as keys to xmlattr filter</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>jinja2</strong></td>
+                        <td>2.11.2</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2024-56326</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>8.8</td>
+                        <td><span style="color:var(--low-green)">3.1.5</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Jinja has a sandbox breakout through indirect reference to format method</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>jinja2</strong></td>
+                        <td>2.11.2</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2020-28493</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.0</td>
+                        <td><span style="color:var(--low-green)">2.11.3</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">This affects the package jinja2 from 0.0.0 and before 2.11.3. The ReDoS vulnerability is mainly due to the `_punctuation_re regex` operator and its...</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>jinja2</strong></td>
+                        <td>2.11.2</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2025-27516</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.0</td>
+                        <td><span style="color:var(--low-green)">3.1.6</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Jinja2 vulnerable to sandbox breakout through attr filter selecting format method</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>jinja2</strong></td>
+                        <td>2.11.2</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2024-22195</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">3.1.3</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Jinja vulnerable to HTML attribute injection when passing user input as keys to xmlattr filter</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>jinja2</strong></td>
+                        <td>2.11.2</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2024-34064</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">3.1.4</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Jinja vulnerable to HTML attribute injection when passing user input as keys to xmlattr filter</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>jinja2</strong></td>
+                        <td>2.11.2</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2024-56326</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>8.8</td>
+                        <td><span style="color:var(--low-green)">3.1.5</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Jinja has a sandbox breakout through indirect reference to format method</td>
+                    </tr>
+                    
+                
+                    
+                    <tr>
+                        <td><strong>urllib3</strong></td>
+                        <td>1.26.4</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2025-66471</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.8</td>
+                        <td><span style="color:var(--low-green)">2.6.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">urllib3 streaming API improperly handles highly compressed data</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>urllib3</strong></td>
+                        <td>1.26.4</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2024-37891</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">1.26.19</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">urllib3's Proxy-Authorization request header isn't stripped during cross-origin redirects</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>urllib3</strong></td>
+                        <td>1.26.4</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2026-21441</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">2.6.3</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Decompression-bomb safeguards bypassed when following HTTP redirects (streaming API)</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>urllib3</strong></td>
+                        <td>1.26.4</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2023-45803</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">2.0.7</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">urllib3's request body not stripped after redirect from 303 status changes request method to GET</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>urllib3</strong></td>
+                        <td>1.26.4</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2025-66418</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.8</td>
+                        <td><span style="color:var(--low-green)">2.6.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">urllib3 allows an unbounded number of links in the decompression chain</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>urllib3</strong></td>
+                        <td>1.26.4</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2025-50181</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">2.5.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">urllib3 redirects are not disabled when retries are disabled on PoolManager instantiation</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>urllib3</strong></td>
+                        <td>1.26.4</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2021-33503</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">1.26.5</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Catastrophic backtracking in URL authority parser when passed URL containing many @ characters</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>urllib3</strong></td>
+                        <td>1.26.4</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2026-44431</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">2.7.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">urllib3: Sensitive headers forwarded across origins in proxied low-level redirects</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>urllib3</strong></td>
+                        <td>1.26.4</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2023-43804</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">2.0.6</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">`Cookie` HTTP header isn't stripped on cross-origin redirects</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>urllib3</strong></td>
+                        <td>1.26.4</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2021-33503</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.0</td>
+                        <td><span style="color:var(--low-green)">2d4a3fee6de2fa45eb82169361918f759269b4ec</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">An issue was discovered in urllib3 before 1.26.5. When provided with a URL containing many @ characters in the authority component, the authority r...</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>urllib3</strong></td>
+                        <td>1.26.4</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2023-43804</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">644124ecd0b6e417c527191f866daa05a5a2056d</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">urllib3 is a user-friendly HTTP client library for Python. urllib3 doesn't treat the `Cookie` HTTP header special or provide any helpers for managi...</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>urllib3</strong></td>
+                        <td>1.26.4</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2023-45803</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">4e98d57809dacab1cbe625fddeec1a290c478ea9</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">urllib3 is a user-friendly HTTP client library for Python. urllib3 previously wouldn't remove the HTTP request body when an HTTP redirect response ...</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>urllib3</strong></td>
+                        <td>1.26.4</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2026-44431</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">2.7.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">urllib3 is an HTTP client library for Python. From 1.23 to before 2.7.0, cross-origin redirects followed from the low-level API via ProxyManager.co...</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>urllib3</strong></td>
+                        <td>1.26.4</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2025-66471</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.0</td>
+                        <td><span style="color:var(--low-green)">2.6.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">urllib3 streaming API improperly handles highly compressed data</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>urllib3</strong></td>
+                        <td>1.26.4</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2024-37891</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">1.26.19</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">urllib3's Proxy-Authorization request header isn't stripped during cross-origin redirects</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>urllib3</strong></td>
+                        <td>1.26.4</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2026-21441</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">2.6.3</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Decompression-bomb safeguards bypassed when following HTTP redirects (streaming API)</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>urllib3</strong></td>
+                        <td>1.26.4</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2025-66418</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.0</td>
+                        <td><span style="color:var(--low-green)">2.6.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">urllib3 allows an unbounded number of links in the decompression chain</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>urllib3</strong></td>
+                        <td>1.26.4</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2025-50181</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">2.5.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">urllib3 redirects are not disabled when retries are disabled on PoolManager instantiation</td>
+                    </tr>
+                    
+                
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2026-44495</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">1.15.2</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">axios Vulnerable to Credential Theft and Response Hijacking via Prototype Pollution Gadget in Config Merge</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2025-62718</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">1.15.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Axios has a NO_PROXY Hostname Normalization Bypass that Leads to SSRF</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2026-25639</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">1.13.5</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Axios is Vulnerable to Denial of Service via __proto__ Key in mergeConfig</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2020-28168</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">0.21.1</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Axios vulnerable to Server-Side Request Forgery</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2026-42034</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">1.15.1</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Axios' HTTP adapter-streamed uploads bypass maxBodyLength when maxRedirects: 0</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2026-42039</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">1.15.1</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Axios: unbounded recursion in toFormData causes DoS via deeply nested request data</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2026-42035</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">1.15.1</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Axios: Header Injection via Prototype Pollution</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2026-67319</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.5</td>
+                        <td><span style="color:var(--low-green)">0.33.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Axios: Nested axios option objects can consume polluted prototype values</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2026-44490</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">1.16.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">axios has DoS & Header Injection via Prototype Pollution Read-Side Gadgets in axios merge functions</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2021-3749</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">0.21.2</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">axios Inefficient Regular Expression Complexity vulnerability</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2026-40175</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">1.15.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Axios has Unrestricted Cloud Metadata Exfiltration via Header Injection Chain</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2026-44496</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">1.16.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Axios: Regular Expression Denial of Service (ReDoS) via Cookie Name Injection</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2026-44486</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">1.16.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Axios: Proxy-Authorization header leaks to redirect target when proxy is re-evaluated to direct connection</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2025-27152</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.8</td>
+                        <td><span style="color:var(--low-green)">1.8.2</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">axios Requests Vulnerable To Possible SSRF and Credential Leakage via Absolute URL</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2026-42038</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">1.15.1</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Axios: no_proxy bypass via IP alias allows SSRF</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2026-67316</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.5</td>
+                        <td><span style="color:var(--low-green)">1.18.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Axios: Prototype pollution gadgets can alter axios request construction</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2026-44487</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.8</td>
+                        <td><span style="color:var(--low-green)">1.16.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Axios: Proxy-Authorization Credential Leak to Origin Server Across HTTP-to-HTTPS Redirect in Axios Node.js HTTP Adapter</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2026-42033</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">1.15.1</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Axios: Prototype Pollution Gadgets - Response Tampering, Data Exfiltration, and Request Hijacking</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2026-44492</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">1.16.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">axios's shouldBypassProxy does not recognize IPv4-mapped IPv6 addresses, allowing NO_PROXY bypass (incomplete fix for CVE-2025-62718)</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2026-42043</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">1.15.1</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Axios: Incomplete Fix for CVE-2025-62718 — NO_PROXY Protection Bypassed via RFC 1122 Loopback Subnet (127.0.0.0/8) in Axios 1.15.0</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2026-42036</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">1.15.1</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Axios: HTTP adapter streamed responses bypass maxContentLength</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2026-42041</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">1.15.1</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Axios: Authentication Bypass via Prototype Pollution Gadget in `validateStatus` Merge Strategy</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2023-45857</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">1.6.0</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Axios Cross-Site Request Forgery Vulnerability</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2026-42040</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">1.15.1</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Axios: Null Byte Injection via Reverse-Encoding in AxiosURLSearchParams</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>axios</strong></td>
+                        <td>0.21.0</td>
+                        <td>npm</td>
+                        <td><code>CVE-2026-42042</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">1.15.1</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Axios: XSRF Token Cross-Origin Leakage via Prototype Pollution Gadget in `withXSRFToken` Boolean Coercion</td>
+                    </tr>
+                    
+                
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2020-13596</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">2.2.13</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">XSS in Django</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2020-9402</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>8.8</td>
+                        <td><span style="color:var(--low-green)">1.11.29</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">SQL injection in Django</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2026-48588</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">5.2.16</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Django: cache middleware may expose private responses when unrelated request cookies are present</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2021-33203</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">2.2.24</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Path Traversal in Django</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2025-57833</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">4.2.24</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Django is subject to SQL injection through its column aliases</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2025-48432</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">5.2.2</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Django Improper Output Neutralization for Logs vulnerability</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2026-8404</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">5.2.15</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Django: UpdateCacheMiddleware may disclose cached responses due to case-sensitive Cache-Control handling</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2026-53878</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">5.2.16</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Django: DomainNameValidator permits newline characters that may enable HTTP header injection</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2022-36359</code></td>
+                        <td><span class="badge badge-CRITICAL">CRITICAL</span></td>
+                        <td>9.8</td>
+                        <td><span style="color:var(--low-green)">3.2.15</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Django vulnerable to Reflected File Download attack</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2026-48587</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">5.2.15</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Django: has_vary_header may expose cached responses when Vary values contain whitespace</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2026-53877</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">5.2.16</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)"> Django: GDALRaster may over-read heap memory when constructed from bytes</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2020-24584</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">2.2.16</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Django Incorrect Default Permissions</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2025-64459</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">5.2.8</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Django vulnerable to SQL injection via _connector keyword argument in QuerySet and Q objects.</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2021-3281</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">2.2.18</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Django Directory Traversal via archive.extract</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2026-6873</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">5.2.15</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Django: signed cookies are vulnerable to salt namespace collisions</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2020-7471</code></td>
+                        <td><span class="badge badge-CRITICAL">CRITICAL</span></td>
+                        <td>9.8</td>
+                        <td><span style="color:var(--low-green)">1.11.28</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">SQL injection in Django</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2020-24583</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">2.2.16</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Django Incorrect Default Permissions</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2021-33571</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">2.2.24</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Django Access Control Bypass possibly leading to SSRF, RFI, and LFI attacks </td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2025-64458</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">5.2.8</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Django has a denial-of-service vulnerability in HttpResponseRedirect and HttpResponsePermanentRedirect on Windows</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2024-45231</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">5.1.1</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Django allows enumeration of user e-mail addresses</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2021-31542</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">2.2.21</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Path Traversal in Django</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2021-44420</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">2.2.25</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Potential bypass of an upstream access control based on URL paths in Django</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2019-19844</code></td>
+                        <td><span class="badge badge-CRITICAL">CRITICAL</span></td>
+                        <td>9.8</td>
+                        <td><span style="color:var(--low-green)">1.11.27</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Django Potential account hijack via password reset form</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2020-13254</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">2.2.13</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Data leakage via cache key collision in Django</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2021-28658</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>4.3</td>
+                        <td><span style="color:var(--low-green)">2.2.20</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Directory Traversal in Django</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2021-35042</code></td>
+                        <td><span class="badge badge-CRITICAL">CRITICAL</span></td>
+                        <td>9.8</td>
+                        <td><span style="color:var(--low-green)">3.2.5</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">SQL Injection in Django</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2020-13254</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.0</td>
+                        <td><span style="color:var(--low-green)">2.2.13</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">An issue was discovered in Django 2.2 before 2.2.13 and 3.0 before 3.0.7. In cases where a memcached backend does not perform key validation, passi...</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2020-13596</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.0</td>
+                        <td><span style="color:var(--low-green)">2.2.13</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">An issue was discovered in Django 2.2 before 2.2.13 and 3.0 before 3.0.7. Query parameters generated by the Django admin ForeignKeyRawIdWidget were...</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2020-24583</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.0</td>
+                        <td><span style="color:var(--low-green)">2.2.16</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">An issue was discovered in Django 2.2 before 2.2.16, 3.0 before 3.0.10, and 3.1 before 3.1.1 (when Python 3.7+ is used). FILE_UPLOAD_DIRECTORY_PERM...</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2020-24584</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.0</td>
+                        <td><span style="color:var(--low-green)">2.2.16</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">An issue was discovered in Django 2.2 before 2.2.16, 3.0 before 3.0.10, and 3.1 before 3.1.1 (when Python 3.7+ is used). The intermediate-level dir...</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2020-7471</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.0</td>
+                        <td><span style="color:var(--low-green)">eb31d845323618d688ad429479c6dda973056136</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Django 1.11 before 1.11.28, 2.2 before 2.2.10, and 3.0 before 3.0.3 allows SQL Injection if untrusted data is used as a StringAgg delimiter (e.g., ...</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2020-9402</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.0</td>
+                        <td><span style="color:var(--low-green)">1.11.29</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Django 1.11 before 1.11.29, 2.2 before 2.2.11, and 3.0 before 3.0.4 allows SQL Injection if untrusted data is used as a tolerance parameter in GIS ...</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2021-28658</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.0</td>
+                        <td><span style="color:var(--low-green)">2.2.20</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">In Django 2.2 before 2.2.20, 3.0 before 3.0.14, and 3.1 before 3.1.8, MultiPartParser allowed directory traversal via uploaded files with suitably ...</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2021-3281</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.0</td>
+                        <td><span style="color:var(--low-green)">2.2.18</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">In Django 2.2 before 2.2.18, 3.0 before 3.0.12, and 3.1 before 3.1.6, the django.utils.archive.extract method (used by "startapp --template" and "s...</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2021-33203</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.0</td>
+                        <td><span style="color:var(--low-green)">2.2.24</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Django before 2.2.24, 3.x before 3.1.12, and 3.2.x before 3.2.4 has a potential directory traversal via django.contrib.admindocs. Staff members cou...</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2021-33571</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.0</td>
+                        <td><span style="color:var(--low-green)">2.2.24</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">In Django 2.2 before 2.2.24, 3.x before 3.1.12, and 3.2 before 3.2.4, URLValidator, validate_ipv4_address, and validate_ipv46_address do not prohib...</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2024-45231</code></td>
+                        <td><span class="badge badge-HIGH">HIGH</span></td>
+                        <td>7.5</td>
+                        <td><span style="color:var(--low-green)">4.2.16</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">Django allows enumeration of user e-mail addresses</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>django</strong></td>
+                        <td>3.0.0</td>
+                        <td>PyPI</td>
+                        <td><code>CVE-2026-15830</code></td>
+                        <td><span class="badge badge-MEDIUM">MEDIUM</span></td>
+                        <td>5.0</td>
+                        <td><span style="color:var(--low-green)">5.2.17</span></td>
+                        <td style="font-size:0.9rem; color:var(--text-muted)">An issue was discovered in Django 5.2 before 5.2.17 and 6.0 before 6.0.8.
+GeoDjango's `django.contrib.gis.geos.GEOSGeometry` is subject to a potent...</td>
+                    </tr>
+                    
+                
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

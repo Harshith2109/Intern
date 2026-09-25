@@ -1,0 +1,2409 @@
+{
+  "target_path": "C:\\RV\\Internship\\New folder (2)\\samples",
+  "scan_timestamp": "2026-09-25T12:20:06.194128",
+  "overall_risk_score": 100.0,
+  "risk_level": "CRITICAL",
+  "total_dependencies": 10,
+  "vulnerable_dependencies_count": 9,
+  "severity_counts": {
+    "CRITICAL": 7,
+    "HIGH": 54,
+    "MEDIUM": 55,
+    "LOW": 1,
+    "UNKNOWN": 0
+  },
+  "quality_gate_passed": false,
+  "remediation_recommendations": [
+    {
+      "package": "pyyaml",
+      "current_version": "5.3.1",
+      "fixed_version": "5.4",
+      "cve": "CVE-2020-14343",
+      "severity": "CRITICAL",
+      "action": "Upgrade pyyaml from 5.3.1 to 5.4 (fixes CVE-2020-14343)"
+    },
+    {
+      "package": "express",
+      "current_version": "4.16.0",
+      "fixed_version": "4.20.0",
+      "cve": "CVE-2024-43796",
+      "severity": "HIGH",
+      "action": "Upgrade express from 4.16.0 to 4.20.0 (fixes CVE-2024-43796)"
+    },
+    {
+      "package": "express",
+      "current_version": "4.16.0",
+      "fixed_version": "4.19.2",
+      "cve": "CVE-2024-29041",
+      "severity": "MEDIUM",
+      "action": "Upgrade express from 4.16.0 to 4.19.2 (fixes CVE-2024-29041)"
+    },
+    {
+      "package": "lodash",
+      "current_version": "4.17.15",
+      "fixed_version": "4.17.21",
+      "cve": "CVE-2020-28500",
+      "severity": "MEDIUM",
+      "action": "Upgrade lodash from 4.17.15 to 4.17.21 (fixes CVE-2020-28500)"
+    },
+    {
+      "package": "lodash",
+      "current_version": "4.17.15",
+      "fixed_version": "4.18.0",
+      "cve": "CVE-2025-13465",
+      "severity": "MEDIUM",
+      "action": "Upgrade lodash from 4.17.15 to 4.18.0 (fixes CVE-2025-13465)"
+    },
+    {
+      "package": "lodash",
+      "current_version": "4.17.15",
+      "fixed_version": "4.17.19",
+      "cve": "CVE-2020-8203",
+      "severity": "CRITICAL",
+      "action": "Upgrade lodash from 4.17.15 to 4.17.19 (fixes CVE-2020-8203)"
+    },
+    {
+      "package": "lodash",
+      "current_version": "4.17.15",
+      "fixed_version": "4.17.23",
+      "cve": "CVE-2025-13465",
+      "severity": "MEDIUM",
+      "action": "Upgrade lodash from 4.17.15 to 4.17.23 (fixes CVE-2025-13465)"
+    },
+    {
+      "package": "requests",
+      "current_version": "2.25.0",
+      "fixed_version": "2.32.4",
+      "cve": "CVE-2024-47081",
+      "severity": "HIGH",
+      "action": "Upgrade requests from 2.25.0 to 2.32.4 (fixes CVE-2024-47081)"
+    },
+    {
+      "package": "requests",
+      "current_version": "2.25.0",
+      "fixed_version": "2.32.0",
+      "cve": "CVE-2024-35195",
+      "severity": "HIGH",
+      "action": "Upgrade requests from 2.25.0 to 2.32.0 (fixes CVE-2024-35195)"
+    },
+    {
+      "package": "requests",
+      "current_version": "2.25.0",
+      "fixed_version": "2.33.0",
+      "cve": "CVE-2026-25645",
+      "severity": "HIGH",
+      "action": "Upgrade requests from 2.25.0 to 2.33.0 (fixes CVE-2026-25645)"
+    },
+    {
+      "package": "requests",
+      "current_version": "2.25.0",
+      "fixed_version": "2.31.0",
+      "cve": "CVE-2023-32681",
+      "severity": "HIGH",
+      "action": "Upgrade requests from 2.25.0 to 2.31.0 (fixes CVE-2023-32681)"
+    },
+    {
+      "package": "requests",
+      "current_version": "2.25.0",
+      "fixed_version": "74ea7cf7a6a27a4eeb2ae24e162bcc942a6706d5",
+      "cve": "CVE-2023-32681",
+      "severity": "MEDIUM",
+      "action": "Upgrade requests from 2.25.0 to 74ea7cf7a6a27a4eeb2ae24e162bcc942a6706d5 (fixes CVE-2023-32681)"
+    },
+    {
+      "package": "flask",
+      "current_version": "0.12.0",
+      "fixed_version": "0.12.3",
+      "cve": "CVE-2018-1000656",
+      "severity": "MEDIUM",
+      "action": "Upgrade flask from 0.12.0 to 0.12.3 (fixes CVE-2018-1000656)"
+    },
+    {
+      "package": "flask",
+      "current_version": "0.12.0",
+      "fixed_version": "1.0",
+      "cve": "CVE-2019-1010083",
+      "severity": "MEDIUM",
+      "action": "Upgrade flask from 0.12.0 to 1.0 (fixes CVE-2019-1010083)"
+    },
+    {
+      "package": "flask",
+      "current_version": "0.12.0",
+      "fixed_version": "3.1.3",
+      "cve": "CVE-2026-27205",
+      "severity": "LOW",
+      "action": "Upgrade flask from 0.12.0 to 3.1.3 (fixes CVE-2026-27205)"
+    },
+    {
+      "package": "flask",
+      "current_version": "0.12.0",
+      "fixed_version": "2.3.2",
+      "cve": "CVE-2023-30861",
+      "severity": "HIGH",
+      "action": "Upgrade flask from 0.12.0 to 2.3.2 (fixes CVE-2023-30861)"
+    },
+    {
+      "package": "flask",
+      "current_version": "0.12.0",
+      "fixed_version": "70f906c51ce49c485f1d355703e9cc3386b1cc2b",
+      "cve": "CVE-2023-30861",
+      "severity": "MEDIUM",
+      "action": "Upgrade flask from 0.12.0 to 70f906c51ce49c485f1d355703e9cc3386b1cc2b (fixes CVE-2023-30861)"
+    },
+    {
+      "package": "jinja2",
+      "current_version": "2.11.2",
+      "fixed_version": "3.1.6",
+      "cve": "CVE-2025-27516",
+      "severity": "MEDIUM",
+      "action": "Upgrade jinja2 from 2.11.2 to 3.1.6 (fixes CVE-2025-27516)"
+    },
+    {
+      "package": "jinja2",
+      "current_version": "2.11.2",
+      "fixed_version": "2.11.3",
+      "cve": "CVE-2020-28493",
+      "severity": "MEDIUM",
+      "action": "Upgrade jinja2 from 2.11.2 to 2.11.3 (fixes CVE-2020-28493)"
+    },
+    {
+      "package": "jinja2",
+      "current_version": "2.11.2",
+      "fixed_version": "3.1.3",
+      "cve": "CVE-2024-22195",
+      "severity": "MEDIUM",
+      "action": "Upgrade jinja2 from 2.11.2 to 3.1.3 (fixes CVE-2024-22195)"
+    },
+    {
+      "package": "jinja2",
+      "current_version": "2.11.2",
+      "fixed_version": "3.1.4",
+      "cve": "CVE-2024-34064",
+      "severity": "MEDIUM",
+      "action": "Upgrade jinja2 from 2.11.2 to 3.1.4 (fixes CVE-2024-34064)"
+    },
+    {
+      "package": "jinja2",
+      "current_version": "2.11.2",
+      "fixed_version": "3.1.5",
+      "cve": "CVE-2024-56326",
+      "severity": "HIGH",
+      "action": "Upgrade jinja2 from 2.11.2 to 3.1.5 (fixes CVE-2024-56326)"
+    },
+    {
+      "package": "urllib3",
+      "current_version": "1.26.4",
+      "fixed_version": "2.6.0",
+      "cve": "CVE-2025-66471",
+      "severity": "HIGH",
+      "action": "Upgrade urllib3 from 1.26.4 to 2.6.0 (fixes CVE-2025-66471)"
+    },
+    {
+      "package": "urllib3",
+      "current_version": "1.26.4",
+      "fixed_version": "1.26.19",
+      "cve": "CVE-2024-37891",
+      "severity": "HIGH",
+      "action": "Upgrade urllib3 from 1.26.4 to 1.26.19 (fixes CVE-2024-37891)"
+    },
+    {
+      "package": "urllib3",
+      "current_version": "1.26.4",
+      "fixed_version": "2.6.3",
+      "cve": "CVE-2026-21441",
+      "severity": "MEDIUM",
+      "action": "Upgrade urllib3 from 1.26.4 to 2.6.3 (fixes CVE-2026-21441)"
+    },
+    {
+      "package": "urllib3",
+      "current_version": "1.26.4",
+      "fixed_version": "2.0.7",
+      "cve": "CVE-2023-45803",
+      "severity": "HIGH",
+      "action": "Upgrade urllib3 from 1.26.4 to 2.0.7 (fixes CVE-2023-45803)"
+    },
+    {
+      "package": "urllib3",
+      "current_version": "1.26.4",
+      "fixed_version": "2.5.0",
+      "cve": "CVE-2025-50181",
+      "severity": "HIGH",
+      "action": "Upgrade urllib3 from 1.26.4 to 2.5.0 (fixes CVE-2025-50181)"
+    },
+    {
+      "package": "urllib3",
+      "current_version": "1.26.4",
+      "fixed_version": "1.26.5",
+      "cve": "CVE-2021-33503",
+      "severity": "MEDIUM",
+      "action": "Upgrade urllib3 from 1.26.4 to 1.26.5 (fixes CVE-2021-33503)"
+    },
+    {
+      "package": "urllib3",
+      "current_version": "1.26.4",
+      "fixed_version": "2.7.0",
+      "cve": "CVE-2026-44431",
+      "severity": "MEDIUM",
+      "action": "Upgrade urllib3 from 1.26.4 to 2.7.0 (fixes CVE-2026-44431)"
+    },
+    {
+      "package": "urllib3",
+      "current_version": "1.26.4",
+      "fixed_version": "2.0.6",
+      "cve": "CVE-2023-43804",
+      "severity": "HIGH",
+      "action": "Upgrade urllib3 from 1.26.4 to 2.0.6 (fixes CVE-2023-43804)"
+    },
+    {
+      "package": "urllib3",
+      "current_version": "1.26.4",
+      "fixed_version": "2d4a3fee6de2fa45eb82169361918f759269b4ec",
+      "cve": "CVE-2021-33503",
+      "severity": "MEDIUM",
+      "action": "Upgrade urllib3 from 1.26.4 to 2d4a3fee6de2fa45eb82169361918f759269b4ec (fixes CVE-2021-33503)"
+    },
+    {
+      "package": "urllib3",
+      "current_version": "1.26.4",
+      "fixed_version": "644124ecd0b6e417c527191f866daa05a5a2056d",
+      "cve": "CVE-2023-43804",
+      "severity": "HIGH",
+      "action": "Upgrade urllib3 from 1.26.4 to 644124ecd0b6e417c527191f866daa05a5a2056d (fixes CVE-2023-43804)"
+    },
+    {
+      "package": "urllib3",
+      "current_version": "1.26.4",
+      "fixed_version": "4e98d57809dacab1cbe625fddeec1a290c478ea9",
+      "cve": "CVE-2023-45803",
+      "severity": "HIGH",
+      "action": "Upgrade urllib3 from 1.26.4 to 4e98d57809dacab1cbe625fddeec1a290c478ea9 (fixes CVE-2023-45803)"
+    },
+    {
+      "package": "axios",
+      "current_version": "0.21.0",
+      "fixed_version": "1.15.2",
+      "cve": "CVE-2026-44495",
+      "severity": "HIGH",
+      "action": "Upgrade axios from 0.21.0 to 1.15.2 (fixes CVE-2026-44495)"
+    },
+    {
+      "package": "axios",
+      "current_version": "0.21.0",
+      "fixed_version": "1.15.0",
+      "cve": "CVE-2025-62718",
+      "severity": "HIGH",
+      "action": "Upgrade axios from 0.21.0 to 1.15.0 (fixes CVE-2025-62718)"
+    },
+    {
+      "package": "axios",
+      "current_version": "0.21.0",
+      "fixed_version": "1.13.5",
+      "cve": "CVE-2026-25639",
+      "severity": "MEDIUM",
+      "action": "Upgrade axios from 0.21.0 to 1.13.5 (fixes CVE-2026-25639)"
+    },
+    {
+      "package": "axios",
+      "current_version": "0.21.0",
+      "fixed_version": "0.21.1",
+      "cve": "CVE-2020-28168",
+      "severity": "HIGH",
+      "action": "Upgrade axios from 0.21.0 to 0.21.1 (fixes CVE-2020-28168)"
+    },
+    {
+      "package": "axios",
+      "current_version": "0.21.0",
+      "fixed_version": "1.15.1",
+      "cve": "CVE-2026-42034",
+      "severity": "MEDIUM",
+      "action": "Upgrade axios from 0.21.0 to 1.15.1 (fixes CVE-2026-42034)"
+    },
+    {
+      "package": "axios",
+      "current_version": "0.21.0",
+      "fixed_version": "0.33.0",
+      "cve": "CVE-2026-67319",
+      "severity": "MEDIUM",
+      "action": "Upgrade axios from 0.21.0 to 0.33.0 (fixes CVE-2026-67319)"
+    },
+    {
+      "package": "axios",
+      "current_version": "0.21.0",
+      "fixed_version": "1.16.0",
+      "cve": "CVE-2026-44490",
+      "severity": "HIGH",
+      "action": "Upgrade axios from 0.21.0 to 1.16.0 (fixes CVE-2026-44490)"
+    },
+    {
+      "package": "axios",
+      "current_version": "0.21.0",
+      "fixed_version": "0.21.2",
+      "cve": "CVE-2021-3749",
+      "severity": "MEDIUM",
+      "action": "Upgrade axios from 0.21.0 to 0.21.2 (fixes CVE-2021-3749)"
+    },
+    {
+      "package": "axios",
+      "current_version": "0.21.0",
+      "fixed_version": "1.8.2",
+      "cve": "CVE-2025-27152",
+      "severity": "HIGH",
+      "action": "Upgrade axios from 0.21.0 to 1.8.2 (fixes CVE-2025-27152)"
+    },
+    {
+      "package": "axios",
+      "current_version": "0.21.0",
+      "fixed_version": "1.18.0",
+      "cve": "CVE-2026-67316",
+      "severity": "MEDIUM",
+      "action": "Upgrade axios from 0.21.0 to 1.18.0 (fixes CVE-2026-67316)"
+    },
+    {
+      "package": "axios",
+      "current_version": "0.21.0",
+      "fixed_version": "1.6.0",
+      "cve": "CVE-2023-45857",
+      "severity": "HIGH",
+      "action": "Upgrade axios from 0.21.0 to 1.6.0 (fixes CVE-2023-45857)"
+    },
+    {
+      "package": "django",
+      "current_version": "3.0.0",
+      "fixed_version": "2.2.13",
+      "cve": "CVE-2020-13596",
+      "severity": "MEDIUM",
+      "action": "Upgrade django from 3.0.0 to 2.2.13 (fixes CVE-2020-13596)"
+    },
+    {
+      "package": "django",
+      "current_version": "3.0.0",
+      "fixed_version": "1.11.29",
+      "cve": "CVE-2020-9402",
+      "severity": "HIGH",
+      "action": "Upgrade django from 3.0.0 to 1.11.29 (fixes CVE-2020-9402)"
+    },
+    {
+      "package": "django",
+      "current_version": "3.0.0",
+      "fixed_version": "5.2.16",
+      "cve": "CVE-2026-48588",
+      "severity": "HIGH",
+      "action": "Upgrade django from 3.0.0 to 5.2.16 (fixes CVE-2026-48588)"
+    },
+    {
+      "package": "django",
+      "current_version": "3.0.0",
+      "fixed_version": "2.2.24",
+      "cve": "CVE-2021-33203",
+      "severity": "HIGH",
+      "action": "Upgrade django from 3.0.0 to 2.2.24 (fixes CVE-2021-33203)"
+    },
+    {
+      "package": "django",
+      "current_version": "3.0.0",
+      "fixed_version": "4.2.24",
+      "cve": "CVE-2025-57833",
+      "severity": "HIGH",
+      "action": "Upgrade django from 3.0.0 to 4.2.24 (fixes CVE-2025-57833)"
+    },
+    {
+      "package": "django",
+      "current_version": "3.0.0",
+      "fixed_version": "5.2.2",
+      "cve": "CVE-2025-48432",
+      "severity": "HIGH",
+      "action": "Upgrade django from 3.0.0 to 5.2.2 (fixes CVE-2025-48432)"
+    },
+    {
+      "package": "django",
+      "current_version": "3.0.0",
+      "fixed_version": "5.2.15",
+      "cve": "CVE-2026-8404",
+      "severity": "HIGH",
+      "action": "Upgrade django from 3.0.0 to 5.2.15 (fixes CVE-2026-8404)"
+    },
+    {
+      "package": "django",
+      "current_version": "3.0.0",
+      "fixed_version": "3.2.15",
+      "cve": "CVE-2022-36359",
+      "severity": "CRITICAL",
+      "action": "Upgrade django from 3.0.0 to 3.2.15 (fixes CVE-2022-36359)"
+    },
+    {
+      "package": "django",
+      "current_version": "3.0.0",
+      "fixed_version": "2.2.16",
+      "cve": "CVE-2020-24584",
+      "severity": "HIGH",
+      "action": "Upgrade django from 3.0.0 to 2.2.16 (fixes CVE-2020-24584)"
+    },
+    {
+      "package": "django",
+      "current_version": "3.0.0",
+      "fixed_version": "5.2.8",
+      "cve": "CVE-2025-64459",
+      "severity": "HIGH",
+      "action": "Upgrade django from 3.0.0 to 5.2.8 (fixes CVE-2025-64459)"
+    },
+    {
+      "package": "django",
+      "current_version": "3.0.0",
+      "fixed_version": "2.2.18",
+      "cve": "CVE-2021-3281",
+      "severity": "MEDIUM",
+      "action": "Upgrade django from 3.0.0 to 2.2.18 (fixes CVE-2021-3281)"
+    },
+    {
+      "package": "django",
+      "current_version": "3.0.0",
+      "fixed_version": "1.11.28",
+      "cve": "CVE-2020-7471",
+      "severity": "CRITICAL",
+      "action": "Upgrade django from 3.0.0 to 1.11.28 (fixes CVE-2020-7471)"
+    },
+    {
+      "package": "django",
+      "current_version": "3.0.0",
+      "fixed_version": "5.1.1",
+      "cve": "CVE-2024-45231",
+      "severity": "HIGH",
+      "action": "Upgrade django from 3.0.0 to 5.1.1 (fixes CVE-2024-45231)"
+    },
+    {
+      "package": "django",
+      "current_version": "3.0.0",
+      "fixed_version": "2.2.21",
+      "cve": "CVE-2021-31542",
+      "severity": "HIGH",
+      "action": "Upgrade django from 3.0.0 to 2.2.21 (fixes CVE-2021-31542)"
+    },
+    {
+      "package": "django",
+      "current_version": "3.0.0",
+      "fixed_version": "2.2.25",
+      "cve": "CVE-2021-44420",
+      "severity": "MEDIUM",
+      "action": "Upgrade django from 3.0.0 to 2.2.25 (fixes CVE-2021-44420)"
+    },
+    {
+      "package": "django",
+      "current_version": "3.0.0",
+      "fixed_version": "1.11.27",
+      "cve": "CVE-2019-19844",
+      "severity": "CRITICAL",
+      "action": "Upgrade django from 3.0.0 to 1.11.27 (fixes CVE-2019-19844)"
+    },
+    {
+      "package": "django",
+      "current_version": "3.0.0",
+      "fixed_version": "2.2.20",
+      "cve": "CVE-2021-28658",
+      "severity": "MEDIUM",
+      "action": "Upgrade django from 3.0.0 to 2.2.20 (fixes CVE-2021-28658)"
+    },
+    {
+      "package": "django",
+      "current_version": "3.0.0",
+      "fixed_version": "3.2.5",
+      "cve": "CVE-2021-35042",
+      "severity": "CRITICAL",
+      "action": "Upgrade django from 3.0.0 to 3.2.5 (fixes CVE-2021-35042)"
+    },
+    {
+      "package": "django",
+      "current_version": "3.0.0",
+      "fixed_version": "eb31d845323618d688ad429479c6dda973056136",
+      "cve": "CVE-2020-7471",
+      "severity": "MEDIUM",
+      "action": "Upgrade django from 3.0.0 to eb31d845323618d688ad429479c6dda973056136 (fixes CVE-2020-7471)"
+    },
+    {
+      "package": "django",
+      "current_version": "3.0.0",
+      "fixed_version": "4.2.16",
+      "cve": "CVE-2024-45231",
+      "severity": "HIGH",
+      "action": "Upgrade django from 3.0.0 to 4.2.16 (fixes CVE-2024-45231)"
+    },
+    {
+      "package": "django",
+      "current_version": "3.0.0",
+      "fixed_version": "5.2.17",
+      "cve": "CVE-2026-15830",
+      "severity": "MEDIUM",
+      "action": "Upgrade django from 3.0.0 to 5.2.17 (fixes CVE-2026-15830)"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependency": {
+        "name": "mocha",
+        "version": "8.0.0",
+        "ecosystem": "npm",
+        "is_direct": false,
+        "file_origin": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+      },
+      "vulnerabilities": [],
+      "highest_severity": "LOW"
+    },
+    {
+      "dependency": {
+        "name": "pyyaml",
+        "version": "5.3.1",
+        "ecosystem": "PyPI",
+        "is_direct": true,
+        "file_origin": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+      },
+      "vulnerabilities": [
+        {
+          "vuln_id": "CVE-2020-14343",
+          "summary": "Improper Input Validation in PyYAML",
+          "severity": "CRITICAL",
+          "cvss_score": 9.8,
+          "epss_score": 0.05984,
+          "fixed_version": "5.4",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2020-14343",
+            "https://github.com/SeldonIO/seldon-core/issues/2252",
+            "https://github.com/yaml/pyyaml/issues/420"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2020-14343",
+          "summary": "A vulnerability was discovered in the PyYAML library in versions before 5.4, where it is susceptible to arbitrary code execution when it processes ...",
+          "severity": "MEDIUM",
+          "cvss_score": 5.0,
+          "epss_score": 0.05984,
+          "fixed_version": "5.4",
+          "affected_versions": null,
+          "references": [
+            "https://bugzilla.redhat.com/show_bug.cgi?id=1860466",
+            "https://github.com/advisories/GHSA-8q59-q68h-6hv4"
+          ],
+          "source": "OSV.dev DB"
+        }
+      ],
+      "highest_severity": "CRITICAL"
+    },
+    {
+      "dependency": {
+        "name": "express",
+        "version": "4.16.0",
+        "ecosystem": "npm",
+        "is_direct": true,
+        "file_origin": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+      },
+      "vulnerabilities": [
+        {
+          "vuln_id": "CVE-2024-43796",
+          "summary": "express vulnerable to XSS via response.redirect()",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.00486,
+          "fixed_version": "4.20.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/expressjs/express/security/advisories/GHSA-qw6h-vgh9-j6wx",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-43796",
+            "https://github.com/expressjs/express/commit/54271f69b511fea198471e6ff3400ab805d6b553"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2024-29041",
+          "summary": "Express.js Open Redirect in malformed URLs",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.00786,
+          "fixed_version": "4.19.2",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/expressjs/express/security/advisories/GHSA-rv95-896h-c2vc",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-29041",
+            "https://github.com/koajs/koa/issues/1800"
+          ],
+          "source": "OSV.dev DB"
+        }
+      ],
+      "highest_severity": "HIGH"
+    },
+    {
+      "dependency": {
+        "name": "lodash",
+        "version": "4.17.15",
+        "ecosystem": "npm",
+        "is_direct": true,
+        "file_origin": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+      },
+      "vulnerabilities": [
+        {
+          "vuln_id": "CVE-2020-28500",
+          "summary": "Regular Expression Denial of Service (ReDoS) in lodash",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.07336,
+          "fixed_version": "4.17.21",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2020-28500",
+            "https://github.com/github/advisory-database/pull/6139",
+            "https://github.com/lodash/lodash/pull/5065"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2021-23337",
+          "summary": "Command Injection in lodash",
+          "severity": "HIGH",
+          "cvss_score": 8.8,
+          "epss_score": 0.21333,
+          "fixed_version": "4.17.21",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2021-23337",
+            "https://github.com/lodash/lodash/commit/3469357cff396a26c363f8c1b5a91dde28ba4b1c",
+            "https://www.oracle.com/security-alerts/cpuoct2021.html"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2025-13465",
+          "summary": "lodash vulnerable to Prototype Pollution via array path bypass in `_.unset` and `_.omit`",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.0185,
+          "fixed_version": "4.18.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/lodash/lodash/security/advisories/GHSA-f23m-r3pf-42rh",
+            "https://github.com/lodash/lodash/security/advisories/GHSA-xxjr-mmjv-4gpg",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-2950"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2020-8203",
+          "summary": "Prototype Pollution in lodash",
+          "severity": "CRITICAL",
+          "cvss_score": 9.8,
+          "epss_score": 0.05213,
+          "fixed_version": "4.17.19",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2020-8203",
+            "https://github.com/lodash/lodash/issues/4744",
+            "https://github.com/lodash/lodash/issues/4874"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2021-23337",
+          "summary": "lodash vulnerable to Code Injection via `_.template` imports key names",
+          "severity": "CRITICAL",
+          "cvss_score": 9.8,
+          "epss_score": 0.21333,
+          "fixed_version": "4.18.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/lodash/lodash/security/advisories/GHSA-r5fr-rjxr-66jc",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-4800",
+            "https://github.com/lodash/lodash/commit/3469357cff396a26c363f8c1b5a91dde28ba4b1c"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2025-13465",
+          "summary": "Lodash has Prototype Pollution Vulnerability in `_.unset` and `_.omit` functions",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.0185,
+          "fixed_version": "4.17.23",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/lodash/lodash/security/advisories/GHSA-xxjr-mmjv-4gpg",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-13465",
+            "https://github.com/lodash/lodash/commit/edadd452146f7e4bad4ea684e955708931d84d81"
+          ],
+          "source": "OSV.dev DB"
+        }
+      ],
+      "highest_severity": "CRITICAL"
+    },
+    {
+      "dependency": {
+        "name": "requests",
+        "version": "2.25.0",
+        "ecosystem": "PyPI",
+        "is_direct": true,
+        "file_origin": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+      },
+      "vulnerabilities": [
+        {
+          "vuln_id": "CVE-2024-47081",
+          "summary": "Requests vulnerable to .netrc credentials leak via malicious URLs",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.0098,
+          "fixed_version": "2.32.4",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/psf/requests/security/advisories/GHSA-9hjg-9r4m-mvj7",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-47081",
+            "https://github.com/psf/requests/pull/6965"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2024-35195",
+          "summary": "Requests `Session` object does not verify requests after making first request with verify=False",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.0034,
+          "fixed_version": "2.32.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/psf/requests/security/advisories/GHSA-9wx4-h78v-vm56",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-35195",
+            "https://github.com/psf/requests/pull/6655"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-25645",
+          "summary": "Requests has Insecure Temp File Reuse in its extract_zipped_paths() utility function",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.00185,
+          "fixed_version": "2.33.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/psf/requests/security/advisories/GHSA-gc5v-m9x4-r6x2",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-25645",
+            "https://github.com/psf/requests/commit/66d21cb07bd6255b1280291c4fafb71803cdb3b7"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2023-32681",
+          "summary": "Unintended leak of Proxy-Authorization header in requests",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.02974,
+          "fixed_version": "2.31.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/psf/requests/security/advisories/GHSA-j8r2-6x86-q33q",
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-32681",
+            "https://github.com/psf/requests/commit/74ea7cf7a6a27a4eeb2ae24e162bcc942a6706d5"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2023-32681",
+          "summary": "Requests is a HTTP library. Since Requests 2.3.0, Requests has been leaking Proxy-Authorization headers to destination servers when redirected to a...",
+          "severity": "MEDIUM",
+          "cvss_score": 5.0,
+          "epss_score": 0.02974,
+          "fixed_version": "74ea7cf7a6a27a4eeb2ae24e162bcc942a6706d5",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/psf/requests/security/advisories/GHSA-j8r2-6x86-q33q",
+            "https://github.com/psf/requests/releases/tag/v2.31.0",
+            "https://github.com/psf/requests/commit/74ea7cf7a6a27a4eeb2ae24e162bcc942a6706d5"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2024-47081",
+          "summary": "Requests vulnerable to .netrc credentials leak via malicious URLs",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.0098,
+          "fixed_version": "2.32.4",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/psf/requests/security/advisories/GHSA-9hjg-9r4m-mvj7",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-47081",
+            "https://github.com/psf/requests/pull/6965"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2024-35195",
+          "summary": "Requests `Session` object does not verify requests after making first request with verify=False",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.0034,
+          "fixed_version": "2.32.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/psf/requests/security/advisories/GHSA-9wx4-h78v-vm56",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-35195",
+            "https://github.com/psf/requests/pull/6655"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-25645",
+          "summary": "Requests is a HTTP library. Prior to version 2.33.0, the `requests.utils.extract_zipped_paths()` utility function uses a predictable filename when ...",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.00185,
+          "fixed_version": "2.33.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/psf/requests/releases/tag/v2.33.0",
+            "https://github.com/psf/requests/security/advisories/GHSA-gc5v-m9x4-r6x2",
+            "https://github.com/psf/requests/commit/66d21cb07bd6255b1280291c4fafb71803cdb3b7"
+          ],
+          "source": "OSV.dev DB"
+        }
+      ],
+      "highest_severity": "HIGH"
+    },
+    {
+      "dependency": {
+        "name": "flask",
+        "version": "0.12.0",
+        "ecosystem": "PyPI",
+        "is_direct": true,
+        "file_origin": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+      },
+      "vulnerabilities": [
+        {
+          "vuln_id": "CVE-2018-1000656",
+          "summary": "Flask is vulnerable to Denial of Service via incorrect encoding of JSON data",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.03855,
+          "fixed_version": "0.12.3",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2018-1000656",
+            "https://github.com/pallets/flask/pull/2691",
+            "https://github.com/pallets/flask/commit/b178e89e4456e777b1a7ac6d7199052d0dfdbbbe"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2019-1010083",
+          "summary": "Pallets Project Flask is vulnerable to Denial of Service via Unexpected memory usage",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.01884,
+          "fixed_version": "1.0",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2019-1010083",
+            "https://github.com/advisories/GHSA-5wv5-4vpf-pj6m",
+            "https://github.com/pallets/flask"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-27205",
+          "summary": "Flask session does not add `Vary: Cookie` header when accessed in some ways",
+          "severity": "LOW",
+          "cvss_score": 3.0,
+          "epss_score": 0.00423,
+          "fixed_version": "3.1.3",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/pallets/flask/security/advisories/GHSA-68rp-wp8r-4726",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-27205",
+            "https://github.com/pallets/flask/commit/089cb86dd22bff589a4eafb7ab8e42dc357623b4"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2023-30861",
+          "summary": "Flask vulnerable to possible disclosure of permanent session cookie due to missing Vary: Cookie header",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.01261,
+          "fixed_version": "2.3.2",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/pallets/flask/security/advisories/GHSA-m2qf-hxjv-5gpq",
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-30861",
+            "https://github.com/pallets/flask/commit/70f906c51ce49c485f1d355703e9cc3386b1cc2b"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2018-1000656",
+          "summary": "The Pallets Project flask version Before 0.12.3 contains a CWE-20: Improper Input Validation vulnerability in flask that can result in Large amount...",
+          "severity": "MEDIUM",
+          "cvss_score": 5.0,
+          "epss_score": 0.03855,
+          "fixed_version": "0.12.3",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/pallets/flask/releases/tag/0.12.3",
+            "https://github.com/pallets/flask/pull/2691",
+            "https://security.netapp.com/advisory/ntap-20190221-0001/"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2019-1010083",
+          "summary": "The Pallets Project Flask before 1.0 is affected by: unexpected memory usage. The impact is: denial of service. The attack vector is: crafted encod...",
+          "severity": "MEDIUM",
+          "cvss_score": 5.0,
+          "epss_score": 0.01884,
+          "fixed_version": "1.0",
+          "affected_versions": null,
+          "references": [
+            "https://www.palletsprojects.com/blog/flask-1-0-released/",
+            "https://github.com/advisories/GHSA-5wv5-4vpf-pj6m"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2023-30861",
+          "summary": "Flask is a lightweight WSGI web application framework. When all of the following conditions are met, a response containing data intended for one cl...",
+          "severity": "MEDIUM",
+          "cvss_score": 5.0,
+          "epss_score": 0.01261,
+          "fixed_version": "70f906c51ce49c485f1d355703e9cc3386b1cc2b",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/pallets/flask/commit/70f906c51ce49c485f1d355703e9cc3386b1cc2b",
+            "https://github.com/pallets/flask/releases/tag/2.3.2",
+            "https://github.com/pallets/flask/releases/tag/2.2.5"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-27205",
+          "summary": "Flask is a web server gateway interface (WSGI) web application framework. In versions 3.1.2 and below, when the session object is accessed, Flask s...",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.00423,
+          "fixed_version": "3.1.3",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/pallets/flask/releases/tag/3.1.3",
+            "https://github.com/pallets/flask/security/advisories/GHSA-68rp-wp8r-4726",
+            "https://github.com/pallets/flask/commit/089cb86dd22bff589a4eafb7ab8e42dc357623b4"
+          ],
+          "source": "OSV.dev DB"
+        }
+      ],
+      "highest_severity": "HIGH"
+    },
+    {
+      "dependency": {
+        "name": "jinja2",
+        "version": "2.11.2",
+        "ecosystem": "PyPI",
+        "is_direct": true,
+        "file_origin": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+      },
+      "vulnerabilities": [
+        {
+          "vuln_id": "CVE-2025-27516",
+          "summary": "Jinja2 vulnerable to sandbox breakout through attr filter selecting format method",
+          "severity": "MEDIUM",
+          "cvss_score": 5.5,
+          "epss_score": 0.00497,
+          "fixed_version": "3.1.6",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/pallets/jinja/security/advisories/GHSA-cpwx-vrp4-4pq7",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-27516",
+            "https://github.com/pallets/jinja/commit/90457bbf33b8662926ae65cdde4c4c32e756e403"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2020-28493",
+          "summary": "Regular Expression Denial of Service (ReDoS) in Jinja2",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.03546,
+          "fixed_version": "2.11.3",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2020-28493",
+            "https://github.com/pallets/jinja/pull/1343",
+            "https://github.com/pallets/jinja/commit/15ef8f09b659f9100610583938005a7a10472d4d"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2024-22195",
+          "summary": "Jinja vulnerable to HTML attribute injection when passing user input as keys to xmlattr filter",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.00892,
+          "fixed_version": "3.1.3",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/pallets/jinja/security/advisories/GHSA-h5c8-rqwp-cp95",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-22195",
+            "https://github.com/pallets/jinja/commit/716795349a41d4983a9a4771f7d883c96ea17be7"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2024-34064",
+          "summary": "Jinja vulnerable to HTML attribute injection when passing user input as keys to xmlattr filter",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.00979,
+          "fixed_version": "3.1.4",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/pallets/jinja/security/advisories/GHSA-h75v-3vvj-5mfj",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-34064",
+            "https://github.com/pallets/jinja/commit/0668239dc6b44ef38e7a6c9f91f312fd4ca581cb"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2024-56326",
+          "summary": "Jinja has a sandbox breakout through indirect reference to format method",
+          "severity": "HIGH",
+          "cvss_score": 8.8,
+          "epss_score": 0.00521,
+          "fixed_version": "3.1.5",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/pallets/jinja/security/advisories/GHSA-q2x7-8rv6-6q7h",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-56326",
+            "https://github.com/pallets/jinja/commit/48b0687e05a5466a91cd5812d604fa37ad0943b4"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2020-28493",
+          "summary": "This affects the package jinja2 from 0.0.0 and before 2.11.3. The ReDoS vulnerability is mainly due to the `_punctuation_re regex` operator and its...",
+          "severity": "MEDIUM",
+          "cvss_score": 5.0,
+          "epss_score": 0.03546,
+          "fixed_version": "2.11.3",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/pallets/jinja/blob/ab81fd9c277900c85da0c322a2ff9d68a235b2e6/src/jinja2/utils.py%23L20",
+            "https://github.com/pallets/jinja/pull/1343",
+            "https://snyk.io/vuln/SNYK-PYTHON-JINJA2-1012994"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2025-27516",
+          "summary": "Jinja2 vulnerable to sandbox breakout through attr filter selecting format method",
+          "severity": "MEDIUM",
+          "cvss_score": 5.0,
+          "epss_score": 0.00497,
+          "fixed_version": "3.1.6",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/pallets/jinja/security/advisories/GHSA-cpwx-vrp4-4pq7",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-27516",
+            "https://github.com/pallets/jinja/commit/90457bbf33b8662926ae65cdde4c4c32e756e403"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2024-22195",
+          "summary": "Jinja vulnerable to HTML attribute injection when passing user input as keys to xmlattr filter",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.00892,
+          "fixed_version": "3.1.3",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/pallets/jinja/security/advisories/GHSA-h5c8-rqwp-cp95",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-22195",
+            "https://github.com/pallets/jinja/commit/716795349a41d4983a9a4771f7d883c96ea17be7"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2024-34064",
+          "summary": "Jinja vulnerable to HTML attribute injection when passing user input as keys to xmlattr filter",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.00979,
+          "fixed_version": "3.1.4",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/pallets/jinja/security/advisories/GHSA-h75v-3vvj-5mfj",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-34064",
+            "https://github.com/pallets/jinja/commit/0668239dc6b44ef38e7a6c9f91f312fd4ca581cb"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2024-56326",
+          "summary": "Jinja has a sandbox breakout through indirect reference to format method",
+          "severity": "HIGH",
+          "cvss_score": 8.8,
+          "epss_score": 0.00521,
+          "fixed_version": "3.1.5",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/pallets/jinja/security/advisories/GHSA-q2x7-8rv6-6q7h",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-56326",
+            "https://github.com/pallets/jinja/commit/48b0687e05a5466a91cd5812d604fa37ad0943b4"
+          ],
+          "source": "OSV.dev DB"
+        }
+      ],
+      "highest_severity": "HIGH"
+    },
+    {
+      "dependency": {
+        "name": "urllib3",
+        "version": "1.26.4",
+        "ecosystem": "PyPI",
+        "is_direct": true,
+        "file_origin": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+      },
+      "vulnerabilities": [
+        {
+          "vuln_id": "CVE-2025-66471",
+          "summary": "urllib3 streaming API improperly handles highly compressed data",
+          "severity": "HIGH",
+          "cvss_score": 7.8,
+          "epss_score": 0.00682,
+          "fixed_version": "2.6.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/urllib3/urllib3/security/advisories/GHSA-2xpw-w6gg-jr37",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-66471",
+            "https://github.com/urllib3/urllib3/commit/c19571de34c47de3a766541b041637ba5f716ed7"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2024-37891",
+          "summary": "urllib3's Proxy-Authorization request header isn't stripped during cross-origin redirects",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.01141,
+          "fixed_version": "1.26.19",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/urllib3/urllib3/security/advisories/GHSA-34jh-p97f-mpxf",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-37891",
+            "https://github.com/urllib3/urllib3/commit/40b6d1605814dd1db0a46e202d6e56f2e4c9a468"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-21441",
+          "summary": "Decompression-bomb safeguards bypassed when following HTTP redirects (streaming API)",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.02965,
+          "fixed_version": "2.6.3",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/urllib3/urllib3/security/advisories/GHSA-38jv-5279-wg99",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-21441",
+            "https://github.com/urllib3/urllib3/commit/8864ac407bba8607950025e0979c4c69bc7abc7b"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2023-45803",
+          "summary": "urllib3's request body not stripped after redirect from 303 status changes request method to GET",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.00544,
+          "fixed_version": "2.0.7",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/urllib3/urllib3/security/advisories/GHSA-g4mx-q9vg-27p4",
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-45803",
+            "https://github.com/urllib3/urllib3/commit/4e50fbc5db74e32cabd5ccc1ab81fc103adfe0b3"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2025-66418",
+          "summary": "urllib3 allows an unbounded number of links in the decompression chain",
+          "severity": "HIGH",
+          "cvss_score": 7.8,
+          "epss_score": 0.00682,
+          "fixed_version": "2.6.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/urllib3/urllib3/security/advisories/GHSA-gm62-xv2j-4w53",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-66418",
+            "https://github.com/urllib3/urllib3/commit/24d7b67eac89f94e11003424bcf0d8f7b72222a8"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2025-50181",
+          "summary": "urllib3 redirects are not disabled when retries are disabled on PoolManager instantiation",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.00474,
+          "fixed_version": "2.5.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/urllib3/urllib3/security/advisories/GHSA-pq67-6m6q-mj2v",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-50181",
+            "https://github.com/urllib3/urllib3/commit/f05b1329126d5be6de501f9d1e3e36738bc08857"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2021-33503",
+          "summary": "Catastrophic backtracking in URL authority parser when passed URL containing many @ characters",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.03273,
+          "fixed_version": "1.26.5",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/urllib3/urllib3/security/advisories/GHSA-q2q7-5pp4-w6pg",
+            "https://nvd.nist.gov/vuln/detail/CVE-2021-33503",
+            "https://github.com/urllib3/urllib3/commit/2d4a3fee6de2fa45eb82169361918f759269b4ec"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-44431",
+          "summary": "urllib3: Sensitive headers forwarded across origins in proxied low-level redirects",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.00339,
+          "fixed_version": "2.7.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/urllib3/urllib3/security/advisories/GHSA-qccp-gfcp-xxvc",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-44431",
+            "https://github.com/urllib3/urllib3"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2023-43804",
+          "summary": "`Cookie` HTTP header isn't stripped on cross-origin redirects",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.01207,
+          "fixed_version": "2.0.6",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/urllib3/urllib3/security/advisories/GHSA-v845-jxx5-vc9f",
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-43804",
+            "https://github.com/urllib3/urllib3/commit/01220354d389cd05474713f8c982d05c9b17aafb"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2021-33503",
+          "summary": "An issue was discovered in urllib3 before 1.26.5. When provided with a URL containing many @ characters in the authority component, the authority r...",
+          "severity": "MEDIUM",
+          "cvss_score": 5.0,
+          "epss_score": 0.03273,
+          "fixed_version": "2d4a3fee6de2fa45eb82169361918f759269b4ec",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/advisories/GHSA-q2q7-5pp4-w6pg",
+            "https://github.com/urllib3/urllib3/commit/2d4a3fee6de2fa45eb82169361918f759269b4ec"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2023-43804",
+          "summary": "urllib3 is a user-friendly HTTP client library for Python. urllib3 doesn't treat the `Cookie` HTTP header special or provide any helpers for managi...",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.01207,
+          "fixed_version": "644124ecd0b6e417c527191f866daa05a5a2056d",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/urllib3/urllib3/commit/644124ecd0b6e417c527191f866daa05a5a2056d",
+            "https://github.com/urllib3/urllib3/security/advisories/GHSA-v845-jxx5-vc9f",
+            "https://github.com/urllib3/urllib3/commit/01220354d389cd05474713f8c982d05c9b17aafb"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2023-45803",
+          "summary": "urllib3 is a user-friendly HTTP client library for Python. urllib3 previously wouldn't remove the HTTP request body when an HTTP redirect response ...",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.00544,
+          "fixed_version": "4e98d57809dacab1cbe625fddeec1a290c478ea9",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/urllib3/urllib3/security/advisories/GHSA-g4mx-q9vg-27p4",
+            "https://www.rfc-editor.org/rfc/rfc9110.html#name-get",
+            "https://github.com/urllib3/urllib3/commit/4e98d57809dacab1cbe625fddeec1a290c478ea9"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-44431",
+          "summary": "urllib3 is an HTTP client library for Python. From 1.23 to before 2.7.0, cross-origin redirects followed from the low-level API via ProxyManager.co...",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.00339,
+          "fixed_version": "2.7.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/urllib3/urllib3/security/advisories/GHSA-qccp-gfcp-xxvc"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2025-66471",
+          "summary": "urllib3 streaming API improperly handles highly compressed data",
+          "severity": "MEDIUM",
+          "cvss_score": 5.0,
+          "epss_score": 0.00682,
+          "fixed_version": "2.6.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/urllib3/urllib3/security/advisories/GHSA-2xpw-w6gg-jr37",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-66471",
+            "https://github.com/urllib3/urllib3/commit/c19571de34c47de3a766541b041637ba5f716ed7"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2024-37891",
+          "summary": "urllib3's Proxy-Authorization request header isn't stripped during cross-origin redirects",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.01141,
+          "fixed_version": "1.26.19",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/urllib3/urllib3/security/advisories/GHSA-34jh-p97f-mpxf",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-37891",
+            "https://github.com/urllib3/urllib3/commit/40b6d1605814dd1db0a46e202d6e56f2e4c9a468"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-21441",
+          "summary": "Decompression-bomb safeguards bypassed when following HTTP redirects (streaming API)",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.02965,
+          "fixed_version": "2.6.3",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/urllib3/urllib3/security/advisories/GHSA-38jv-5279-wg99",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-21441",
+            "https://github.com/urllib3/urllib3/commit/8864ac407bba8607950025e0979c4c69bc7abc7b"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2025-66418",
+          "summary": "urllib3 allows an unbounded number of links in the decompression chain",
+          "severity": "MEDIUM",
+          "cvss_score": 5.0,
+          "epss_score": 0.00682,
+          "fixed_version": "2.6.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/urllib3/urllib3/security/advisories/GHSA-gm62-xv2j-4w53",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-66418",
+            "https://github.com/urllib3/urllib3/commit/24d7b67eac89f94e11003424bcf0d8f7b72222a8"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2025-50181",
+          "summary": "urllib3 redirects are not disabled when retries are disabled on PoolManager instantiation",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.00474,
+          "fixed_version": "2.5.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/urllib3/urllib3/security/advisories/GHSA-pq67-6m6q-mj2v",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-50181",
+            "https://github.com/urllib3/urllib3/commit/f05b1329126d5be6de501f9d1e3e36738bc08857"
+          ],
+          "source": "OSV.dev DB"
+        }
+      ],
+      "highest_severity": "HIGH"
+    },
+    {
+      "dependency": {
+        "name": "axios",
+        "version": "0.21.0",
+        "ecosystem": "npm",
+        "is_direct": true,
+        "file_origin": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_package.json"
+      },
+      "vulnerabilities": [
+        {
+          "vuln_id": "CVE-2026-44495",
+          "summary": "axios Vulnerable to Credential Theft and Response Hijacking via Prototype Pollution Gadget in Config Merge",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.01041,
+          "fixed_version": "1.15.2",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-3g43-6gmg-66jw",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-44495",
+            "https://github.com/axios/axios"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2025-62718",
+          "summary": "Axios has a NO_PROXY Hostname Normalization Bypass that Leads to SSRF",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.01186,
+          "fixed_version": "1.15.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-3p68-rc4w-qgx5",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-62718",
+            "https://github.com/axios/axios/pull/10661"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-25639",
+          "summary": "Axios is Vulnerable to Denial of Service via __proto__ Key in mergeConfig",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.01765,
+          "fixed_version": "1.13.5",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-43fc-jf86-j433",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-25639",
+            "https://github.com/axios/axios/pull/7369"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2020-28168",
+          "summary": "Axios vulnerable to Server-Side Request Forgery",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.02359,
+          "fixed_version": "0.21.1",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2020-28168",
+            "https://github.com/axios/axios/issues/3369",
+            "https://github.com/axios/axios/commit/c7329fefc890050edd51e40e469a154d0117fc55"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-42034",
+          "summary": "Axios' HTTP adapter-streamed uploads bypass maxBodyLength when maxRedirects: 0",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.0048,
+          "fixed_version": "1.15.1",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-5c9x-8gcm-mpgx",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-42034",
+            "https://github.com/axios/axios"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-42039",
+          "summary": "Axios: unbounded recursion in toFormData causes DoS via deeply nested request data",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.00966,
+          "fixed_version": "1.15.1",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-62hf-57xw-28j9",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-42039",
+            "https://github.com/axios/axios/commit/85132ffba1a77609ea5d101c8a413dea7174932f"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-42035",
+          "summary": "Axios: Header Injection via Prototype Pollution",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.00381,
+          "fixed_version": "1.15.1",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-6chq-wfr3-2hj9",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-42035",
+            "https://github.com/axios/axios"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-67319",
+          "summary": "Axios: Nested axios option objects can consume polluted prototype values",
+          "severity": "MEDIUM",
+          "cvss_score": 5.5,
+          "epss_score": 0.00318,
+          "fixed_version": "0.33.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-7q8q-rj6j-mhjq",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-67319",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-69123"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-44490",
+          "summary": "axios has DoS & Header Injection via Prototype Pollution Read-Side Gadgets in axios merge functions",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.00403,
+          "fixed_version": "1.16.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-898c-q2cr-xwhg",
+            "https://nvd.nist.gov/vuln/detail/CVE-2018-16487",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-44490"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2021-3749",
+          "summary": "axios Inefficient Regular Expression Complexity vulnerability",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.08515,
+          "fixed_version": "0.21.2",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2021-3749",
+            "https://github.com/axios/axios/commit/5b457116e31db0e88fede6c428e969e87f290929",
+            "https://www.oracle.com/security-alerts/cpujul2022.html"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-40175",
+          "summary": "Axios has Unrestricted Cloud Metadata Exfiltration via Header Injection Chain",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.01307,
+          "fixed_version": "1.15.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-fvcv-3m26-pcqx",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-40175",
+            "https://github.com/axios/axios/pull/10660"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-44496",
+          "summary": "Axios: Regular Expression Denial of Service (ReDoS) via Cookie Name Injection",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.00966,
+          "fixed_version": "1.16.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-hfxv-24rg-xrqf",
+            "https://github.com/axios/axios",
+            "https://github.com/axios/axios/releases/tag/v0.32.0"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-44486",
+          "summary": "Axios: Proxy-Authorization header leaks to redirect target when proxy is re-evaluated to direct connection",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.0076,
+          "fixed_version": "1.16.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-j5f8-grm9-p9fc",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-44486",
+            "https://github.com/axios/axios/pull/10794"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2025-27152",
+          "summary": "axios Requests Vulnerable To Possible SSRF and Credential Leakage via Absolute URL",
+          "severity": "HIGH",
+          "cvss_score": 7.8,
+          "epss_score": 0.00776,
+          "fixed_version": "1.8.2",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-jr5f-v2jv-69x6",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-27152",
+            "https://github.com/axios/axios/issues/6463"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-42038",
+          "summary": "Axios: no_proxy bypass via IP alias allows SSRF",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.00381,
+          "fixed_version": "1.15.1",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-m7pr-hjqh-92cm",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-42038",
+            "https://github.com/axios/axios"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-67316",
+          "summary": "Axios: Prototype pollution gadgets can alter axios request construction",
+          "severity": "MEDIUM",
+          "cvss_score": 5.5,
+          "epss_score": 0.00424,
+          "fixed_version": "1.18.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-mmx7-hfxf-jppx",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-67316",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-68944"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-44487",
+          "summary": "Axios: Proxy-Authorization Credential Leak to Origin Server Across HTTP-to-HTTPS Redirect in Axios Node.js HTTP Adapter",
+          "severity": "HIGH",
+          "cvss_score": 7.8,
+          "epss_score": 0.0076,
+          "fixed_version": "1.16.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-p92q-9vqr-4j8v",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-44487",
+            "https://github.com/axios/axios"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-42033",
+          "summary": "Axios: Prototype Pollution Gadgets - Response Tampering, Data Exfiltration, and Request Hijacking",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.00924,
+          "fixed_version": "1.15.1",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-pf86-5x62-jrwf",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-42033",
+            "https://github.com/axios/axios"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-44492",
+          "summary": "axios's shouldBypassProxy does not recognize IPv4-mapped IPv6 addresses, allowing NO_PROXY bypass (incomplete fix for CVE-2025-62718)",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.00783,
+          "fixed_version": "1.16.0",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-pjwm-pj3p-43mv",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-44492",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-62718"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-42043",
+          "summary": "Axios: Incomplete Fix for CVE-2025-62718 \u2014 NO_PROXY Protection Bypassed via RFC 1122 Loopback Subnet (127.0.0.0/8) in Axios 1.15.0",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.00579,
+          "fixed_version": "1.15.1",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-pmwg-cvhr-8vh7",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-42043",
+            "https://github.com/axios/axios"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-42036",
+          "summary": "Axios: HTTP adapter streamed responses bypass maxContentLength",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.0048,
+          "fixed_version": "1.15.1",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-vf2m-468p-8v99",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-42036",
+            "https://github.com/axios/axios"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-42041",
+          "summary": "Axios: Authentication Bypass via Prototype Pollution Gadget in `validateStatus` Merge Strategy",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.0081,
+          "fixed_version": "1.15.1",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-w9j2-pvgh-6h63",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-42041",
+            "https://github.com/axios/axios"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2023-45857",
+          "summary": "Axios Cross-Site Request Forgery Vulnerability",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.00556,
+          "fixed_version": "1.6.0",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-45857",
+            "https://github.com/axios/axios/issues/6006",
+            "https://github.com/axios/axios/issues/6022"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-42040",
+          "summary": "Axios: Null Byte Injection via Reverse-Encoding in AxiosURLSearchParams",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.00264,
+          "fixed_version": "1.15.1",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-xhjh-pmcv-23jw",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-42040",
+            "https://github.com/axios/axios"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-42042",
+          "summary": "Axios: XSRF Token Cross-Origin Leakage via Prototype Pollution Gadget in `withXSRFToken` Boolean Coercion",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.00324,
+          "fixed_version": "1.15.1",
+          "affected_versions": null,
+          "references": [
+            "https://github.com/axios/axios/security/advisories/GHSA-xx6v-rp6x-q39c",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-42042",
+            "https://github.com/axios/axios"
+          ],
+          "source": "OSV.dev DB"
+        }
+      ],
+      "highest_severity": "HIGH"
+    },
+    {
+      "dependency": {
+        "name": "django",
+        "version": "3.0.0",
+        "ecosystem": "PyPI",
+        "is_direct": true,
+        "file_origin": "C:\\RV\\Internship\\New folder (2)\\samples\\sample_requirements.txt"
+      },
+      "vulnerabilities": [
+        {
+          "vuln_id": "CVE-2020-13596",
+          "summary": "XSS in Django",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.02897,
+          "fixed_version": "2.2.13",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2020-13596",
+            "https://github.com/django/django/commit/1f2dd37f6fcefdd10ed44cb233b2e62b520afb38",
+            "https://github.com/django/django/commit/6d61860b22875f358fac83d903dc629897934815"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2020-9402",
+          "summary": "SQL injection in Django",
+          "severity": "HIGH",
+          "cvss_score": 8.8,
+          "epss_score": 0.05,
+          "fixed_version": "1.11.29",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2020-9402",
+            "https://github.com/django/django/commit/6695d29b1c1ce979725816295a26ecc64ae0e927",
+            "https://www.djangoproject.com/weblog/2020/mar/04/security-releases"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-48588",
+          "summary": "Django: cache middleware may expose private responses when unrelated request cookies are present",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.00429,
+          "fixed_version": "5.2.16",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-48588",
+            "https://github.com/django/django/commit/64f9a2b2283fde3ec69fb0dfe441cf0f6f411ba3",
+            "https://github.com/django/django/commit/6e365f8d01f2ba0bbd90968d76a42600fb8bc4b1"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2021-33203",
+          "summary": "Path Traversal in Django",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.02737,
+          "fixed_version": "2.2.24",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2021-33203",
+            "https://github.com/django/django/commit/053cc9534d174dc89daba36724ed2dcb36755b90",
+            "https://github.com/django/django/commit/20c67a0693c4ede2b09af02574823485e82e4c8f"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2025-57833",
+          "summary": "Django is subject to SQL injection through its column aliases",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.16759,
+          "fixed_version": "4.2.24",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-57833",
+            "https://github.com/django/django/commit/102965ea93072fe3c39a30be437c683ec1106ef5",
+            "https://github.com/django/django/commit/31334e6965ad136a5e369993b01721499c5d1a92"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2025-48432",
+          "summary": "Django Improper Output Neutralization for Logs vulnerability",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.00751,
+          "fixed_version": "5.2.2",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-48432",
+            "https://docs.djangoproject.com/en/dev/releases/security",
+            "https://github.com/django/django"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-8404",
+          "summary": "Django: UpdateCacheMiddleware may disclose cached responses due to case-sensitive Cache-Control handling",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.00429,
+          "fixed_version": "5.2.15",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-8404",
+            "https://github.com/django/django/commit/366d9ae6e8d1469c04e9ebdc1bcd098fc14a3b1e",
+            "https://github.com/django/django/commit/b4330259ffbe1a031ed14daab1f35697460f10f2"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-53878",
+          "summary": "Django: DomainNameValidator permits newline characters that may enable HTTP header injection",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.00327,
+          "fixed_version": "5.2.16",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-53878",
+            "https://github.com/django/django/commit/3a720d0d8bf2529253b98968f10ca73daf6d693c",
+            "https://github.com/django/django/commit/a5de13f1491f1dbf2bb0ad9b91570524ebbc8acd"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2022-36359",
+          "summary": "Django vulnerable to Reflected File Download attack",
+          "severity": "CRITICAL",
+          "cvss_score": 9.8,
+          "epss_score": 0.00828,
+          "fixed_version": "3.2.15",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2022-36359",
+            "https://github.com/django/django/commit/b3e4494d759202a3b6bf247fd34455bf13be5b80",
+            "https://github.com/django/django/commit/b7d9529cbe0af4adabb6ea5d01ed8dcce3668fb3"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-48587",
+          "summary": "Django: has_vary_header may expose cached responses when Vary values contain whitespace",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.00429,
+          "fixed_version": "5.2.15",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-48587",
+            "https://github.com/django/django/commit/1721035a72624aad7b38dd19b14013efd94b24b8",
+            "https://github.com/django/django/commit/42aa0b3364d312e7c6472258d8b0e9c0277fbf22"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-53877",
+          "summary": " Django: GDALRaster may over-read heap memory when constructed from bytes",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.00437,
+          "fixed_version": "5.2.16",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-53877",
+            "https://github.com/django/django/commit/38dfbd27d7d4f4e6eaa087d7a90f2613fbf55b3a",
+            "https://github.com/django/django/commit/6c66eb8cec52b303af85c2c6e4dd00aa37654dbc"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2020-24584",
+          "summary": "Django Incorrect Default Permissions",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.03297,
+          "fixed_version": "2.2.16",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2020-24584",
+            "https://github.com/django/django/commit/1853724acaf17ed7414d54c7d2b5563a25025a71",
+            "https://github.com/django/django/commit/2b099caa5923afa8cfb5f1e8c0d56b6e0e81915b"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2025-64459",
+          "summary": "Django vulnerable to SQL injection via _connector keyword argument in QuerySet and Q objects.",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.19396,
+          "fixed_version": "5.2.8",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-64459",
+            "https://github.com/django/django/commit/06dd38324ac3d60d83d9f3adabf0dcdf423d2a85",
+            "https://github.com/django/django/commit/59ae82e67053d281ff4562a24bbba21299f0a7d4"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2021-3281",
+          "summary": "Django Directory Traversal via archive.extract",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.05,
+          "fixed_version": "2.2.18",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2021-3281",
+            "https://github.com/django/django/commit/02e6592835b4559909aa3aaaf67988fef435f624",
+            "https://github.com/django/django/commit/05413afa8c18cdb978fcdf470e09f7a12b234a23"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-6873",
+          "summary": "Django: signed cookies are vulnerable to salt namespace collisions",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.00281,
+          "fixed_version": "5.2.15",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-6873",
+            "https://github.com/django/django/commit/594360cbf58be7f56eb6da96d58644297c99ef85",
+            "https://github.com/django/django/commit/70d36515b9cc71700105a14b275583070d48b689"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2020-7471",
+          "summary": "SQL injection in Django",
+          "severity": "CRITICAL",
+          "cvss_score": 9.8,
+          "epss_score": 0.65575,
+          "fixed_version": "1.11.28",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2020-7471",
+            "https://github.com/django/django/commit/001b0634cd309e372edb6d7d95d083d02b8e37bd",
+            "https://github.com/django/django/commit/505826b469b16ab36693360da9e11fd13213421b"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2020-24583",
+          "summary": "Django Incorrect Default Permissions",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.03969,
+          "fixed_version": "2.2.16",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2020-24583",
+            "https://github.com/django/django/commit/8d7271578d7b153435b40fe40236ebec43cbf1b9",
+            "https://docs.djangoproject.com/en/dev/releases/security"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2021-33571",
+          "summary": "Django Access Control Bypass possibly leading to SSRF, RFI, and LFI attacks ",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.0526,
+          "fixed_version": "2.2.24",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2021-33571",
+            "https://github.com/django/django/commit/203d4ab9ebcd72fc4d6eb7398e66ed9e474e118e",
+            "https://github.com/django/django/commit/9f75e2e562fa0c0482f3dde6fc7399a9070b4a3d"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2025-64458",
+          "summary": "Django has a denial-of-service vulnerability in HttpResponseRedirect and HttpResponsePermanentRedirect on Windows",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.01902,
+          "fixed_version": "5.2.8",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-64458",
+            "https://github.com/django/django/commit/3790593781d26168e7306b5b2f8ea0309de16242",
+            "https://github.com/django/django/commit/4f5d904b63751dea9ffc3b0e046404a7fa5881ac"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2024-45231",
+          "summary": "Django allows enumeration of user e-mail addresses",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.00788,
+          "fixed_version": "5.1.1",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-45231",
+            "https://github.com/django/django/commit/3c733c78d6f8e50296d6e248968b6516c92a53ca",
+            "https://github.com/django/django/commit/96d84047715ea1715b4bd1594e46122b8a77b9e2"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2021-31542",
+          "summary": "Path Traversal in Django",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.05334,
+          "fixed_version": "2.2.21",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2021-31542",
+            "https://github.com/django/django/commit/04ac1624bdc2fa737188401757cf95ced122d26d",
+            "https://github.com/django/django/commit/25d84d64122c15050a0ee739e859f22ddab5ac48"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2021-44420",
+          "summary": "Potential bypass of an upstream access control based on URL paths in Django",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.02314,
+          "fixed_version": "2.2.25",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2021-44420",
+            "https://github.com/django/django/commit/d4dcd5b9dd9e462fec8220e33e3e6c822b7e88a6",
+            "https://docs.djangoproject.com/en/3.2/releases/security"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2019-19844",
+          "summary": "Django Potential account hijack via password reset form",
+          "severity": "CRITICAL",
+          "cvss_score": 9.8,
+          "epss_score": 0.53561,
+          "fixed_version": "1.11.27",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2019-19844",
+            "https://github.com/django/django/commit/302a4ff1e8b1c798aab97673909c7a3dfda42c26",
+            "https://github.com/django/django/commit/4d334bea06cac63dc1272abcec545b85136cca0e"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2020-13254",
+          "summary": "Data leakage via cache key collision in Django",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.0609,
+          "fixed_version": "2.2.13",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2020-13254",
+            "https://github.com/django/django/commit/07e59caa02831c4569bbebb9eb773bdd9cb4b206",
+            "https://github.com/django/django/commit/84b2da5552e100ae3294f564f6c862fef8d0e693"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2021-28658",
+          "summary": "Directory Traversal in Django",
+          "severity": "MEDIUM",
+          "cvss_score": 4.3,
+          "epss_score": 0.03865,
+          "fixed_version": "2.2.20",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2021-28658",
+            "https://docs.djangoproject.com/en/3.1/releases/security",
+            "https://github.com/advisories/GHSA-xgxc-v2qg-chmh"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2021-35042",
+          "summary": "SQL Injection in Django",
+          "severity": "CRITICAL",
+          "cvss_score": 9.8,
+          "epss_score": 0.44369,
+          "fixed_version": "3.2.5",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2021-35042",
+            "https://github.com/django/django/commit/0bd57a879a0d54920bb9038a732645fb917040e9",
+            "https://github.com/django/django/commit/a34a5f724c5d5adb2109374ba3989ebb7b11f81f"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2020-13254",
+          "summary": "An issue was discovered in Django 2.2 before 2.2.13 and 3.0 before 3.0.7. In cases where a memcached backend does not perform key validation, passi...",
+          "severity": "MEDIUM",
+          "cvss_score": 5.0,
+          "epss_score": 0.0609,
+          "fixed_version": "2.2.13",
+          "affected_versions": null,
+          "references": [
+            "https://www.djangoproject.com/weblog/2020/jun/03/security-releases/",
+            "https://docs.djangoproject.com/en/3.0/releases/security/",
+            "https://groups.google.com/d/msg/django-announce/pPEmb2ot4Fo/X-SMalYSBAAJ"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2020-13596",
+          "summary": "An issue was discovered in Django 2.2 before 2.2.13 and 3.0 before 3.0.7. Query parameters generated by the Django admin ForeignKeyRawIdWidget were...",
+          "severity": "MEDIUM",
+          "cvss_score": 5.0,
+          "epss_score": 0.02897,
+          "fixed_version": "2.2.13",
+          "affected_versions": null,
+          "references": [
+            "https://www.djangoproject.com/weblog/2020/jun/03/security-releases/",
+            "https://groups.google.com/forum/#!msg/django-announce/pPEmb2ot4Fo/X-SMalYSBAAJ",
+            "https://docs.djangoproject.com/en/3.0/releases/security/"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2020-24583",
+          "summary": "An issue was discovered in Django 2.2 before 2.2.16, 3.0 before 3.0.10, and 3.1 before 3.1.1 (when Python 3.7+ is used). FILE_UPLOAD_DIRECTORY_PERM...",
+          "severity": "MEDIUM",
+          "cvss_score": 5.0,
+          "epss_score": 0.03969,
+          "fixed_version": "2.2.16",
+          "affected_versions": null,
+          "references": [
+            "https://groups.google.com/forum/#!topic/django-announce/Gdqn58RqIDM",
+            "https://www.openwall.com/lists/oss-security/2020/09/01/2",
+            "https://groups.google.com/forum/#!topic/django-announce/zFCMdgUnutU"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2020-24584",
+          "summary": "An issue was discovered in Django 2.2 before 2.2.16, 3.0 before 3.0.10, and 3.1 before 3.1.1 (when Python 3.7+ is used). The intermediate-level dir...",
+          "severity": "MEDIUM",
+          "cvss_score": 5.0,
+          "epss_score": 0.03297,
+          "fixed_version": "2.2.16",
+          "affected_versions": null,
+          "references": [
+            "https://groups.google.com/forum/#!topic/django-announce/Gdqn58RqIDM",
+            "https://www.openwall.com/lists/oss-security/2020/09/01/2",
+            "https://groups.google.com/forum/#!topic/django-announce/zFCMdgUnutU"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2020-7471",
+          "summary": "Django 1.11 before 1.11.28, 2.2 before 2.2.10, and 3.0 before 3.0.3 allows SQL Injection if untrusted data is used as a StringAgg delimiter (e.g., ...",
+          "severity": "MEDIUM",
+          "cvss_score": 5.0,
+          "epss_score": 0.65575,
+          "fixed_version": "eb31d845323618d688ad429479c6dda973056136",
+          "affected_versions": null,
+          "references": [
+            "https://www.openwall.com/lists/oss-security/2020/02/03/1",
+            "https://docs.djangoproject.com/en/3.0/releases/security/",
+            "https://groups.google.com/forum/#!topic/django-announce/X45S86X5bZI"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2020-9402",
+          "summary": "Django 1.11 before 1.11.29, 2.2 before 2.2.11, and 3.0 before 3.0.4 allows SQL Injection if untrusted data is used as a tolerance parameter in GIS ...",
+          "severity": "MEDIUM",
+          "cvss_score": 5.0,
+          "epss_score": 0.05,
+          "fixed_version": "1.11.29",
+          "affected_versions": null,
+          "references": [
+            "https://groups.google.com/forum/#%21topic/django-announce/fLUh_pOaKrY",
+            "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/4A2AP4T7RKPBCLTI2NNQG3T6MINDUUMZ/",
+            "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/UZMN2NKAGTFE3YKMNM2JVJG7R2W7LLHY/"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2021-28658",
+          "summary": "In Django 2.2 before 2.2.20, 3.0 before 3.0.14, and 3.1 before 3.1.8, MultiPartParser allowed directory traversal via uploaded files with suitably ...",
+          "severity": "MEDIUM",
+          "cvss_score": 5.0,
+          "epss_score": 0.03865,
+          "fixed_version": "2.2.20",
+          "affected_versions": null,
+          "references": [
+            "https://groups.google.com/g/django-announce/c/ePr5j-ngdPU",
+            "https://www.djangoproject.com/weblog/2021/apr/06/security-releases/",
+            "https://docs.djangoproject.com/en/3.1/releases/security/"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2021-3281",
+          "summary": "In Django 2.2 before 2.2.18, 3.0 before 3.0.12, and 3.1 before 3.1.6, the django.utils.archive.extract method (used by \"startapp --template\" and \"s...",
+          "severity": "MEDIUM",
+          "cvss_score": 5.0,
+          "epss_score": 0.05,
+          "fixed_version": "2.2.18",
+          "affected_versions": null,
+          "references": [
+            "https://docs.djangoproject.com/en/3.1/releases/security/",
+            "https://www.djangoproject.com/weblog/2021/feb/01/security-releases/",
+            "https://groups.google.com/forum/#!forum/django-announce"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2021-33203",
+          "summary": "Django before 2.2.24, 3.x before 3.1.12, and 3.2.x before 3.2.4 has a potential directory traversal via django.contrib.admindocs. Staff members cou...",
+          "severity": "MEDIUM",
+          "cvss_score": 5.0,
+          "epss_score": 0.02737,
+          "fixed_version": "2.2.24",
+          "affected_versions": null,
+          "references": [
+            "https://docs.djangoproject.com/en/3.2/releases/security/",
+            "https://www.djangoproject.com/weblog/2021/jun/02/security-releases/",
+            "https://groups.google.com/forum/#!forum/django-announce"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2021-33571",
+          "summary": "In Django 2.2 before 2.2.24, 3.x before 3.1.12, and 3.2 before 3.2.4, URLValidator, validate_ipv4_address, and validate_ipv46_address do not prohib...",
+          "severity": "MEDIUM",
+          "cvss_score": 5.0,
+          "epss_score": 0.0526,
+          "fixed_version": "2.2.24",
+          "affected_versions": null,
+          "references": [
+            "https://groups.google.com/g/django-announce/c/sPyjSKMi8Eo",
+            "https://docs.djangoproject.com/en/3.2/releases/security/",
+            "https://www.djangoproject.com/weblog/2021/jun/02/security-releases/"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2024-45231",
+          "summary": "Django allows enumeration of user e-mail addresses",
+          "severity": "HIGH",
+          "cvss_score": 7.5,
+          "epss_score": 0.00788,
+          "fixed_version": "4.2.16",
+          "affected_versions": null,
+          "references": [
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-45231",
+            "https://github.com/django/django/commit/3c733c78d6f8e50296d6e248968b6516c92a53ca",
+            "https://github.com/django/django/commit/96d84047715ea1715b4bd1594e46122b8a77b9e2"
+          ],
+          "source": "OSV.dev DB"
+        },
+        {
+          "vuln_id": "CVE-2026-15830",
+          "summary": "An issue was discovered in Django 5.2 before 5.2.17 and 6.0 before 6.0.8.\nGeoDjango's `django.contrib.gis.geos.GEOSGeometry` is subject to a potent...",
+          "severity": "MEDIUM",
+          "cvss_score": 5.0,
+          "epss_score": 0.00763,
+          "fixed_version": "5.2.17",
+          "affected_versions": null,
+          "references": [
+            "https://www.djangoproject.com/weblog/2026/aug/04/security-releases/",
+            "https://docs.djangoproject.com/en/dev/releases/security/",
+            "https://github.com/django/django/commit/6af5da31775417c610dbf9c3f1b5b8333d42daf6"
+          ],
+          "source": "OSV.dev DB"
+        }
+      ],
+      "highest_severity": "CRITICAL"
+    }
+  ]
+}

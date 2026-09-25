@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevSecOps Dependency Risk Analyzer Dashboard</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Navbar Header -->
+        <header class="navbar">
+            <div class="logo-group">
+                <span class="logo-icon">🛡️</span>
+                <span class="logo-title">DevSecOps Risk Analyzer</span>
+            </div>
+            <div id="exportGroup" style="display: none; gap: 0.75rem;">
+                <a id="btnExportHtml" class="btn" style="background:#0284c7" target="_blank">📥 HTML Report</a>
+                <a id="btnExportJson" class="btn" style="background:#4f46e5" target="_blank">📄 JSON</a>
+                <a id="btnExportSarif" class="btn" style="background:#9333ea" target="_blank">🐙 SARIF</a>
+                <a id="btnExportCycloneDx" class="btn" style="background:#059669" target="_blank">📦 CycloneDX SBOM</a>
+            </div>
+
+        </header>
+
+        <!-- KPI Metric Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Composite Risk Score</div>
+                <div class="stat-value" id="riskScoreValue">-- / 100</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Quality Gate</div>
+                <div style="margin-top:0.5rem">
+                    <span id="qualityGateBadge" class="badge" style="font-size:1.1rem">READY</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Dependencies Scanned</div>
+                <div class="stat-value" id="totalDepsCount">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Vulnerable Packages</div>
+                <div class="stat-value" id="vulnDepsCount" style="color:var(--high-orange)">0</div>
+            </div>
+        </div>
+
+        <!-- Scan Input Section -->
+        <div class="scan-section">
+            <div class="dropzone-card">
+                <div class="chart-title">📁 Upload Dependency Manifest</div>
+                <div class="dropzone" id="dropzone">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📄</div>
+                    <p style="font-weight:600; margin-bottom: 0.25rem;">Drag & drop dependency file here</p>
+                    <p style="font-size:0.85rem; color:var(--text-secondary)">Supports <code>requirements.txt</code>, <code>package.json</code>, <code>pom.xml</code>, <code>pyproject.toml</code></p>
+                    <input type="file" id="fileInput" style="display:none">
+                </div>
+            </div>
+
+            <div class="github-card">
+                <div class="chart-title">🐙 Scan Remote GitHub Repository</div>
+                <div class="form-group">
+                    <label style="font-size:0.85rem; color:var(--text-secondary)">GitHub Repository URL</label>
+                    <input type="text" id="githubUrl" placeholder="https://github.com/owner/repository">
+                </div>
+                <div class="form-group">
+                    <label style="font-size:0.85rem; color:var(--text-secondary)">Branch</label>
+                    <input type="text" id="githubBranch" value="main" placeholder="main">
+                </div>
+                <div style="margin-top: 1.25rem;">
+                    <button id="btnGithubScan" class="btn" style="width: 100%;">🚀 Launch GitHub Scan</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Grid -->
+        <div class="charts-grid">
+            <div class="chart-card">
+                <div class="chart-title">📊 Vulnerability Severity Breakdown</div>
+                <canvas id="severityChart" height="200"></canvas>
+            </div>
+            <div class="chart-card">
+                <div class="chart-title">📈 Security Risk Score Trend</div>
+                <canvas id="trendChart" height="200"></canvas>
+            </div>
+        </div>
+
+        <!-- Vulnerabilities Data Table -->
+        <div class="table-card">
+            <div style="display:flex; justify-between; align-items:center; margin-bottom: 1rem;">
+                <div class="chart-title" style="margin:0">🚨 Target Findings & Vulnerability Details: <span id="targetName" style="color:var(--accent-blue)">None</span></div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Package</th>
+                        <th>Version</th>
+                        <th>Ecosystem</th>
+                        <th>Vulnerability ID</th>
+                        <th>Severity</th>
+                        <th>CVSS</th>
+                        <th>Fixed Version</th>
+                        <th>Summary</th>
+                    </tr>
+                </thead>
+                <tbody id="vulnTableBody">
+                    <tr>
+                        <td colspan="8" style="text-align:center; color:var(--text-secondary); padding:2rem">Upload a file or scan a repository to view security analysis.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- History Scans Table -->
+        <div class="table-card">
+            <div class="chart-title">📜 Scan History Log</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Scan ID</th>
+                        <th>Target Manifest / Repo</th>
+                        <th>Risk Score</th>
+                        <th>Risk Level</th>
+                        <th>Quality Gate</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody id="historyTableBody">
+                    <tr>
+                        <td colspan="6" style="text-align:center; color:var(--text-secondary); padding:1rem">No past scan records.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(9,13,22,0.85); backdrop-filter:blur(8px); z-index:999; justify-content:center; align-items:center; flex-direction:column; gap:1rem;">
+        <div class="spinner"></div>
+        <div id="loadingText" style="font-weight:600; font-size:1.1rem; color:var(--text-primary)">Analyzing Security Dependencies...</div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

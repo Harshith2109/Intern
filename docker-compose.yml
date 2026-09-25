@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  devsecops-analyzer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: devsecops-analyzer
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./devsecops.db:/app/devsecops.db
+    restart: unless-stopped
