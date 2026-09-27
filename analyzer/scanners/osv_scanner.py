@@ -38,10 +38,13 @@ class OSVScanner:
             if response.status_code == 200:
                 data = response.json()
                 vulns_raw = data.get("vulns", [])
+                seen_ids = set()
                 for item in vulns_raw:
                     vuln = self._parse_osv_item(item)
-                    if vuln:
+                    if vuln and vuln.vuln_id not in seen_ids:
+                        seen_ids.add(vuln.vuln_id)
                         vulnerabilities.append(vuln)
+
         except Exception as e:
             print(f"[!] Warning: OSV API query failed for {dep.name}@{dep.version}: {e}", flush=True)
 

@@ -130,6 +130,15 @@ function renderScanResult(data) {
     document.getElementById("totalDepsCount").innerText = data.total_dependencies;
     document.getElementById("vulnDepsCount").innerText = data.vulnerable_dependencies_count;
 
+    // Academic Research Metrics
+    if (data.research_metrics) {
+        document.getElementById("resFalsePositives").innerText = data.research_metrics.false_positives_eliminated || 0;
+        document.getElementById("resBlastRadius").innerText = (data.research_metrics.average_blast_radius || 0.0).toFixed(1);
+        document.getElementById("resZeroDays").innerText = data.research_metrics.predicted_zero_day_threats || 0;
+        document.getElementById("resBreakingChanges").innerText = data.research_metrics.breaking_changes_prevented || 0;
+    }
+
+
     // Export links
     if (data.scan_id) {
         document.getElementById("btnExportHtml").href = `/api/scans/${data.scan_id}/export/html`;

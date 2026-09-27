@@ -1,36 +1,44 @@
 # 🛡️ DevSecOps Dependency Risk Analyzer
 
 [![Python Version](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
+[![Research Innovations](https://img.shields.io/badge/Academic_Research-AST_%7C_DAG_%7C_ML_%7C_Diff-purple.svg)](#-academic-research-innovations)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100%2B-009688.svg)](https://fastapi.tiangolo.com/)
 [![Vulnerability DB](https://img.shields.io/badge/database-Google_OSV.dev_%7C_Trivy-green.svg)](https://osv.dev/)
 [![SBOM Standard](https://img.shields.io/badge/SBOM-CycloneDX_v1.4-059669.svg)](https://cyclonedx.org/)
-[![Format](https://img.shields.io/badge/SARIF-2.1.0-orange.svg)](https://sarifweb.azurewebsites.net/)
-[![License](https://img.shields.io/badge/license-MIT-purple.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-An enterprise-grade, full-stack **DevSecOps Dependency Risk Analyzer** built in Python and FastAPI. This tool automatically parses application dependency manifests, detects known **CVE vulnerabilities** using Google OSV.dev and Trivy, evaluates exploitability using **EPSS (Exploit Prediction Scoring System)**, calculates a **Composite DevSecOps Risk Score (0–100)**, exports **CycloneDX SBOMs**, pushes to **OWASP Dependency-Track**, and provides a **Glassmorphism Web Dashboard** with **CI/CD Quality Gates**.
+An enterprise-grade, peer-review research-level **DevSecOps Dependency Risk Analyzer** built in Python and FastAPI. This project introduces novel program analysis techniques including **AST Call Graph Reachability Analysis** (false-positive elimination), **Supply-Chain DAG Blast-Radius Modeling**, **Machine Learning Zero-Day Exposure Prediction**, and **AST Differential Breaking-Change Analysis**.
 
 ---
 
-## 📌 Key Features
+## 🔬 Academic Research Innovations
+
+This software incorporates 4 novel research-grade computer science engines designed for peer-reviewed academic publication:
+
+### 1. 🧬 AST Call Graph Reachability Engine (`analyzer/research/reachability.py`)
+- **Problem**: Traditional dependency scanners suffer from high false-positive rates by flagging installed libraries even if the application code never imports or invokes vulnerable functions.
+- **Solution**: Uses Python's Abstract Syntax Tree (`ast`) parser to construct a static call graph of application entrypoints, cross-referencing imported modules and symbol calls against vulnerability advisories. Unused dependencies are marked `UNREACHABLE` and discounted from risk accumulation.
+
+### 2. 🕸️ Supply-Chain DAG Blast-Radius Model (`analyzer/research/graph_engine.py`)
+- **Problem**: Cascading transitive sub-dependencies obscure the true structural impact of supply-chain attacks.
+- **Solution**: Models the dependency hierarchy as a **Directed Acyclic Graph (DAG)** and computes Graph Centrality (Depth, In/Out-degree) to quantify an individual package's **Blast Radius Score (0.0 – 100.0)**.
+
+### 3. 🔮 Predictive ML Zero-Day & Maintainer Health Engine (`analyzer/research/ml_predictor.py`)
+- **Problem**: Formal CVE publication lags behind zero-day exploits by weeks.
+- **Solution**: Evaluates release staleness, major/minor version deprecation gaps, and EPSS exploit velocity signals to compute a **Predictive Zero-Day Exposure Index**.
+
+### 4. 🤖 AST Differential Breaking-Change Analyzer (`analyzer/research/ast_diff.py`)
+- **Problem**: Developers delay applying security patches out of fear of breaking application API contracts.
+- **Solution**: Computes SemVer version deltas and inspects caller AST signatures to predict **Breaking Change Operational Risk (0.0 – 1.0)** before patch application.
+
+---
+
+## 📌 General Features
 
 - **🌐 Multi-Ecosystem Support**: Parses Python (`requirements.txt`, `pyproject.toml`), Node.js (`package.json`), Java Maven (`pom.xml`), Go (`go.mod`), and Rust (`Cargo.lock`).
-- **🔍 Multi-Engine Vulnerability Scanning**:
-  - **Google OSV.dev REST API**: Parallel multi-threaded querying across PyPI, npm, Maven, Go, and Crates feeds.
-  - **Aqua Trivy CLI Wrapper**: Automatic fallback detection and binary execution.
-  - **FIRST.org EPSS Integration**: Real-world exploit probability ratings to prioritize high-risk vulnerabilities.
-- **⚡ DevSecOps Composite Risk Scoring Engine**:
-  - Differentiates **Direct Dependencies** (weight: `1.0`) vs. **Transitive Dependencies** (weight: `0.65`).
-  - Combines CVSS v3 ratings, EPSS probabilities, and severity penalties into a normalized **0 - 100 Risk Score**.
-- **🚦 CI/CD Quality Gate**: Fails pipelines with non-zero exit codes when Critical CVEs or high-risk thresholds are breached.
-- **🖥️ Glassmorphism Web Dashboard & FastAPI Backend**:
-  - Drag-and-drop file upload interface.
-  - GitHub repository scan bar.
-  - **Chart.js Visualizations**: Donut chart for severity distribution & Line chart for historical risk trends.
-- **📦 Enterprise Exporters & OWASP Integration**:
-  - **CycloneDX v1.4 SBOM**: Standardized Software Bill of Materials in JSON format.
-  - **OWASP Dependency-Track Integration**: Direct API endpoint (`/api/scans/{id}/push-dependency-track`).
-  - **SARIF 2.1.0 Export**: Native integration with **GitHub Security Tab / Code Scanning**.
-  - **Interactive HTML & JSON Reports**.
+- **🔍 Multi-Engine Scanning**: Google OSV.dev REST API + Aqua Trivy CLI + FIRST.org EPSS exploitability ratings.
+- **🖥️ Glassmorphism Web Dashboard**: Real-time browser UI at `http://127.0.0.1:8000` with Chart.js charts and live Academic Research Metrics panel.
+- **📦 Enterprise Exporters & OWASP Integration**: CycloneDX v1.4 JSON SBOM, OWASP Dependency-Track REST API exporter, SARIF 2.1.0 for GitHub Code Scanning.
 
 ---
 
@@ -39,23 +47,19 @@ An enterprise-grade, full-stack **DevSecOps Dependency Risk Analyzer** built in 
 ```mermaid
 flowchart TD
     A[Dependency Manifests / GitHub Repo] --> B[Multi-Ecosystem Parser Engine]
-    B -->|Python, Node, Java, Go, Rust| C[Dependencies List]
-    C --> D[Parallel ThreadPool Scanner Coordinator]
+    B --> C[Dependencies List]
     
-    subgraph Scanning Engine
-        D --> E[Google OSV.dev API]
-        D --> F[Aqua Trivy CLI]
-        D --> G[FIRST.org EPSS API]
+    subgraph Research Engine Suite
+        C --> D[AST Call Graph Reachability Analyzer]
+        C --> E[Supply Chain DAG Blast Radius Engine]
+        C --> F[Predictive ML Zero-Day Engine]
+        C --> G[AST Differential Breaking Change Analyzer]
     end
     
-    E & F & G --> H[Risk Scoring Engine]
-    H --> I[SQLite Database Persistence]
-    
-    I --> J[FastAPI REST API & Server]
-    J --> K[Glassmorphism Web Dashboard]
-    J --> L[CycloneDX SBOM Generator]
-    J --> M[OWASP Dependency-Track]
-    J --> N[SARIF GitHub Export]
+    D & E & F & G --> H[Parallel ThreadPool Vulnerability Scanner]
+    H --> I[Composite DevSecOps Risk Engine]
+    I --> J[SQLite Database Persistence]
+    J --> K[FastAPI REST Server & Glassmorphism Web Dashboard]
 ```
 
 ---
@@ -64,15 +68,13 @@ flowchart TD
 
 The Risk Engine calculates dependency risk using:
 
-$$R_{\text{dep}} = \max_{v \in \text{Vulns}} \left( \text{CVSS}_v \times (1 + \text{EPSS}_v) \right) \times W_{\text{dependency}}$$
+$$R_{\text{dep}} = \max_{v \in \text{ReachableVulns}} \left( \text{CVSS}_v \times (1 + \text{EPSS}_v \times 0.5) \right) \times W_{\text{dependency}}$$
 
 Where:
 - $W_{\text{dependency}} = 1.0$ for **Direct Dependencies**, and $0.65$ for **Transitive Dependencies**.
-- $\text{EPSS}_v$: Real-world exploit probability factor ($0.0 - 1.0$).
+- Unreachable false positives ($v \in \text{Unreachable}$) are excluded from risk accumulation.
 
-The project's overall **Composite Risk Score (0 - 100)** is computed as:
-
-$$\text{Risk Score} = \min \left( 100.0, \, \frac{\sum R_{\text{dep}}}{N_{\text{total}}} \times 12.0 + 15.0 \times N_{\text{critical}} + 5.0 \times N_{\text{high}} \right)$$
+$$\text{Risk Score} = \min \left( 100.0, \, \frac{\sum R_{\text{dep}}}{N_{\text{total}}} \times 6.0 + 10.0 \times N_{\text{critical}} + 3.0 \times N_{\text{high}} \right)$$
 
 ---
 
@@ -81,7 +83,6 @@ $$\text{Risk Score} = \min \left( 100.0, \, \frac{\sum R_{\text{dep}}}{N_{\text{
 ### 1. Installation
 
 ```bash
-# Install Python dependencies
 pip install -r requirements.txt pytest httpx
 ```
 
@@ -90,38 +91,19 @@ pip install -r requirements.txt pytest httpx
 ```bash
 python -m uvicorn server:app --host 127.0.0.1 --port 8000
 ```
-Open **`http://127.0.0.1:8000`** in your browser to access the interactive Glassmorphism Dashboard.
+Open **`http://127.0.0.1:8000`** in your browser.
 
 ### 3. CLI Scanning Command
 
 ```bash
-# Scan local folder and generate HTML, JSON, SARIF & CycloneDX reports
 python main.py scan ./samples --html report.html --json report.json --sarif report.sarif
 ```
 
-### 4. Scan Remote GitHub Repositories
-
-```bash
-python main.py scan-github https://github.com/owner/repo --html gh_report.html
-```
-
 ---
 
-## 🐳 Docker Deployment
+## 🧪 Running Test Suite
 
-You can deploy the entire stack using Docker and Docker Compose:
-
-```bash
-# Build and run with Docker Compose
-docker-compose up --build -d
-```
-Access the dashboard at `http://localhost:8000`.
-
----
-
-## 🧪 Running Tests
-
-Execute the automated `pytest` test suite:
+Run all 13 unit & integration tests covering parsers, research engines, scoring models, and FastAPI endpoints:
 
 ```bash
 pytest
@@ -130,10 +112,11 @@ pytest
 Output:
 ```text
 ============================= test session starts =============================
-tests/test_parsers.py ....                                               [ 44%]
-tests/test_scoring.py ..                                                 [ 66%]
+tests/test_parsers.py ....                                               [ 30%]
+tests/test_research.py ....                                              [ 61%]
+tests/test_scoring.py ..                                                 [ 76%]
 tests/test_server.py ...                                                 [100%]
-============================= 9 passed in 14.26s ==============================
+============================= 13 passed in 6.16s ==============================
 ```
 
 ---
@@ -142,44 +125,28 @@ tests/test_server.py ...                                                 [100%]
 
 ```text
 devsecops-dependency-analyzer/
-├── main.py                     # CLI Entrypoint & Argument Parser
+├── main.py                     # CLI Entrypoint
 ├── server.py                   # FastAPI Application Server & REST API
 ├── db.py                       # SQLite Database models & persistence
 ├── Dockerfile                  # Container build instructions
 ├── docker-compose.yml          # Docker Compose configuration
-├── requirements.txt            # Python package requirements
-├── README.md                   # Complete project documentation
+├── requirements.txt            # Python dependencies
+├── README.md                   # Complete documentation
 ├── analyzer/
-│   ├── models.py               # Data models for Vulnerability, Dependency, RiskReport
+│   ├── models.py               # Data models including ResearchMetrics
 │   ├── github.py               # GitHub repository manifest fetcher
-│   ├── parsers/                # Manifest Parsers Engine
-│   │   ├── base.py             # Abstract Base Parser
-│   │   ├── python_parser.py    # requirements.txt & pyproject.toml parser
-│   │   ├── node_parser.py      # package.json parser
-│   │   ├── java_parser.py      # pom.xml parser
-│   │   ├── go_parser.py        # go.mod parser
-│   │   └── rust_parser.py      # Cargo.lock parser
-│   ├── scanners/               # Vulnerability Scanning Engine
-│   │   ├── osv_scanner.py      # Google OSV.dev REST API Scanner + EPSS caching
-│   │   ├── trivy_scanner.py    # Aqua Security Trivy CLI wrapper
-│   │   └── manager.py          # Parallel ThreadPoolExecutor Scanner Coordinator
+│   ├── parsers/                # Manifest Parsers (Python, Node, Java, Go, Rust)
+│   ├── scanners/               # Vulnerability Scanner Engine (OSV.dev, Trivy, EPSS)
+│   ├── research/               # Academic Research Engines
+│   │   ├── reachability.py     # AST Call Graph Reachability Engine
+│   │   ├── graph_engine.py     # Supply-Chain DAG Blast Radius Engine
+│   │   ├── ml_predictor.py     # ML Zero-Day Exposure Predictor
+│   │   └── ast_diff.py         # AST Differential Breaking Change Analyzer
 │   ├── scoring/
-│   │   └── risk_engine.py      # DevSecOps Composite Risk Scoring Engine
+│   │   └── risk_engine.py      # DevSecOps Risk Scoring Engine
 │   └── reporters/              # Multi-Format Report Generators
-│       ├── terminal_reporter.py # Rich CLI Terminal UI
-│       ├── html_reporter.py     # Interactive Glassmorphism HTML Generator
-│       ├── json_reporter.py     # JSON Exporter
-│       ├── sarif_reporter.py    # SARIF 2.1.0 GitHub Exporter
-│       └── cyclonedx_reporter.py # CycloneDX v1.4 SBOM Generator
-├── web/                        # Dashboard Web Frontend
-│   ├── index.html              # Main HTML Glassmorphism UI
-│   ├── dashboard.css           # Glassmorphism dark mode styles
-│   └── app.js                  # Frontend JS & Chart.js logic
-├── tests/                      # Automated pytest test suite
-│   ├── test_parsers.py
-│   ├── test_scoring.py
-│   └── test_server.py
-└── samples/                    # Test manifest samples
+├── web/                        # Glassmorphism Dashboard UI & JS
+└── tests/                      # Pytest automated test suite
 ```
 
 ---

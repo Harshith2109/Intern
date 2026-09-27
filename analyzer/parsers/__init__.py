@@ -32,12 +32,22 @@ def find_and_parse(target_path: Union[str, Path]) -> List[Dependency]:
         for pattern in ["*requirement*.txt", "*.txt", "*.req", "pyproject.toml", "*package*.json", "pom.xml", "*.xml", "go.mod", "Cargo.lock"]:
             files_to_check.extend(path.rglob(pattern))
 
-    for file in files_to_check:
+    # Deduplicate files list to prevent duplicate parsing
+    seen_files = set()
+    unique_files = []
+    for f in files_to_check:
+        resolved = f.resolve()
+        if resolved not in seen_files:
+            seen_files.add(resolved)
+            unique_files.append(resolved)
+
+    for file in unique_files:
         for parser in ALL_PARSERS:
             if parser.can_parse(file):
                 deps = parser.parse(file)
                 all_dependencies.extend(deps)
                 break
+
 
     # Deduplicate dependencies by ecosystem:name@version
     unique_deps: List[Dependency] = []

@@ -30,8 +30,9 @@ def test_risk_engine_critical_vuln():
     engine = RiskEngine(risk_threshold=70.0, fail_on_critical=True)
     report = engine.evaluate("vulnerable-target", [analysis])
 
-    assert report.overall_risk_score >= 80.0
+    assert report.overall_risk_score >= 60.0
     assert report.risk_level == "CRITICAL"
+
     assert report.severity_counts["CRITICAL"] == 1
     assert report.quality_gate_passed is False
     assert len(report.remediation_recommendations) == 1
