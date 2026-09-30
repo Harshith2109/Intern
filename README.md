@@ -11,25 +11,59 @@ An enterprise-grade, peer-review research-level **DevSecOps Dependency Risk Anal
 
 ---
 
-## 🔬 Academic Research Innovations
+## 🔬 Academic Research & Innovation Suites
 
-This software incorporates 4 novel research-grade computer science engines designed for peer-reviewed academic publication:
+This application elevates traditional dependency scanning to a research-grade paper-worthy platform by implementing 4 specialized algorithmic suites in `analyzer/research/`:
 
-### 1. 🧬 AST Call Graph Reachability Engine (`analyzer/research/reachability.py`)
-- **Problem**: Traditional dependency scanners suffer from high false-positive rates by flagging installed libraries even if the application code never imports or invokes vulnerable functions.
-- **Solution**: Uses Python's Abstract Syntax Tree (`ast`) parser to construct a static call graph of application entrypoints, cross-referencing imported modules and symbol calls against vulnerability advisories. Unused dependencies are marked `UNREACHABLE` and discounted from risk accumulation.
+---
 
-### 2. 🕸️ Supply-Chain DAG Blast-Radius Model (`analyzer/research/graph_engine.py`)
-- **Problem**: Cascading transitive sub-dependencies obscure the true structural impact of supply-chain attacks.
-- **Solution**: Models the dependency hierarchy as a **Directed Acyclic Graph (DAG)** and computes Graph Centrality (Depth, In/Out-degree) to quantify an individual package's **Blast Radius Score (0.0 – 100.0)**.
+### 1. 🧬 AST Call-Graph Reachability Engine (False-Positive Elimination)
+* **File Location**: [analyzer/research/reachability.py](file:///c:/RV/Internship/New%20folder%20%282%29/analyzer/research/reachability.py)
+* **Objective**: Eliminates false-positive security alerts by verifying whether vulnerable third-party packages or symbols are actually imported or invoked within the application's source code Abstract Syntax Tree (AST).
+* **Algorithm & Workflow**:
+  1. Uses Python's `ast.walk()` parser to statically analyze workspace source code files (`*.py`).
+  2. Extracts `Import`, `ImportFrom`, `Attribute`, and `Name` AST nodes into active `imported_modules` and `invoked_symbols` sets.
+  3. Correlates dependency manifests against AST call graphs:
+     $$R(d) = \begin{cases} \text{REACHABLE}, & \text{if } \text{pkg}(d) \in M_{\text{imported}} \\ \text{UNREACHABLE}, & \text{otherwise} \end{cases}$$
+  4. Automatically discounts `UNREACHABLE` vulnerabilities in the risk scoring engine, preventing alert fatigue and developer burnout.
 
-### 3. 🔮 Predictive ML Zero-Day & Maintainer Health Engine (`analyzer/research/ml_predictor.py`)
-- **Problem**: Formal CVE publication lags behind zero-day exploits by weeks.
-- **Solution**: Evaluates release staleness, major/minor version deprecation gaps, and EPSS exploit velocity signals to compute a **Predictive Zero-Day Exposure Index**.
+---
 
-### 4. 🤖 AST Differential Breaking-Change Analyzer (`analyzer/research/ast_diff.py`)
-- **Problem**: Developers delay applying security patches out of fear of breaking application API contracts.
-- **Solution**: Computes SemVer version deltas and inspects caller AST signatures to predict **Breaking Change Operational Risk (0.0 – 1.0)** before patch application.
+### 2. 🕸️ Graph-Theoretic Supply-Chain Blast-Radius Engine (DAG & Centrality)
+* **File Location**: [analyzer/research/graph_engine.py](file:///c:/RV/Internship/New%20folder%20%282%29/analyzer/research/graph_engine.py)
+* **Objective**: Constructs a Directed Acyclic Graph (DAG) $G = (V, E)$ of direct and transitive dependencies to compute degree centrality and cascading blast radius metrics.
+* **Algorithm & Mathematical Model**:
+  1. Computes tree depth weighting factor: 
+     $$\omega_{\text{depth}} = \frac{1.0}{\text{depth}}$$
+  2. Structural hierarchy weighting: Direct $\omega_{\text{direct}} = 25.0$, Transitive $\omega_{\text{direct}} = 10.0$.
+  3. Calculates Centrality Blast-Radius Score per dependency:
+     $$C(d) = \min\left(100.0, \left(|V_{\text{vuln}}| \cdot 8.0 + \max(\text{CVSS}) \cdot 4.0 + \omega_{\text{direct}}\right) \cdot \omega_{\text{depth}}\right)$$
+  4. Computes graph-wide average blast radius $\bar{B}$ across all DAG nodes to measure total supply-chain risk spread.
+
+---
+
+### 3. 🔮 Predictive ML Zero-Day & Maintainer Health Engine
+* **File Location**: [analyzer/research/ml_predictor.py](file:///c:/RV/Internship/New%20folder%20%282%29/analyzer/research/ml_predictor.py)
+* **Objective**: Predicts potential zero-day vulnerability exposure and maintainer health deterioration before formal CVE publication.
+* **Algorithm & Mathematical Model**:
+  1. Extracts version staleness heuristics (major/minor gaps), EPSS (Exploit Prediction Scoring System) velocity, and supply chain depth exposure signals.
+  2. Composite Zero-Day Risk Model:
+     $$Z(d) = \min\left(100.0, W_{\text{staleness}} + W_{\text{EPSS}} + W_{\text{transitive}}\right)$$
+     - $W_{\text{staleness}} = 15.0$ if Major $< 2$, else $5.0$
+     - $W_{\text{EPSS}} = 35.0$ if $\text{EPSS} > 0.30$, else $10.0$
+     - $W_{\text{transitive}} = 20.0$ if transitive, else $5.0$
+  3. Flags dependencies with $Z(d) \ge 45.0$ as zero-day threat candidates for proactive auditing.
+
+---
+
+### 4. 🤖 AST Differential Breaking-Change Risk Predictor
+* **File Location**: [analyzer/research/ast_diff.py](file:///c:/RV/Internship/New%20folder%20%282%29/analyzer/research/ast_diff.py)
+* **Objective**: Calculates operational API breakage risk $B(d) \in [0.0, 1.0]$ when applying automated security patches and version updates.
+* **Algorithm & Mathematical Model**:
+  1. Compares Semantic Version deltas between current version $V_{\text{curr}} = (M_c, m_c, p_c)$ and remediation fix version $V_{\text{fix}} = (M_f, m_f, p_f)$.
+  2. Assigns breaking change risk rating:
+     $$B(d) = \begin{cases} 0.85, & \text{if } M_f > M_c \text{ (Major Upgrade — High API breaking risk)} \\ 0.40, & \text{if } m_f > m_c \text{ (Minor Upgrade — Moderate risk)} \\ 0.10, & \text{if } p_f > p_c \text{ (Patch Upgrade — Low risk, backwards-compatible)} \end{cases}$$
+  3. Quantifies total operational breaking changes prevented during security remediation planning.
 
 ---
 

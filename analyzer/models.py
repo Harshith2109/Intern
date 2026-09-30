@@ -65,6 +65,7 @@ class Dependency:
     version: str
     ecosystem: str                       # e.g., "PyPI", "npm", "Maven"
     is_direct: bool = True               # Direct vs Transitive dependency flag
+    is_dev_dependency: bool = False      # Dev-only build dependency flag
     file_origin: str = ""                # Path to source manifest file
     depth: int = 1                       # Dependency tree depth
     blast_radius_score: float = 0.0      # DAG Graph Centrality score (0 - 100)
@@ -80,11 +81,13 @@ class Dependency:
             "version": self.version,
             "ecosystem": self.ecosystem,
             "is_direct": self.is_direct,
+            "is_dev_dependency": self.is_dev_dependency,
             "file_origin": self.file_origin,
             "depth": self.depth,
             "blast_radius_score": self.blast_radius_score,
             "zero_day_risk_score": self.zero_day_risk_score,
         }
+
 
 
 @dataclass

@@ -33,7 +33,7 @@ class NodeParser(BaseParser):
                     )
                 )
 
-            # Dev dependencies (marked as non-direct / dev)
+            # Dev dependencies (marked as dev dependency)
             dev_deps = data.get("devDependencies", {})
             for pkg, ver_spec in dev_deps.items():
                 version = str(ver_spec).lstrip("^~=>")
@@ -43,9 +43,11 @@ class NodeParser(BaseParser):
                         version=version or "latest",
                         ecosystem="npm",
                         is_direct=False,
+                        is_dev_dependency=True,
                         file_origin=str(file_path),
                     )
                 )
+
 
         except Exception as e:
             print(f"[!] Warning: Error parsing {file_path}: {e}")

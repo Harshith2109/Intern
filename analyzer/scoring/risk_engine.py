@@ -64,7 +64,7 @@ class RiskEngine:
 
         for analysis in analyses:
             dep = analysis.dependency
-            dep_weight = 1.0 if dep.is_direct else 0.65
+            dep_weight = 0.05 if dep.is_dev_dependency else (1.0 if dep.is_direct else 0.50)
 
             max_dep_cvss = 0.0
             for vuln in analysis.vulnerabilities:
@@ -90,11 +90,13 @@ class RiskEngine:
                         "fixed_version": vuln.fixed_version,
                         "cve": vuln.vuln_id,
                         "severity": vuln.severity.value,
+                        "is_dev": dep.is_dev_dependency,
                         "breaking_change_risk": f"{analysis.breaking_change_risk:.2f}",
                         "action": f"Upgrade {dep.name} from {dep.version} to {vuln.fixed_version} (fixes {vuln.vuln_id}, Breaking Risk: {analysis.breaking_change_risk:.2f})"
                     })
 
             accumulated_dep_score += max_dep_cvss * dep_weight
+
 
         # Composite Score Calculation (0.0 - 100.0)
         if total_deps == 0 or vulnerable_deps_count == 0:
