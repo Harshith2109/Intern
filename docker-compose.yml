@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: ${IMAGE_NAME:-devsecops-analyzer}:${IMAGE_TAG:-latest}
     container_name: devsecops-analyzer
     ports:
       - "8000:8000"
