@@ -4,7 +4,7 @@ pipeline {
     parameters {
         choice(name: 'DEPLOY_ENV', choices: ['production', 'staging'], description: 'Deployment Environment')
         string(name: 'AZURE_VM_HOST', defaultValue: '', description: 'Azure VM Public IP or FQDN (leave empty to use AZURE_VM_IP secret)')
-        booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'Run pytest test suite before build')
+        booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'Run pytest test suite inside container')
         booleanParam(name: 'RUN_SECURITY_SCAN', defaultValue: true, description: 'Run Trivy container vulnerability scan')
         booleanParam(name: 'FAIL_ON_VULNERABILITY', defaultValue: false, description: 'Fail build if Critical/High vulnerabilities are found')
     }
@@ -45,39 +45,6 @@ pipeline {
             }
         }
 
-        stage('Run Unit Tests') {
-            when {
-                expression { return params.RUN_TESTS }
-            }
-            steps {
-                echo "Setting up Python virtual environment and running tests..."
-                script {
-                    if (isUnix()) {
-                        sh '''
-                            python3 -m venv .venv || python -m venv .venv
-                            . .venv/bin/activate
-                            python -m pip install --upgrade pip
-                            python -m pip install -r requirements.txt pytest httpx
-                            python -m pytest tests/ -v --junitxml=test-results.xml
-                        '''
-                    } else {
-                        bat '''
-                            python -m venv .venv
-                            call .venv\\Scripts\\activate.bat
-                            python -m pip install --upgrade pip
-                            python -m pip install -r requirements.txt pytest httpx
-                            python -m pytest tests/ -v --junitxml=test-results.xml
-                        '''
-                    }
-                }
-            }
-            post {
-                always {
-                    junit testResults: 'test-results.xml', allowEmptyResults: true
-                }
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 echo "Building Docker image: ${IMAGE_FULL_TAG}..."
@@ -91,12 +58,28 @@ pipeline {
             }
         }
 
+        stage('Run Unit Tests (Container)') {
+            when {
+                expression { return params.RUN_TESTS }
+            }
+            steps {
+                echo "Executing test suite inside the built Docker container..."
+                script {
+                    if (isUnix()) {
+                        sh "docker run --rm ${IMAGE_FULL_TAG} pytest tests/ -v"
+                    } else {
+                        bat "docker run --rm ${IMAGE_FULL_TAG} pytest tests/ -v"
+                    }
+                }
+            }
+        }
+
         stage('Container Security Scan (Trivy)') {
             when {
                 expression { return params.RUN_SECURITY_SCAN }
             }
             steps {
-                echo "Scanning Docker image with Trivy for vulnerabilities..."
+                echo "Scanning Docker image with Aqua Trivy for vulnerabilities..."
                 script {
                     def exitCode = params.FAIL_ON_VULNERABILITY ? '1' : '0'
                     if (isUnix()) {
@@ -240,7 +223,7 @@ pipeline {
                         bat "docker rmi ${IMAGE_FULL_TAG} ${IMAGE_LATEST_TAG} 2>nul || exit 0"
                     }
                 } catch (Exception e) {
-                    echo "Docker cleanup step skipped or already clean."
+                    echo "Docker cleanup step completed or skipped."
                 }
             }
         }
