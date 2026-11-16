@@ -1,0 +1,16 @@
+# Secrets and Keys
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# Testing & Reports
+.pytest_cache/
+test-results.xml
+*.sarif
