@@ -8,8 +8,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Aqua Security Trivy CLI
-RUN wget -qO- https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v0.50.0
+# Install Aqua Security Trivy CLI from official image
+COPY --from=aquasec/trivy:0.50.0 /usr/local/bin/trivy /usr/local/bin/trivy
 
 WORKDIR /app
 

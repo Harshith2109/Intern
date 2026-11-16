@@ -1,6 +1,6 @@
 import ast
 from pathlib import Path
-from typing import Set, Dict, List
+from typing import Set, Dict, List, Any
 from ..models import DependencyAnalysis, ReachabilityStatus
 
 
