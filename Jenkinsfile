@@ -135,6 +135,7 @@ pipeline {
                     ]) {
                         if (isUnix()) {
                             sh """
+                                chmod 600 "${SSH_KEY_FILE}" 2>/dev/null || true
                                 SSH_OPTS="-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=20 -i ${SSH_KEY_FILE}"
                                 echo "Testing SSH connectivity to Azure VM..."
                                 ssh \$SSH_OPTS ${SSH_USER}@${targetHost} "mkdir -p ${REMOTE_DEPLOY_DIR}"
@@ -155,6 +156,10 @@ pipeline {
                             """
                         } else {
                             powershell """
+                                # Restrict key permissions on Windows so OpenSSH accepts it
+                                \$curr = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+                                icacls.exe \$env:SSH_KEY_FILE /inheritance:r /grant:r "\${curr}:(R)" | Out-Null
+
                                 \$sshOpts = @("-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=NUL", "-o", "ConnectTimeout=20", "-i", \$env:SSH_KEY_FILE)
                                 
                                 Write-Host "Testing SSH connectivity to Azure VM (${targetHost})..."
