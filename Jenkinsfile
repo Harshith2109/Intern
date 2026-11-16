@@ -112,10 +112,10 @@ pipeline {
                                 docker push ${IMAGE_LATEST_TAG}
                             '''
                         } else {
-                            powershell '''
-                                $env:ACR_PASS | docker login $env:ACR_REGISTRY -u $env:ACR_USER --password-stdin
-                                docker push $env:IMAGE_FULL_TAG
-                                docker push $env:IMAGE_LATEST_TAG
+                            bat '''
+                                docker login %ACR_REGISTRY% -u %ACR_USER% -p "%ACR_PASS%"
+                                docker push %IMAGE_FULL_TAG%
+                                docker push %IMAGE_LATEST_TAG%
                             '''
                         }
                     }
