@@ -17,7 +17,7 @@ pipeline {
         
         // --- Azure Virtual Machine Configuration ---
         AZURE_VM_USER         = 'azureuser'
-        TARGET_VM_HOST        = "${params.AZURE_VM_HOST ?: credentials('AZURE_VM_IP')}"
+        AZURE_VM_IP           = credentials('AZURE_VM_IP')       // Jenkins Credential ID (Secret text)
         VM_SSH_CREDS_ID       = 'azure-vm-ssh-key'               // Jenkins Credential ID (SSH Username with private key)
         REMOTE_DEPLOY_DIR     = '/opt/devsecops-analyzer'
         APP_PORT              = '8000'
@@ -125,23 +125,25 @@ pipeline {
 
         stage('Deploy to Azure VM') {
             steps {
-                echo "Deploying to Azure VM at ${TARGET_VM_HOST}..."
-                withCredentials([
-                    usernamePassword(credentialsId: env.ACR_CREDS_ID, usernameVariable: 'ACR_USER', passwordVariable: 'ACR_PASS'),
-                    sshUserPrivateKey(credentialsId: env.VM_SSH_CREDS_ID, keyFileVariable: 'SSH_KEY_FILE', usernameVariable: 'SSH_USER')
-                ]) {
-                    script {
+                script {
+                    def targetHost = (params.AZURE_VM_HOST?.trim()) ? params.AZURE_VM_HOST.trim() : env.AZURE_VM_IP
+                    echo "Deploying to Azure VM at ${targetHost}..."
+
+                    withCredentials([
+                        usernamePassword(credentialsId: env.ACR_CREDS_ID, usernameVariable: 'ACR_USER', passwordVariable: 'ACR_PASS'),
+                        sshUserPrivateKey(credentialsId: env.VM_SSH_CREDS_ID, keyFileVariable: 'SSH_KEY_FILE', usernameVariable: 'SSH_USER')
+                    ]) {
                         if (isUnix()) {
-                            sh '''
-                                SSH_OPTS="-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=15 -i ${SSH_KEY_FILE}"
+                            sh """
+                                SSH_OPTS="-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=20 -i ${SSH_KEY_FILE}"
                                 echo "Testing SSH connectivity to Azure VM..."
-                                ssh $SSH_OPTS ${SSH_USER}@${TARGET_VM_HOST} "mkdir -p ${REMOTE_DEPLOY_DIR}"
+                                ssh \$SSH_OPTS ${SSH_USER}@${targetHost} "mkdir -p ${REMOTE_DEPLOY_DIR}"
 
                                 echo "Copying docker-compose.yml and deploy scripts to Azure VM..."
-                                scp $SSH_OPTS docker-compose.yml deploy/deploy.sh ${SSH_USER}@${TARGET_VM_HOST}:${REMOTE_DEPLOY_DIR}/
+                                scp \$SSH_OPTS docker-compose.yml deploy/deploy.sh ${SSH_USER}@${targetHost}:${REMOTE_DEPLOY_DIR}/
 
                                 echo "Executing remote deployment script on Azure VM..."
-                                ssh $SSH_OPTS ${SSH_USER}@${TARGET_VM_HOST} \
+                                ssh \$SSH_OPTS ${SSH_USER}@${targetHost} \
                                     "chmod +x ${REMOTE_DEPLOY_DIR}/deploy.sh && \
                                      ${REMOTE_DEPLOY_DIR}/deploy.sh \
                                          '${REMOTE_DEPLOY_DIR}' \
@@ -150,18 +152,19 @@ pipeline {
                                          '${ACR_REGISTRY}' \
                                          '${ACR_USER}' \
                                          '${ACR_PASS}'"
-                            '''
+                            """
                         } else {
-                            bat """
-                                @echo off
-                                echo Testing SSH connectivity to Azure VM...
-                                ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=15 -i "%SSH_KEY_FILE%" %SSH_USER%@%TARGET_VM_HOST% "mkdir -p %REMOTE_DEPLOY_DIR%"
-
-                                echo Copying docker-compose.yml and deploy scripts to Azure VM...
-                                scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=15 -i "%SSH_KEY_FILE%" docker-compose.yml deploy/deploy.sh %SSH_USER%@%TARGET_VM_HOST%:%REMOTE_DEPLOY_DIR%/
-
-                                echo Executing remote deployment script on Azure VM...
-                                ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=15 -i "%SSH_KEY_FILE%" %SSH_USER%@%TARGET_VM_HOST% "chmod +x %REMOTE_DEPLOY_DIR%/deploy.sh && %REMOTE_DEPLOY_DIR%/deploy.sh '%REMOTE_DEPLOY_DIR%' '%ACR_REGISTRY%/%APP_NAME%' '%BUILD_NUMBER%' '%ACR_REGISTRY%' '%ACR_USER%' '%ACR_PASS%'"
+                            powershell """
+                                \$sshOpts = @("-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=NUL", "-o", "ConnectTimeout=20", "-i", \$env:SSH_KEY_FILE)
+                                
+                                Write-Host "Testing SSH connectivity to Azure VM (${targetHost})..."
+                                ssh @sshOpts "\$env:SSH_USER@${targetHost}" "mkdir -p ${REMOTE_DEPLOY_DIR}"
+                                
+                                Write-Host "Copying docker-compose.yml and deploy scripts to Azure VM..."
+                                scp @sshOpts "docker-compose.yml" "deploy/deploy.sh" "\$env:SSH_USER@${targetHost}:${REMOTE_DEPLOY_DIR}/"
+                                
+                                Write-Host "Executing remote deployment script on Azure VM..."
+                                ssh @sshOpts "\$env:SSH_USER@${targetHost}" "chmod +x ${REMOTE_DEPLOY_DIR}/deploy.sh && ${REMOTE_DEPLOY_DIR}/deploy.sh '${REMOTE_DEPLOY_DIR}' '${ACR_REGISTRY}/${APP_NAME}' '${BUILD_NUMBER}' '${ACR_REGISTRY}' '\$env:ACR_USER' '\$env:ACR_PASS'"
                             """
                         }
                     }
@@ -171,27 +174,29 @@ pipeline {
 
         stage('Post-Deployment Smoke Test') {
             steps {
-                echo "Verifying deployment health at http://${TARGET_VM_HOST}:${APP_PORT}/..."
                 script {
+                    def targetHost = (params.AZURE_VM_HOST?.trim()) ? params.AZURE_VM_HOST.trim() : env.AZURE_VM_IP
+                    echo "Verifying deployment health at http://${targetHost}:${APP_PORT}/..."
+
                     if (isUnix()) {
-                        sh '''
-                            for i in $(seq 1 10); do
-                                STATUS=$(curl -s -o /dev/null -w "%{http_code}" "http://${TARGET_VM_HOST}:${APP_PORT}/" || echo "000")
-                                if [ "$STATUS" -eq 200 ]; then
+                        sh """
+                            for i in \$(seq 1 10); do
+                                STATUS=\$(curl -s -o /dev/null -w "%{http_code}" "http://${targetHost}:${APP_PORT}/" || echo "000")
+                                if [ "\$STATUS" -eq 200 ]; then
                                     echo "Verification Passed: Application is healthy and responding with HTTP 200!"
                                     exit 0
                                 fi
-                                echo "Waiting for external endpoint to respond... Attempt $i/10 (HTTP $STATUS)"
+                                echo "Waiting for external endpoint to respond... Attempt \$i/10 (HTTP \$STATUS)"
                                 sleep 5
                             done
                             echo "WARNING: Smoke test did not return 200 within 50s. Please check NSG rules on Azure VM port ${APP_PORT}."
-                        '''
+                        """
                     } else {
                         powershell """
                             \$healthy = \$false
                             for (\$i = 1; \$i -le 10; \$i++) {
                                 try {
-                                    \$response = Invoke-WebRequest -Uri "http://${TARGET_VM_HOST}:${APP_PORT}/" -UseBasicParsing -TimeoutSec 5
+                                    \$response = Invoke-WebRequest -Uri "http://${targetHost}:${APP_PORT}/" -UseBasicParsing -TimeoutSec 5
                                     if (\$response.StatusCode -eq 200) {
                                         Write-Host "Verification Passed: Application is healthy and responding with HTTP 200!"
                                         \$healthy = \$true
@@ -228,11 +233,14 @@ pipeline {
             }
         }
         success {
-            echo "=========================================================="
-            echo " Pipeline Execution SUCCESSFUL!"
-            echo " Deployed Version: ${IMAGE_FULL_TAG}"
-            echo " Dashboard Live at: http://${TARGET_VM_HOST}:${APP_PORT}/"
-            echo "=========================================================="
+            script {
+                def targetHost = (params.AZURE_VM_HOST?.trim()) ? params.AZURE_VM_HOST.trim() : env.AZURE_VM_IP
+                echo "=========================================================="
+                echo " Pipeline Execution SUCCESSFUL!"
+                echo " Deployed Version: ${IMAGE_FULL_TAG}"
+                echo " Dashboard Live at: http://${targetHost}:${APP_PORT}/"
+                echo "=========================================================="
+            }
         }
         failure {
             echo "=========================================================="
