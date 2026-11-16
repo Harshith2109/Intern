@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 # ==============================================================================
 # Deploy Script for DevSecOps Analyzer on Azure VM
 # This script is executed on the Azure VM by Jenkins or standalone.

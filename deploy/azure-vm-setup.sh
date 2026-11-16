@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 # ==============================================================================
 # Azure VM Initial Provisioning & Setup Script
 # Run this once on your newly created Ubuntu Azure VM, OR run the Azure CLI

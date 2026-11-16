@@ -145,8 +145,9 @@ pipeline {
 
                                 echo "Executing remote deployment script on Azure VM..."
                                 ssh \$SSH_OPTS ${SSH_USER}@${targetHost} \
-                                    "chmod +x ${REMOTE_DEPLOY_DIR}/deploy.sh && \
-                                     ${REMOTE_DEPLOY_DIR}/deploy.sh \
+                                    "sed -i 's/\\r\$//' ${REMOTE_DEPLOY_DIR}/deploy.sh && \
+                                     chmod +x ${REMOTE_DEPLOY_DIR}/deploy.sh && \
+                                     bash ${REMOTE_DEPLOY_DIR}/deploy.sh \
                                          '${REMOTE_DEPLOY_DIR}' \
                                          '${ACR_REGISTRY}/${APP_NAME}' \
                                          '${BUILD_NUMBER}' \
@@ -169,7 +170,7 @@ pipeline {
                                 scp @sshOpts "docker-compose.yml" "deploy/deploy.sh" "\$env:SSH_USER@${targetHost}:${REMOTE_DEPLOY_DIR}/"
                                 
                                 Write-Host "Executing remote deployment script on Azure VM..."
-                                ssh @sshOpts "\$env:SSH_USER@${targetHost}" "chmod +x ${REMOTE_DEPLOY_DIR}/deploy.sh && ${REMOTE_DEPLOY_DIR}/deploy.sh '${REMOTE_DEPLOY_DIR}' '${ACR_REGISTRY}/${APP_NAME}' '${BUILD_NUMBER}' '${ACR_REGISTRY}' '\$env:ACR_USER' '\$env:ACR_PASS'"
+                                ssh @sshOpts "\$env:SSH_USER@${targetHost}" "sed -i 's/\\r\$//' ${REMOTE_DEPLOY_DIR}/deploy.sh && chmod +x ${REMOTE_DEPLOY_DIR}/deploy.sh && bash ${REMOTE_DEPLOY_DIR}/deploy.sh '${REMOTE_DEPLOY_DIR}' '${ACR_REGISTRY}/${APP_NAME}' '${BUILD_NUMBER}' '${ACR_REGISTRY}' '\$env:ACR_USER' '\$env:ACR_PASS'"
                             """
                         }
                     }
