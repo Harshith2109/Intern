@@ -114,16 +114,6 @@ pipeline {
                             '''
                         } else {
                             powershell '''
-                                Write-Host "--- CREDENTIAL DIAGNOSTICS ---"
-                                Write-Host "DIAG: Registry raw length = $($env:ACR_REGISTRY.Length)"
-                                Write-Host "DIAG: Registry ends with .azurecr.io = $($env:ACR_REGISTRY.EndsWith('.azurecr.io'))"
-                                Write-Host "DIAG: Username = [$($env:ACR_USER)]"
-                                Write-Host "DIAG: Password length = $($env:ACR_PASS.Length)"
-                                if ($env:ACR_PASS.Length -ge 6) {
-                                    Write-Host "DIAG: Password starts with '$($env:ACR_PASS.Substring(0, 5))' ends with '$($env:ACR_PASS.Substring($env:ACR_PASS.Length - 4, 4))'"
-                                }
-                                Write-Host "-------------------------------"
-
                                 # Ensure clean variables without trailing whitespace or carriage returns
                                 $reg = $env:ACR_REGISTRY.Trim()
                                 if (-not $reg.EndsWith(".azurecr.io") -and -not $reg.Contains(".")) {
@@ -132,14 +122,33 @@ pipeline {
                                 $usr = $env:ACR_USER.Trim()
                                 $pwd = $env:ACR_PASS.Trim()
 
-                                Write-Host "Attempting docker login to $reg as $usr..."
-                                $pwd | docker login $reg -u $usr --password-stdin
-                                if ($LASTEXITCODE -ne 0) {
-                                    throw "Docker login to $reg failed with exit code $LASTEXITCODE"
+                                # Create isolated Docker config in workspace to bypass Windows Service (LocalSystem) credsStore issues
+                                $dockerConfigDir = "$env:WORKSPACE\\.docker"
+                                if (-not (Test-Path $dockerConfigDir)) {
+                                    New-Item -ItemType Directory -Path $dockerConfigDir -Force | Out-Null
                                 }
+                                $pair = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes("${usr}:${pwd}"))
+                                $configJson = @"
+{
+  "auths": {
+    "$reg": {
+      "auth": "$pair"
+    }
+  }
+}
+"@
+                                $configJson | Set-Content -Path "$dockerConfigDir\\config.json" -Encoding Ascii
+                                $env:DOCKER_CONFIG = $dockerConfigDir
 
-                                docker push $env:IMAGE_FULL_TAG
-                                docker push $env:IMAGE_LATEST_TAG
+                                Write-Host "Pushing Docker images to $reg using workspace config..."
+                                docker --config $dockerConfigDir push $env:IMAGE_FULL_TAG
+                                if ($LASTEXITCODE -ne 0) {
+                                    throw "Docker push $env:IMAGE_FULL_TAG failed with exit code $LASTEXITCODE"
+                                }
+                                docker --config $dockerConfigDir push $env:IMAGE_LATEST_TAG
+                                if ($LASTEXITCODE -ne 0) {
+                                    throw "Docker push $env:IMAGE_LATEST_TAG failed with exit code $LASTEXITCODE"
+                                }
                             '''
                         }
                     }
@@ -250,6 +259,17 @@ pipeline {
     post {
         always {
             echo "Pipeline run completed."
+            script {
+                try {
+                    if (isUnix()) {
+                        sh "rm -rf .docker 2>/dev/null || true"
+                    } else {
+                        bat "if exist .docker rmdir /s /q .docker 2>nul || exit 0"
+                    }
+                } catch (Exception e) {
+                    echo "Docker config cleanup step completed or skipped."
+                }
+            }
         }
         success {
             script {
