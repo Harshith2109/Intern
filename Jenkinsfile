@@ -86,6 +86,7 @@ pipeline {
                         sh """
                             docker run --rm \
                                 -v /var/run/docker.sock:/var/run/docker.sock \
+                                -v trivy-cache:/root/.cache/ \
                                 aquasec/trivy:latest image \
                                 --severity HIGH,CRITICAL \
                                 --exit-code ${exitCode} \
@@ -93,7 +94,7 @@ pipeline {
                         """
                     } else {
                         bat """
-                            docker run --rm -v //var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image --severity HIGH,CRITICAL --exit-code ${exitCode} ${IMAGE_FULL_TAG} || exit 0
+                            docker run --rm -v //var/run/docker.sock:/var/run/docker.sock -v trivy-cache:/root/.cache/ aquasec/trivy:latest image --severity HIGH,CRITICAL --exit-code ${exitCode} ${IMAGE_FULL_TAG} || exit 0
                         """
                     }
                 }
@@ -113,7 +114,30 @@ pipeline {
                             '''
                         } else {
                             powershell '''
-                                $env:ACR_PASS.Trim() | docker login $env:ACR_REGISTRY -u $env:ACR_USER --password-stdin
+                                Write-Host "--- CREDENTIAL DIAGNOSTICS ---"
+                                Write-Host "DIAG: Registry raw length = $($env:ACR_REGISTRY.Length)"
+                                Write-Host "DIAG: Registry ends with .azurecr.io = $($env:ACR_REGISTRY.EndsWith('.azurecr.io'))"
+                                Write-Host "DIAG: Username = [$($env:ACR_USER)]"
+                                Write-Host "DIAG: Password length = $($env:ACR_PASS.Length)"
+                                if ($env:ACR_PASS.Length -ge 6) {
+                                    Write-Host "DIAG: Password starts with '$($env:ACR_PASS.Substring(0, 5))' ends with '$($env:ACR_PASS.Substring($env:ACR_PASS.Length - 4, 4))'"
+                                }
+                                Write-Host "-------------------------------"
+
+                                # Ensure clean variables without trailing whitespace or carriage returns
+                                $reg = $env:ACR_REGISTRY.Trim()
+                                if (-not $reg.EndsWith(".azurecr.io") -and -not $reg.Contains(".")) {
+                                    $reg = "$reg.azurecr.io"
+                                }
+                                $usr = $env:ACR_USER.Trim()
+                                $pwd = $env:ACR_PASS.Trim()
+
+                                Write-Host "Attempting docker login to $reg as $usr..."
+                                $pwd | docker login $reg -u $usr --password-stdin
+                                if ($LASTEXITCODE -ne 0) {
+                                    throw "Docker login to $reg failed with exit code $LASTEXITCODE"
+                                }
+
                                 docker push $env:IMAGE_FULL_TAG
                                 docker push $env:IMAGE_LATEST_TAG
                             '''
@@ -225,18 +249,7 @@ pipeline {
 
     post {
         always {
-            echo "Cleaning up local workspace and docker images on Jenkins agent..."
-            script {
-                try {
-                    if (isUnix()) {
-                        sh "docker rmi ${IMAGE_FULL_TAG} ${IMAGE_LATEST_TAG} 2>/dev/null || true"
-                    } else {
-                        bat "docker rmi ${IMAGE_FULL_TAG} ${IMAGE_LATEST_TAG} 2>nul || exit 0"
-                    }
-                } catch (Exception e) {
-                    echo "Docker cleanup step completed or skipped."
-                }
-            }
+            echo "Pipeline run completed."
         }
         success {
             script {
@@ -246,6 +259,16 @@ pipeline {
                 echo " Deployed Version: ${IMAGE_FULL_TAG}"
                 echo " Dashboard Live at: http://${targetHost}:${APP_PORT}/"
                 echo "=========================================================="
+                try {
+                    echo "Cleaning up local workspace and docker images on Jenkins agent..."
+                    if (isUnix()) {
+                        sh "docker rmi ${IMAGE_FULL_TAG} ${IMAGE_LATEST_TAG} 2>/dev/null || true"
+                    } else {
+                        bat "docker rmi ${IMAGE_FULL_TAG} ${IMAGE_LATEST_TAG} 2>nul || exit 0"
+                    }
+                } catch (Exception e) {
+                    echo "Docker cleanup step completed or skipped."
+                }
             }
         }
         failure {
