@@ -133,6 +133,11 @@ class ResearchMetrics:
     average_blast_radius: float = 0.0
     predicted_zero_day_threats: int = 0
     breaking_changes_prevented: int = 0
+    reachability_graph: Dict[str, Any] = field(default_factory=dict)
+    supply_chain_dag: Dict[str, Any] = field(default_factory=dict)
+    ml_feature_breakdown: List[Dict[str, Any]] = field(default_factory=list)
+    breaking_change_details: List[Dict[str, Any]] = field(default_factory=list)
+    score_breakdown: Dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -143,6 +148,11 @@ class ResearchMetrics:
             "average_blast_radius": self.average_blast_radius,
             "predicted_zero_day_threats": self.predicted_zero_day_threats,
             "breaking_changes_prevented": self.breaking_changes_prevented,
+            "reachability_graph": self.reachability_graph,
+            "supply_chain_dag": self.supply_chain_dag,
+            "ml_feature_breakdown": self.ml_feature_breakdown,
+            "breaking_change_details": self.breaking_change_details,
+            "score_breakdown": self.score_breakdown,
         }
 
 
@@ -161,6 +171,7 @@ class RiskReport:
     quality_gate_passed: bool = True
     remediation_recommendations: List[Dict[str, str]] = field(default_factory=list)
     research_metrics: ResearchMetrics = field(default_factory=ResearchMetrics)
+    score_breakdown: Dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -174,5 +185,6 @@ class RiskReport:
             "quality_gate_passed": self.quality_gate_passed,
             "remediation_recommendations": self.remediation_recommendations,
             "research_metrics": self.research_metrics.to_dict(),
+            "score_breakdown": self.score_breakdown,
             "dependencies": [dep.to_dict() for dep in self.dependencies],
         }

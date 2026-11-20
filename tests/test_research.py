@@ -65,3 +65,44 @@ def test_ast_diff_breaking_change_analyzer():
 
     assert analysis.breaking_change_risk >= 0.8
     assert prevented == 1
+
+
+def test_interactive_research_graphs_and_math(tmp_path):
+    py_file = tmp_path / "app.py"
+    py_file.write_text("import flask\napp = flask.Flask(__name__)\n", encoding="utf-8")
+
+    dep_flask = Dependency(name="flask", version="1.1.2", ecosystem="PyPI", is_direct=True)
+    dep_unused = Dependency(name="unused-tool", version="0.1.0", ecosystem="PyPI", is_dev_dependency=True)
+
+    vuln_crit = Vulnerability(
+        vuln_id="CVE-2023-9999",
+        summary="Critical vulnerability",
+        severity=Severity.CRITICAL,
+        cvss_score=9.8,
+        epss_score=0.85,
+        fixed_version="2.0.0"
+    )
+    vuln_unreach = Vulnerability(
+        vuln_id="CVE-2023-8888",
+        summary="Unreachable vulnerability",
+        severity=Severity.HIGH,
+        cvss_score=8.0,
+        epss_score=0.10
+    )
+
+    a1 = DependencyAnalysis(dependency=dep_flask, vulnerabilities=[vuln_crit])
+    a2 = DependencyAnalysis(dependency=dep_unused, vulnerabilities=[vuln_unreach])
+
+    from analyzer.scoring import RiskEngine
+    engine = RiskEngine()
+    report = engine.evaluate(str(tmp_path), [a1, a2])
+
+    metrics = report.research_metrics
+    assert "graph" in metrics.reachability_graph or "nodes" in metrics.reachability_graph
+    assert "nodes" in metrics.supply_chain_dag
+    assert len(metrics.ml_feature_breakdown) == 2
+    assert len(metrics.breaking_change_details) >= 1
+    assert "base_score" in report.score_breakdown
+    assert "package_contributions" in report.score_breakdown
+    assert report.score_breakdown["package_contributions"][0]["package"] == "flask"
+

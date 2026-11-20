@@ -3,40 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevSecOps Dependency Risk Analyzer Dashboard</title>
-    <link rel="stylesheet" href="/static/dashboard.css">
+    <title>DevSecOps Dependency Risk Analyzer</title>
+    <link rel="stylesheet" href="/static/dashboard.css?v=3.0.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
 </head>
 <body>
     <div class="dashboard-container">
         <!-- Navbar Header -->
         <header class="navbar">
             <div class="logo-group">
-                <span class="logo-icon">🛡️</span>
+                <span class="logo-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M12 8v4M12 16h.01"/>
+                    </svg>
+                </span>
                 <span class="logo-title">DevSecOps Risk Analyzer</span>
             </div>
-            <div id="exportGroup" style="display: none; gap: 0.75rem;">
-                <a id="btnExportHtml" class="btn" style="background:#0284c7" target="_blank">📥 HTML Report</a>
-                <a id="btnExportJson" class="btn" style="background:#4f46e5" target="_blank">📄 JSON</a>
-                <a id="btnExportSarif" class="btn" style="background:#9333ea" target="_blank">🐙 SARIF</a>
-                <a id="btnExportCycloneDx" class="btn" style="background:#059669" target="_blank">📦 CycloneDX SBOM</a>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <button id="themeToggleBtn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light / Dark Mode">
+                    <span id="themeIcon">
+                        <svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"/>
+                            <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                        </svg>
+                    </span>
+                    <span id="themeLabel">Light Mode</span>
+                </button>
+                <div id="exportGroup" style="display: none; gap: 0.5rem;">
+                    <a id="btnExportHtml" class="btn btn-export" style="background:#0284c7" target="_blank">
+                        <svg class="ui-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> HTML
+                    </a>
+                    <a id="btnExportJson" class="btn btn-export" style="background:#4f46e5" target="_blank">
+                        <svg class="ui-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg> JSON
+                    </a>
+                    <a id="btnExportSarif" class="btn btn-export" style="background:#9333ea" target="_blank">
+                        <svg class="ui-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> SARIF
+                    </a>
+                    <a id="btnExportCycloneDx" class="btn btn-export" style="background:#059669" target="_blank">
+                        <svg class="ui-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg> CycloneDX
+                    </a>
+                </div>
             </div>
-
         </header>
 
         <!-- KPI Metric Cards -->
         <div class="stats-grid">
-            <div class="stat-card">
+            <div class="stat-card clickable-card" id="cardScore" style="cursor: pointer;" title="Inspect risk score breakdown and live simulator">
                 <div class="stat-label">Composite Risk Score</div>
                 <div class="stat-value" id="riskScoreValue">-- / 100</div>
+                <div class="card-hint">View formula & simulator</div>
             </div>
             <div class="stat-card">
                 <div class="stat-label">Quality Gate</div>
                 <div style="margin-top:0.5rem">
-                    <span id="qualityGateBadge" class="badge" style="font-size:1.1rem">READY</span>
+                    <span id="qualityGateBadge" class="badge" style="font-size:1.05rem">READY</span>
                 </div>
             </div>
             <div class="stat-card">
@@ -49,43 +74,48 @@
             </div>
         </div>
 
-        <!-- Academic Research Innovation Metrics Panel -->
+        <!-- Metric Details Panel -->
         <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
-            <div class="stat-card" style="border-left: 4px solid var(--accent-blue);">
-                <div class="stat-label">🧬 AST False Positives Eliminated</div>
+            <div class="stat-card clickable-card" id="cardReachability" style="border-left: 4px solid var(--accent-blue); cursor: pointer;" title="View AST Reachability Call-Graph">
+                <div class="stat-label">Filtered False Positives</div>
                 <div class="stat-value" id="resFalsePositives" style="color:var(--accent-blue)">0</div>
+                <div class="card-hint">View AST call-graph</div>
             </div>
-            <div class="stat-card" style="border-left: 4px solid var(--accent-indigo);">
-                <div class="stat-label">🕸️ DAG Graph Avg Blast Radius</div>
+            <div class="stat-card clickable-card" id="cardBlastRadius" style="border-left: 4px solid var(--accent-indigo); cursor: pointer;" title="View Supply-Chain Blast Radius DAG">
+                <div class="stat-label">Average Blast Radius</div>
                 <div class="stat-value" id="resBlastRadius" style="color:var(--accent-indigo)">0.0</div>
+                <div class="card-hint">View dependency DAG</div>
             </div>
-            <div class="stat-card" style="border-left: 4px solid var(--medium-yellow);">
-                <div class="stat-label">🔮 Predicted ML Zero-Day Threats</div>
+            <div class="stat-card clickable-card" id="cardZeroDay" style="border-left: 4px solid var(--medium-yellow); cursor: pointer;" title="View Zero-Day Risk Indicators">
+                <div class="stat-label">Zero-Day Risk Indicators</div>
                 <div class="stat-value" id="resZeroDays" style="color:var(--medium-yellow)">0</div>
+                <div class="card-hint">View risk attribution</div>
             </div>
-            <div class="stat-card" style="border-left: 4px solid var(--low-green);">
-                <div class="stat-label">🤖 Breaking Changes Prevented</div>
+            <div class="stat-card clickable-card" id="cardBreakingChange" style="border-left: 4px solid var(--low-green); cursor: pointer;" title="View Safe Upgrade Recommendations">
+                <div class="stat-label">Safe Upgrades Identified</div>
                 <div class="stat-value" id="resBreakingChanges" style="color:var(--low-green)">0</div>
+                <div class="card-hint">View compatibility matrix</div>
             </div>
         </div>
-
 
         <!-- Scan Input Section -->
         <div class="scan-section">
             <div class="dropzone-card">
-                <div class="chart-title">📁 Upload Dependency Manifest</div>
+                <div class="chart-title">Upload Dependency File</div>
                 <div class="dropzone" id="dropzone">
-                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📄</div>
-                    <p style="font-weight:600; margin-bottom: 0.25rem;">Drag & drop dependency file here</p>
-                    <p style="font-size:0.85rem; color:var(--text-secondary)">Supports <code>requirements.txt</code>, <code>package.json</code>, <code>pom.xml</code>, <code>pyproject.toml</code></p>
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.8" style="margin-bottom: 0.5rem;">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                    </svg>
+                    <p style="font-weight:600; margin-bottom: 0.25rem;">Drag and drop file here, or click to browse</p>
+                    <p style="font-size:0.82rem; color:var(--text-secondary)">Supports requirements.txt, package.json, pom.xml, pyproject.toml</p>
                     <input type="file" id="fileInput" style="display:none">
                 </div>
             </div>
 
             <div class="github-card">
-                <div class="chart-title">🐙 Scan Remote GitHub Repository</div>
+                <div class="chart-title">Scan GitHub Repository</div>
                 <div class="form-group">
-                    <label style="font-size:0.85rem; color:var(--text-secondary)">GitHub Repository URL</label>
+                    <label style="font-size:0.85rem; color:var(--text-secondary)">Repository URL</label>
                     <input type="text" id="githubUrl" placeholder="https://github.com/owner/repository">
                 </div>
                 <div class="form-group">
@@ -93,7 +123,267 @@
                     <input type="text" id="githubBranch" value="main" placeholder="main">
                 </div>
                 <div style="margin-top: 1.25rem;">
-                    <button id="btnGithubScan" class="btn" style="width: 100%;">🚀 Launch GitHub Scan</button>
+                    <button id="btnGithubScan" class="btn" style="width: 100%;">Scan Repository</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analysis & Simulation Workbench -->
+        <div class="workbench-card" id="interactiveWorkbench">
+            <div class="workbench-header">
+                <div class="chart-title" style="margin:0; display:flex; align-items:center; gap:0.5rem;">
+                    Analysis & Simulation
+                </div>
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="tabMath">Score Breakdown & Simulator</button>
+                    <button class="tab-btn" data-tab="tabAST">AST Call-Graph</button>
+                    <button class="tab-btn" data-tab="tabDAG">Supply-Chain DAG</button>
+                    <button class="tab-btn" data-tab="tabML">Zero-Day Indicators</button>
+                    <button class="tab-btn" data-tab="tabDiff">Safe Upgrades</button>
+                </div>
+            </div>
+
+            <!-- Tab 1: Math & Simulator -->
+            <div class="tab-content active" id="tabMath">
+                <div class="math-grid">
+                    <div class="math-formula-box">
+                        <div class="box-title">Risk Score Breakdown</div>
+                        <div class="formula-line" id="mathFormulaText">min(100.0, Base Score + Severity Bonus)</div>
+                        
+                        <div class="math-breakdown-row">
+                            <div class="math-stat">
+                                <span class="math-lbl">Base Score</span>
+                                <span class="math-val" id="mathBaseScore">0.0</span>
+                            </div>
+                            <div class="math-stat">
+                                <span class="math-lbl">Critical (+10)</span>
+                                <span class="math-val" style="color:var(--critical-red)" id="mathCritBonus">+0.0</span>
+                            </div>
+                            <div class="math-stat">
+                                <span class="math-lbl">High (+3)</span>
+                                <span class="math-val" style="color:var(--high-orange)" id="mathHighBonus">+0.0</span>
+                            </div>
+                            <div class="math-stat">
+                                <span class="math-lbl">Medium (+1.5)</span>
+                                <span class="math-val" style="color:var(--medium-yellow)" id="mathMedBonus">+0.0</span>
+                            </div>
+                        </div>
+
+                        <div class="discounts-row">
+                            <div class="discount-badge discount-green">
+                                <span>AST Reachability Discount:</span>
+                                <strong id="mathReachDiscount">-0.0 pts saved (false-positives filtered)</strong>
+                            </div>
+                            <div class="discount-badge discount-purple">
+                                <span>DevDependencies Scope Discount:</span>
+                                <strong id="mathDevDiscount">-0.0 pts saved (build tools downweighted)</strong>
+                            </div>
+                        </div>
+
+                        <div style="margin-top:1.5rem">
+                            <div class="box-title" style="font-size:0.92rem">Package Score Contributions</div>
+                            <div style="max-height:220px; overflow-y:auto; border-radius:8px; border:1px solid var(--card-border);">
+                                <table style="font-size:0.85rem">
+                                    <thead>
+                                        <tr>
+                                            <th>Package</th>
+                                            <th>Scope</th>
+                                            <th>Reachability</th>
+                                            <th>Weighted CVSS</th>
+                                            <th>Weight</th>
+                                            <th>Contribution</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="packageContributionBody">
+                                        <tr><td colspan="6" style="text-align:center; color:var(--text-secondary)">Scan a manifest to view score contributions.</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live What-If Risk Simulator -->
+                    <div class="simulator-box">
+                        <div class="box-title">Risk Simulator</div>
+                        <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:1rem">
+                            Adjust parameters to evaluate how CVSS, exploit probability, AST reachability, and dependency scope impact the composite risk score in real time.
+                        </p>
+                        
+                        <div class="sim-control">
+                            <div class="sim-label-row">
+                                <span>Base CVSS:</span>
+                                <strong id="simCvssVal" style="color:var(--accent-blue)">8.5</strong>
+                            </div>
+                            <input type="range" id="simCvss" min="0" max="10" step="0.1" value="8.5">
+                        </div>
+
+                        <div class="sim-control">
+                            <div class="sim-label-row">
+                                <span>EPSS Exploit Probability:</span>
+                                <strong id="simEpssVal" style="color:var(--medium-yellow)">45%</strong>
+                            </div>
+                            <input type="range" id="simEpss" min="0" max="1" step="0.05" value="0.45">
+                        </div>
+
+                        <div class="sim-control">
+                            <div class="sim-label-row">
+                                <span>Dependency Scope:</span>
+                                <strong id="simScopeVal" style="color:var(--text-primary)">Direct (1.0x)</strong>
+                            </div>
+                            <select id="simScope" class="sim-select">
+                                <option value="1.0">Direct Production Dependency (1.0x)</option>
+                                <option value="0.50">Transitive Dependency (0.50x)</option>
+                                <option value="0.05">DevDependency / Build-Time (0.05x)</option>
+                            </select>
+                        </div>
+
+                        <div class="sim-control" style="flex-direction:row; justify-content:space-between; align-items:center;">
+                            <span>AST Code Reachable:</span>
+                            <label class="switch">
+                                <input type="checkbox" id="simReachable" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
+                        <div class="sim-result-card">
+                            <div class="sim-result-label">Calculated Package Threat Score</div>
+                            <div class="sim-result-value" id="simResultValue">10.4 pts</div>
+                            <div class="sim-formula-tag" id="simFormulaTag">8.5 x (1 + 0.45 x 0.5) x 1.0 = 10.4 pts</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2: AST Reachability Graph -->
+            <div class="tab-content" id="tabAST">
+                <div class="graph-toolbar">
+                    <div class="graph-legend">
+                        <span class="legend-item"><span class="legend-dot" style="background:#38bdf8"></span> Source File</span>
+                        <span class="legend-item"><span class="legend-dot" style="background:#818cf8"></span> Imported Module</span>
+                        <span class="legend-item"><span class="legend-dot" style="background:#f43f5e"></span> Active Threat (Reachable)</span>
+                        <span class="legend-item"><span class="legend-dot" style="background:#4ade80"></span> Filtered (Unreachable)</span>
+                        <span class="legend-item"><span class="legend-dot" style="background:#38bdf8"></span> Clean Package</span>
+                    </div>
+                    <div style="font-size:0.8rem; color:var(--text-secondary)">Click and drag any card in 360°. Click a card to inspect call path.</div>
+                </div>
+                <div class="graph-split">
+                    <div class="network-container" id="astGraphContainer">
+                        <div class="graph-hud">
+                            <button class="hud-btn" onclick="zoomNetwork('ast', 1.25)" title="Zoom In">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            </button>
+                            <button class="hud-btn" onclick="zoomNetwork('ast', 0.8)" title="Zoom Out">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            </button>
+                            <button class="hud-btn" onclick="fitNetwork('ast')" title="Center Graph">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                            <button class="hud-btn" id="astPhysicsBtn" onclick="togglePhysics('ast')" title="Toggle Spring Physics">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="inspector-panel" id="astNodeInspector">
+                        <div class="inspector-title">AST Node Details</div>
+                        <div id="astInspectorContent" style="color:var(--text-secondary); font-size:0.85rem">
+                            Click any node in the AST graph to view its static call path, imported symbols, and reachability verdict.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 3: Supply-Chain DAG Blast Radius -->
+            <div class="tab-content" id="tabDAG">
+                <div class="graph-toolbar">
+                    <div class="graph-legend">
+                        <span class="legend-item"><span class="legend-dot" style="background:#38bdf8"></span> App Root</span>
+                        <span class="legend-item"><span class="legend-dot" style="background:#f43f5e"></span> High Blast Radius (&ge; 60)</span>
+                        <span class="legend-item"><span class="legend-dot" style="background:#fb923c"></span> Medium Blast Radius (30 - 59)</span>
+                        <span class="legend-item"><span class="legend-dot" style="background:#4ade80"></span> Contained Blast Radius (&lt; 30)</span>
+                    </div>
+                    <div style="font-size:0.8rem; color:var(--text-secondary)">Dependency blast zones showing direct and transitive impact.</div>
+                </div>
+                <div class="graph-split">
+                    <div class="network-container" id="dagGraphContainer">
+                        <div class="graph-hud">
+                            <button class="hud-btn hud-btn-text" id="dagLayoutBtn" onclick="toggleDagLayout()" title="Switch Layout">
+                                <svg class="ui-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><path d="M5 5a14 14 0 0114 14"/></svg>
+                                <span>Orbit View</span>
+                            </button>
+                            <button class="hud-btn" onclick="zoomNetwork('dag', 1.25)" title="Zoom In">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            </button>
+                            <button class="hud-btn" onclick="zoomNetwork('dag', 0.8)" title="Zoom Out">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            </button>
+                            <button class="hud-btn" onclick="fitNetwork('dag')" title="Center Graph">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                            <button class="hud-btn" id="dagPhysicsBtn" onclick="togglePhysics('dag')" title="Toggle Spring Physics">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="inspector-panel" id="dagNodeInspector">
+                        <div class="inspector-title">Blast Radius Details</div>
+                        <div id="dagInspectorContent" style="color:var(--text-secondary); font-size:0.85rem">
+                            Click any package node in the DAG to inspect centrality, depth hierarchy, and cascading exposure.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 4: Zero-Day Indicators -->
+            <div class="tab-content" id="tabML">
+                <div class="box-title" style="margin-bottom:0.75rem">Zero-Day Risk Indicators</div>
+                <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:1.25rem">
+                    Combines version staleness, EPSS exploit rate, and transitive surface exposure to identify high-risk dependencies before formal advisory publication.
+                </p>
+                <div style="overflow-x:auto">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Package</th>
+                                <th>Version</th>
+                                <th>Staleness Weight</th>
+                                <th>EPSS Exploit Rate</th>
+                                <th>Transitive Surface</th>
+                                <th>Zero-Day Risk Score</th>
+                                <th>Threat Level</th>
+                                <th>Signals</th>
+                            </tr>
+                        </thead>
+                        <tbody id="mlFeatureTableBody">
+                            <tr><td colspan="8" style="text-align:center; color:var(--text-secondary)">Run a scan to view risk indicators.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tab 5: Safe Upgrade Recommendations -->
+            <div class="tab-content" id="tabDiff">
+                <div class="box-title" style="margin-bottom:0.75rem">Safe Upgrade Recommendations</div>
+                <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:1.25rem">
+                    Evaluates Semantic Version gaps between installed packages and security fixes to recommend safe upgrade steps without breaking APIs.
+                </p>
+                <div style="overflow-x:auto">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Package</th>
+                                <th>Current Version</th>
+                                <th>Target Fix Version</th>
+                                <th>SemVer Step</th>
+                                <th>Breaking Risk</th>
+                                <th>Safety Verdict</th>
+                                <th>CVEs Remediated</th>
+                                <th>Recommendation</th>
+                            </tr>
+                        </thead>
+                        <tbody id="diffTableBody">
+                            <tr><td colspan="8" style="text-align:center; color:var(--text-secondary)">Run a scan to view upgrade recommendations.</td></tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -101,11 +391,11 @@
         <!-- Charts Grid -->
         <div class="charts-grid">
             <div class="chart-card">
-                <div class="chart-title">📊 Vulnerability Severity Breakdown</div>
+                <div class="chart-title">Severity Distribution</div>
                 <canvas id="severityChart" height="200"></canvas>
             </div>
             <div class="chart-card">
-                <div class="chart-title">📈 Security Risk Score Trend</div>
+                <div class="chart-title">Risk Score History</div>
                 <canvas id="trendChart" height="200"></canvas>
             </div>
         </div>
@@ -113,7 +403,7 @@
         <!-- Vulnerabilities Data Table -->
         <div class="table-card">
             <div style="display:flex; justify-between; align-items:center; margin-bottom: 1rem;">
-                <div class="chart-title" style="margin:0">🚨 Target Findings & Vulnerability Details: <span id="targetName" style="color:var(--accent-blue)">None</span></div>
+                <div class="chart-title" style="margin:0">Vulnerability Findings: <span id="targetName" style="color:var(--accent-blue)">None</span></div>
             </div>
             <table>
                 <thead>
@@ -130,7 +420,7 @@
                 </thead>
                 <tbody id="vulnTableBody">
                     <tr>
-                        <td colspan="8" style="text-align:center; color:var(--text-secondary); padding:2rem">Upload a file or scan a repository to view security analysis.</td>
+                        <td colspan="8" style="text-align:center; color:var(--text-secondary); padding:2rem">Upload a file or scan a repository to view security findings.</td>
                     </tr>
                 </tbody>
             </table>
@@ -138,7 +428,7 @@
 
         <!-- History Scans Table -->
         <div class="table-card">
-            <div class="chart-title">📜 Scan History Log</div>
+            <div class="chart-title">Scan History</div>
             <table>
                 <thead>
                     <tr>
@@ -162,9 +452,9 @@
     <!-- Loading Overlay -->
     <div id="loadingOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(9,13,22,0.85); backdrop-filter:blur(8px); z-index:999; justify-content:center; align-items:center; flex-direction:column; gap:1rem;">
         <div class="spinner"></div>
-        <div id="loadingText" style="font-weight:600; font-size:1.1rem; color:var(--text-primary)">Analyzing Security Dependencies...</div>
+        <div id="loadingText" style="font-weight:600; font-size:1.05rem; color:var(--text-primary)">Analyzing Dependencies...</div>
     </div>
 
-    <script src="/static/app.js"></script>
+    <script src="/static/app.js?v=3.0.0"></script>
 </body>
 </html>

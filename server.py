@@ -23,6 +23,8 @@ app = FastAPI(
     version="1.0.0"
 )
 
+from starlette.middleware.base import BaseHTTPMiddleware
+
 # Enable CORS for local development
 app.add_middleware(
     CORSMiddleware,
@@ -31,6 +33,17 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Disable browser caching for instant dashboard UI refreshes
+class NoCacheMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request, call_next):
+        response = await call_next(request)
+        response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+        response.headers["Pragma"] = "no-cache"
+        response.headers["Expires"] = "0"
+        return response
+
+app.add_middleware(NoCacheMiddleware)
 
 # Initialize Database
 db.init_db()

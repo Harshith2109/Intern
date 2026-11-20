@@ -37,15 +37,10 @@ class RiskEngine:
         predicted_zero_days = self.ml_predictor.predict_zero_day_risks(analyses)
         breaking_changes = self.ast_diff_analyzer.analyze_breaking_changes(analyses)
 
-        research_metrics = ResearchMetrics(
-            total_packages_analyzed=len(analyses),
-            false_positives_eliminated=reachability_res.get("false_positives_eliminated", 0),
-            graph_node_count=graph_res.get("graph_nodes", 0),
-            graph_edge_count=graph_res.get("graph_edges", 0),
-            average_blast_radius=graph_res.get("avg_blast_radius", 0.0),
-            predicted_zero_day_threats=predicted_zero_days,
-            breaking_changes_prevented=breaking_changes
-        )
+        reachability_graph = reachability_res.get("graph", {})
+        supply_chain_dag = graph_res.get("dag_graph", {})
+        ml_feature_breakdown = getattr(self.ml_predictor, "get_feature_breakdowns", lambda: [])()
+        breaking_change_details = getattr(self.ast_diff_analyzer, "get_breaking_details", lambda: [])()
 
         total_deps = len(analyses)
         vulnerable_deps = [a for a in analyses if a.has_vulnerabilities]
@@ -61,24 +56,30 @@ class RiskEngine:
 
         remediations: List[Dict[str, str]] = []
         accumulated_dep_score = 0.0
+        accumulated_dep_score_all = 0.0
+        accumulated_dep_score_prod = 0.0
+        package_contributions: List[Dict[str, Any]] = []
 
         for analysis in analyses:
             dep = analysis.dependency
             dep_weight = 0.05 if dep.is_dev_dependency else (1.0 if dep.is_direct else 0.50)
 
             max_dep_cvss = 0.0
+            max_dep_cvss_raw = 0.0
             for vuln in analysis.vulnerabilities:
+                cvss = vuln.cvss_score or vuln.severity.score_weight
+                epss = getattr(vuln, "epss_score", 0.05)
+                weighted_cvss = cvss * (1.0 + epss * 0.5)
+
+                if weighted_cvss > max_dep_cvss_raw:
+                    max_dep_cvss_raw = weighted_cvss
+
                 # Discount unreachable false positives in risk scoring
                 if vuln.reachability == ReachabilityStatus.UNREACHABLE:
                     continue
 
                 sev_key = vuln.severity.value
                 severity_counts[sev_key] = severity_counts.get(sev_key, 0) + 1
-
-                # Base CVSS rating + EPSS weight
-                cvss = vuln.cvss_score or vuln.severity.score_weight
-                epss = getattr(vuln, "epss_score", 0.05)
-                weighted_cvss = cvss * (1.0 + epss * 0.5)
 
                 if weighted_cvss > max_dep_cvss:
                     max_dep_cvss = weighted_cvss
@@ -95,12 +96,35 @@ class RiskEngine:
                         "action": f"Upgrade {dep.name} from {dep.version} to {vuln.fixed_version} (fixes {vuln.vuln_id}, Breaking Risk: {analysis.breaking_change_risk:.2f})"
                     })
 
-            accumulated_dep_score += max_dep_cvss * dep_weight
+            dep_contrib = max_dep_cvss * dep_weight
+            accumulated_dep_score += dep_contrib
+            accumulated_dep_score_all += max_dep_cvss_raw * dep_weight
+            accumulated_dep_score_prod += max_dep_cvss * (1.0 if dep.is_direct else 0.50)
 
+            package_contributions.append({
+                "package": dep.name,
+                "version": dep.version,
+                "is_direct": dep.is_direct,
+                "is_dev": dep.is_dev_dependency,
+                "is_reachable": analysis.is_reachable,
+                "weighted_cvss": round(max_dep_cvss, 2),
+                "dep_weight": dep_weight,
+                "contribution": round(dep_contrib, 2),
+                "vuln_count": len(analysis.vulnerabilities),
+            })
+
+        package_contributions.sort(key=lambda x: x["contribution"], reverse=True)
 
         # Composite Score Calculation (0.0 - 100.0)
         if total_deps == 0 or vulnerable_deps_count == 0:
             overall_score = 0.0
+            base_score = 0.0
+            crit_bonus = 0.0
+            high_bonus = 0.0
+            med_bonus = 0.0
+            avg_risk = 0.0
+            reachability_discount_points = 0.0
+            dev_discount_points = 0.0
         else:
             avg_risk = accumulated_dep_score / max(total_deps, 1)
             base_score = min(60.0, avg_risk * 6.0)
@@ -110,6 +134,43 @@ class RiskEngine:
             med_bonus = min(8.0, severity_counts["MEDIUM"] * 1.5)
 
             overall_score = min(100.0, round(base_score + crit_bonus + high_bonus + med_bonus, 1))
+
+            raw_avg_risk = accumulated_dep_score_all / max(total_deps, 1)
+            raw_base_score = min(60.0, raw_avg_risk * 6.0)
+            reachability_discount_points = round(max(0.0, raw_base_score - base_score), 1)
+
+            prod_avg_risk = accumulated_dep_score_prod / max(total_deps, 1)
+            prod_base_score = min(60.0, prod_avg_risk * 6.0)
+            dev_discount_points = round(max(0.0, prod_base_score - base_score), 1)
+
+        score_breakdown = {
+            "base_score": round(base_score, 1),
+            "crit_bonus": round(crit_bonus, 1),
+            "high_bonus": round(high_bonus, 1),
+            "med_bonus": round(med_bonus, 1),
+            "overall_score": overall_score,
+            "accumulated_dep_score": round(accumulated_dep_score, 1),
+            "avg_dep_risk": round(avg_risk, 2),
+            "reachability_discount_points": reachability_discount_points,
+            "dev_discount_points": dev_discount_points,
+            "package_contributions": package_contributions,
+            "formula": f"min(100.0, {base_score:.1f} (Base) + {crit_bonus:.1f} (Crit) + {high_bonus:.1f} (High) + {med_bonus:.1f} (Med)) = {overall_score:.1f}"
+        }
+
+        research_metrics = ResearchMetrics(
+            total_packages_analyzed=len(analyses),
+            false_positives_eliminated=reachability_res.get("false_positives_eliminated", 0),
+            graph_node_count=graph_res.get("graph_nodes", 0),
+            graph_edge_count=graph_res.get("graph_edges", 0),
+            average_blast_radius=graph_res.get("avg_blast_radius", 0.0),
+            predicted_zero_day_threats=predicted_zero_days,
+            breaking_changes_prevented=breaking_changes,
+            reachability_graph=reachability_graph,
+            supply_chain_dag=supply_chain_dag,
+            ml_feature_breakdown=ml_feature_breakdown,
+            breaking_change_details=breaking_change_details,
+            score_breakdown=score_breakdown
+        )
 
         # Categorization
         if overall_score >= 75.0 or severity_counts["CRITICAL"] > 0:
@@ -150,4 +211,5 @@ class RiskEngine:
             quality_gate_passed=gate_passed,
             remediation_recommendations=unique_remediations,
             research_metrics=research_metrics,
+            score_breakdown=score_breakdown,
         )

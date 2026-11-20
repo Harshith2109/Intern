@@ -71,7 +71,7 @@ This application elevates traditional dependency scanning to a research-grade pa
 
 - **🌐 Multi-Ecosystem Support**: Parses Python (`requirements.txt`, `pyproject.toml`), Node.js (`package.json`), Java Maven (`pom.xml`), Go (`go.mod`), and Rust (`Cargo.lock`).
 - **🔍 Multi-Engine Scanning**: Google OSV.dev REST API + Aqua Trivy CLI + FIRST.org EPSS exploitability ratings.
-- **🖥️ Glassmorphism Web Dashboard**: Real-time browser UI at `http://127.0.0.1:8000` with Chart.js charts and live Academic Research Metrics panel.
+- **🖥️ Glassmorphism Web Dashboard & Interactive Workbench**: Real-time browser UI at `http://127.0.0.1:8000` with interactive Vis.js AST Call-Graph network, Supply-Chain DAG blast-radius visualizer, live "What-If" risk math simulator, and Chart.js analytics.
 - **📦 Enterprise Exporters & OWASP Integration**: CycloneDX v1.4 JSON SBOM, OWASP Dependency-Track REST API exporter, SARIF 2.1.0 for GitHub Code Scanning.
 
 ---
